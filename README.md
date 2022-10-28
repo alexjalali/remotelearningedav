@@ -4,7 +4,7 @@ Authors: Alexandra Jalali, Liang Zhuang, Victoria Xu
 
 Topic: Analyzing Remote Learning Preferences for different districts in New York City
 
-Description: In this project, we analyzed students' learning preferences (hybrid, remote) and compare the result with other variables such as test scores, race/ethnicity, grade level, poverty, gender, and other variables. 
+Description: In this project, we analyzed students' learning preferences (hybrid, remote) and compare the result with other variables such as race/ethnicity, grade level, poverty, gender, and other variables. We also compare test scores and learning preferences to see how different preferences lead to different student outcomes.
 
 Here is the bookdown source file: https://alexjalali.github.io/remotelearningedav.
 
