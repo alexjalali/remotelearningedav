@@ -16,7 +16,8 @@ This dataset is formatted with 8 columns and 876 rows of observations. The colum
 
 This dataset is updated on an as needed basis. It is imported directly through the NYC Open Data website as an excel file, which is a government project providing open source data produced and used by City government, and the excel file can be imported directly to R. Students attending charter schools, receiving home or hospital instruction, pre-K students, and attending certain specific programs are not included. In order to comply with regulations of the Family Educational Rights and Privacy Act on public reporting of education outcomes, data of groups with less than 5 students enrolled are suppressed with an “s”. 
 
-Source URL: https://data.cityofnewyork.us/Education/Learning-Preference-City-Remote-Learning-as-of-Jan/k5d2-tkrr
+Source URL:\
+https://data.cityofnewyork.us/Education/Learning-Preference-City-Remote-Learning-as-of-Jan/k5d2-tkrr
 
 ### Data Sets 2 & 3: ELA (English Language Arts) and Math Test results (as of 2022)
 
@@ -40,9 +41,21 @@ Some Limitations of the datasets:\
 	
 The datasets can be downloaded from the infohub of NYC Department of Education as Excel files, and can be imported to R directly. 
 
-Source URLs:
-ELA Test Scores: https://infohub.nyced.org/docs/default-source/default-document-library/district-ela-results-2013-2022-(public).xlsx
+Source URLs:\
+ELA Test Scores: https://infohub.nyced.org/docs/default-source/default-document-library/district-ela-results-2013-2022-(public).xlsx \
 Math Test Scores: https://infohub.nyced.org/docs/default-source/default-document-library/district-math-results-2013-2022-(public).xlsx
+
+### Data Set 4: Demographic Snapshot – Citywide, Borough, District, and School (as of 2022)
+
+The fourth dataset we will be using is Demographic Snapshot – Citywide, Borough, District, and School from the NYC Department of Education, which provides data on annual enrollment at the citywide, borough, district, and school levels. We will mainly focus on the district sub-dataset and use it as a key to merge all our datasets. The data was collected for students who were enrolled in a New York City Department of Education (DOE) school in grades K–12 during School Year (SY) 2017–18  to 2021-22. 
+
+The district sub-dataset has 43 columns and 176 rows. Enrollment data are broken down by student characteristics including Gender (female, male), Race/Ethnicity((Asian, Black, Hispanic, Multi-Racial, Native American, White, Missing Race/Ethnicity Data), Disability Status, ELL(English Language Learner) status, Poverty, and Economic Need Index (allows the City to better identify students eligible for free lunch).  
+
+The datasets can be downloaded from the infohub of NYC Department of Education as an Excel file and can be imported to R directly. 
+
+Source URL:\
+https://infohub.nyced.org/docs/default-source/default-document-library/demographic-snapshot-2017-18-to-2021-22.xlsx
+
 
 
 
