@@ -23,7 +23,7 @@
 <meta name="author" content="Alexandra Jalali, Liang Zhuang, Victoria Xu" />
 
 
-<meta name="date" content="2022-10-28" />
+<meta name="date" content="2022-10-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -76,7 +76,11 @@
 <li class="chapter" data-level="2" data-path="proposal.html"><a href="proposal.html"><i class="fa fa-check"></i><b>2</b> Proposal</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="proposal.html"><a href="proposal.html#research-topic"><i class="fa fa-check"></i><b>2.1</b> Research topic</a></li>
-<li class="chapter" data-level="2.2" data-path="proposal.html"><a href="proposal.html#data-availability"><i class="fa fa-check"></i><b>2.2</b> Data availability</a></li>
+<li class="chapter" data-level="2.2" data-path="proposal.html"><a href="proposal.html#data-availability"><i class="fa fa-check"></i><b>2.2</b> Data availability</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="proposal.html"><a href="proposal.html#data-set-1-learning-preference-city-remote-learning-as-of-jan-4-2021"><i class="fa fa-check"></i><b>2.2.1</b> Data Set 1: Learning Preference City Remote Learning (as of Jan 4, 2021)</a></li>
+<li class="chapter" data-level="2.2.2" data-path="proposal.html"><a href="proposal.html#data-sets-2-3-ela-english-language-arts-and-math-test-results-as-of-2022"><i class="fa fa-check"></i><b>2.2.2</b> Data Sets 2 &amp; 3: ELA (English Language Arts) and Math Test results (as of 2022)</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a>
 <ul>
@@ -115,7 +119,35 @@
 </div>
 <div id="data-availability" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Data availability<a href="proposal.html#data-availability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-set-1-learning-preference-city-remote-learning-as-of-jan-4-2021" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Data Set 1: Learning Preference City Remote Learning (as of Jan 4, 2021)<a href="proposal.html#data-set-1-learning-preference-city-remote-learning-as-of-jan-4-2021" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The first dataset we will be using is Learning Preference City Remote Learning from the NYC Department of Education. It consists of total enrollment count for students who prefer remote or hybrid learning, and who have attended school in person at least once since September 2020. The samples are collected from NYC public schools grades K-12 for each district. The dataset is as of January 4, 2021 and made public on March 11, 2021.</p>
+<p>This dataset is formatted with 8 columns and 876 rows of observations. The columns consist of district number, disaggregation category, category, number of total enrollment, number blended, percent blended, number remote, and percent remote. District number is our key/common variable used to combine other datasets that give metrics regarding specific district numbers for the same time period. Disaggregation category is a sub variable of different categories, such as gender or grade level. Category contains the specific group of that variable. For example, if disaggregation category is gender then the category groups are female and male for that specific district. These demographics will be used for visualizations and finding patterns. Blended refers to preference towards hybrid learning, and remote refers to preference towards remote learning.</p>
+<p>This dataset is updated on an as needed basis. It is imported directly through the NYC Open Data website as an excel file, which is a government project providing open source data produced and used by City government, and the excel file can be imported directly to R. Students attending charter schools, receiving home or hospital instruction, pre-K students, and attending certain specific programs are not included. In order to comply with regulations of the Family Educational Rights and Privacy Act on public reporting of education outcomes, data of groups with less than 5 students enrolled are suppressed with an “s”.</p>
+<p>Source URL: <a href="https://data.cityofnewyork.us/Education/Learning-Preference-City-Remote-Learning-as-of-Jan/k5d2-tkrr" class="uri">https://data.cityofnewyork.us/Education/Learning-Preference-City-Remote-Learning-as-of-Jan/k5d2-tkrr</a></p>
+</div>
+<div id="data-sets-2-3-ela-english-language-arts-and-math-test-results-as-of-2022" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Data Sets 2 &amp; 3: ELA (English Language Arts) and Math Test results (as of 2022)<a href="proposal.html#data-sets-2-3-ela-english-language-arts-and-math-test-results-as-of-2022" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The second and third datasets we will be using are ELA and Math Test results for students from grade 3 to grade 8 for different districts. The datasets are collected from the NYC Department of Education, and are updated annually.</p>
+<p>Each dataset contains 6 different subsets. All sub-datasets split the students by districts since district is the main variable for us to combine all datasets for this project. For this project, we will use data values for year 2019 (before the pandemic) and 2022 (the first time after the pandemic when all students were required to take those exams) to study the effect of how students’ previous test outcomes influence their learning choices and also how their preferences influence their learning outcomes. We will also use data values for years 2018, 2019, and 2022 to study how the pandemic changed student learning outcomes.</p>
+<p>Specifically, for both ELA and Math Test results, the sub datasets are:<br />
+1. All - this dataset contains information of the test results of all students. This dataset has 1792 rows and 16 columns.<br />
+2. SWD - this dataset split student test results based on whether the students are SWD (students with disabilities). This dataset has 3584 rows and 16 columns.<br />
+3. Ethnicity - this dataset split student test results based on student race and ethnicity (Asian, Black, Hispanic, White). This dataset has 7168 rows and 16 columns.<br />
+4. Gender - this dataset split student test results based on student gender (male, female). This dataset has 3584 rows and 16 columns.<br />
+5. Econ Status - this dataset split student test results based on whether the student is economically disadvantaged. This dataset has 3584 rows and 16 columns.<br />
+6. ELL - this dataset split the test results based on ELL (English Language Learner) status (current ELL, ever ELL, never ELL). This dataset has 4704 rows and 16 columns.</p>
+<p>Some Limitations of the datasets:<br />
+1. Compare to other datasets we will use for this project, some districts are missing (districts 75, 79, and 84).<br />
+2. The scale for ELA and Math exams changed in 2018. In addition, the tests for 2020 were canceled due to the pandemic, and the tests for 2021 were voluntary. Therefore, we will only use data for 2018, 2019, and 2022.<br />
+3. For the ethnicity dataset, other ethnicity groups such as multi-racial and native american are not included.<br />
+4. For the gender dataset, other genders such as cisgender, transgender, and non-binary are not included.</p>
+<p>The datasets can be downloaded from the infohub of NYC Department of Education as Excel files, and can be imported to R directly.</p>
+<p>Source URLs:
+ELA Test Scores: <a href="https://infohub.nyced.org/docs/default-source/default-document-library/district-ela-results-2013-2022-(public).xlsx" class="uri">https://infohub.nyced.org/docs/default-source/default-document-library/district-ela-results-2013-2022-(public).xlsx</a>
+Math Test Scores: <a href="https://infohub.nyced.org/docs/default-source/default-document-library/district-math-results-2013-2022-(public).xlsx" class="uri">https://infohub.nyced.org/docs/default-source/default-document-library/district-math-results-2013-2022-(public).xlsx</a></p>
 
+</div>
 </div>
 </div>
             </section>
