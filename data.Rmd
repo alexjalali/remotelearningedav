@@ -4,5 +4,47 @@
 
 ## Cleaning / transformation
 
+### Loading in Data
+```{r}
+#libraries
+library(tidyverse)
+library(here)
+library(readxl)
+
+#reading in learning preferences dataset
+learning_pref <- read_csv(here::here("datasets", "Learning_Preferences.csv"))
+
+#Our other datasets have multiple sheets, so this is a function to read all of them in
+read_excel_allsheets <- function(filename, tibble = FALSE) {
+    sheets <- readxl::excel_sheets(filename)
+    x <- lapply(sheets, function(X) readxl::read_excel(filename, sheet = X))
+    if(!tibble) x <- lapply(x, as.data.frame)
+    names(x) <- sheets
+    x
+}
+
+#reading district math results excel and creating dataframes for each relevant sheet
+math_scores <- read_excel_allsheets(here::here("datasets","district-math-results-2013-2022-(public).xlsx"))
+math_scores_all <- math_scores[["All"]] 
+math_scores_swd <- math_scores[["SWD"]] 
+math_scores_ethnicity <- math_scores[["Ethnicity"]]
+math_scores_gender <- math_scores[["Gender"]]  
+math_scores_econstatus <- math_scores[["Econ Status"]] 
+math_scores_ell <- math_scores[["ELL"]]
+
+#reading district ELA results excel and creating dataframes for each relevant sheet
+ela_scores <- read_excel_allsheets(here::here("datasets","district-ela-results-2013-2022-(public).xlsx"))
+ela_scores_all <- ela_scores[["All"]] 
+ela_scores_swd <- ela_scores[["SWD"]] 
+ela_scores_ethnicity <- ela_scores[["Ethnicity"]]
+ela_scores_gender <- ela_scores[["Gender"]]  
+ela_scores_econstatus <- ela_scores[["Econ Status"]] 
+ela_scores_ell <- ela_scores[["ELL"]]
+
+#reading demographic snapshot excel and creating a dataframe for just the district sheet
+demo <- read_excel_allsheets(here::here("datasets","demographic-snapshot.xlsx"))[["District"]]
+```
+
+
 ## Missing value analysis
 
