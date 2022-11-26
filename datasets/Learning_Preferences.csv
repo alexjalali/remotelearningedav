@@ -1,0 +1,877 @@
+District,Disaggregation Category,Category,# Total Enrollment,# Blended,% Blended,# Remote,% Remote
+1,All District,All District,10549,"3,035",28.80%,7514,71.20%
+1,English Language Learner Status,ELL,908,235,25.90%,673,74.10%
+1,English Language Learner Status,Not ELL,9641,"2,800",29.00%,6841,71.00%
+1,Gender,Female,5042,"1,455",28.90%,3587,71.10%
+1,Gender,Male,5507,"1,580",28.70%,3927,71.30%
+1,Grade Level,PK,366,173,47.30%,193,52.70%
+1,Grade Level,0K,727,337,46.40%,390,53.60%
+1,Grade Level,1,762,301,39.50%,461,60.50%
+1,Grade Level,2,742,251,33.80%,491,66.20%
+1,Grade Level,3,784,281,35.80%,503,64.20%
+1,Grade Level,4,772,283,36.70%,489,63.30%
+1,Grade Level,5,787,228,29.00%,559,71.00%
+1,Grade Level,6,753,166,22.00%,587,78.00%
+1,Grade Level,7,752,148,19.70%,604,80.30%
+1,Grade Level,8,753,145,19.30%,608,80.70%
+1,Grade Level,9,837,209,25.00%,628,75.00%
+1,Grade Level,10,890,134,15.10%,756,84.90%
+1,Grade Level,11,828,178,21.50%,650,78.50%
+1,Grade Level,12,796,201,25.30%,595,74.70%
+1,Race or Ethnicity,Asian,2198,447,20.30%,1751,79.70%
+1,Race or Ethnicity,Black,1580,454,28.70%,1126,71.30%
+1,Race or Ethnicity,Hispanic,4349,"1,241",28.50%,3108,71.50%
+1,Race or Ethnicity,Multi-Racial,388,144,37.10%,244,62.90%
+1,Race or Ethnicity,Native American,57,15,26.30%,42,73.70%
+1,Race or Ethnicity,Unknown,28,9,32.10%,19,67.90%
+1,Race or Ethnicity,White,1949,725,37.20%,1224,62.80%
+2,All District,All District,59294,"19,285",32.50%,40009,67.50%
+2,English Language Learner Status,ELL,4805,"1,575",32.80%,3230,67.20%
+2,English Language Learner Status,Not ELL,54489,"17,710",32.50%,36779,67.50%
+2,Gender,Female,30930,"9,741",31.50%,21189,68.50%
+2,Gender,Male,28364,"9,544",33.60%,18820,66.40%
+2,Grade Level,PK,1730,"1,071",61.90%,659,38.10%
+2,Grade Level,0K,2676,"1,687",63.00%,989,37.00%
+2,Grade Level,1,2614,"1,511",57.80%,1103,42.20%
+2,Grade Level,2,2491,"1,443",57.90%,1048,42.10%
+2,Grade Level,3,2583,"1,451",56.20%,1132,43.80%
+2,Grade Level,4,2523,"1,413",56.00%,1110,44.00%
+2,Grade Level,5,2474,"1,406",56.80%,1068,43.20%
+2,Grade Level,6,2626,"1,293",49.20%,1333,50.80%
+2,Grade Level,7,2633,"1,069",40.60%,1564,59.40%
+2,Grade Level,8,2676,"1,078",40.30%,1598,59.70%
+2,Grade Level,9,9110,"1,845",20.30%,7265,79.70%
+2,Grade Level,10,8975,"1,435",16.00%,7540,84.00%
+2,Grade Level,11,8506,"1,324",15.60%,7182,84.40%
+2,Grade Level,12,7677,"1,259",16.40%,6418,83.60%
+2,Race or Ethnicity,Asian,13105,"2,865",21.90%,10240,78.10%
+2,Race or Ethnicity,Black,8256,"2,030",24.60%,6226,75.40%
+2,Race or Ethnicity,Hispanic,19530,"4,700",24.10%,14830,75.90%
+2,Race or Ethnicity,Multi-Racial,2101,"1,071",51.00%,1030,49.00%
+2,Race or Ethnicity,Native American,350,85,24.30%,265,75.70%
+2,Race or Ethnicity,Unknown,687,190,27.70%,497,72.30%
+2,Race or Ethnicity,White,15265,"8,344",54.70%,6921,45.30%
+3,All District,All District,20365,"8,525",41.90%,11840,58.10%
+3,English Language Learner Status,ELL,941,388,41.20%,553,58.80%
+3,English Language Learner Status,Not ELL,19424,"8,137",41.90%,11287,58.10%
+3,Gender,Female,11026,"4,496",40.80%,6530,59.20%
+3,Gender,Male,9339,"4,029",43.10%,5310,56.90%
+3,Grade Level,PK,487,290,59.50%,197,40.50%
+3,Grade Level,0K,1165,747,64.10%,418,35.90%
+3,Grade Level,1,1190,678,57.00%,512,43.00%
+3,Grade Level,2,1147,693,60.40%,454,39.60%
+3,Grade Level,3,1123,682,60.70%,441,39.30%
+3,Grade Level,4,1182,634,53.60%,548,46.40%
+3,Grade Level,5,1252,682,54.50%,570,45.50%
+3,Grade Level,6,1322,613,46.40%,709,53.60%
+3,Grade Level,7,1342,514,38.30%,828,61.70%
+3,Grade Level,8,1424,605,42.50%,819,57.50%
+3,Grade Level,9,2021,699,34.60%,1322,65.40%
+3,Grade Level,10,2465,585,23.70%,1880,76.30%
+3,Grade Level,11,2078,496,23.90%,1582,76.10%
+3,Grade Level,12,2167,607,28.00%,1560,72.00%
+3,Race or Ethnicity,Asian,1972,769,39.00%,1203,61.00%
+3,Race or Ethnicity,Black,3881,"1,228",31.60%,2653,68.40%
+3,Race or Ethnicity,Hispanic,6593,"1,986",30.10%,4607,69.90%
+3,Race or Ethnicity,Multi-Racial,841,475,56.50%,366,43.50%
+3,Race or Ethnicity,Native American,122,35,28.70%,87,71.30%
+3,Race or Ethnicity,Unknown,433,188,43.40%,245,56.60%
+3,Race or Ethnicity,White,6523,"3,844",58.90%,2679,41.10%
+4,All District,All District,11734,"3,729",31.80%,8005,68.20%
+4,English Language Learner Status,ELL,1187,492,41.40%,695,58.60%
+4,English Language Learner Status,Not ELL,10547,"3,237",30.70%,7310,69.30%
+4,Gender,Female,6125,"1,828",29.80%,4297,70.20%
+4,Gender,Male,5609,"1,901",33.90%,3708,66.10%
+4,Grade Level,PK,649,261,40.20%,388,59.80%
+4,Grade Level,0K,712,318,44.70%,394,55.30%
+4,Grade Level,1,707,291,41.20%,416,58.80%
+4,Grade Level,2,771,298,38.70%,473,61.30%
+4,Grade Level,3,729,264,36.20%,465,63.80%
+4,Grade Level,4,775,265,34.20%,510,65.80%
+4,Grade Level,5,871,286,32.80%,585,67.20%
+4,Grade Level,6,976,313,32.10%,663,67.90%
+4,Grade Level,7,944,298,31.60%,646,68.40%
+4,Grade Level,8,954,312,32.70%,642,67.30%
+4,Grade Level,9,916,251,27.40%,665,72.60%
+4,Grade Level,10,932,190,20.40%,742,79.60%
+4,Grade Level,11,899,189,21.00%,710,79.00%
+4,Grade Level,12,899,193,21.50%,706,78.50%
+4,Race or Ethnicity,Asian,1153,191,16.60%,962,83.40%
+4,Race or Ethnicity,Black,2751,871,31.70%,1880,68.30%
+4,Race or Ethnicity,Hispanic,6872,"2,278",33.10%,4594,66.90%
+4,Race or Ethnicity,Multi-Racial,162,70,43.20%,92,56.80%
+4,Race or Ethnicity,Native American,124,39,31.50%,85,68.50%
+4,Race or Ethnicity,Unknown,60,16,26.70%,44,73.30%
+4,Race or Ethnicity,White,612,264,43.10%,348,56.90%
+5,All District,All District,9248,"2,514",27.20%,6734,72.80%
+5,English Language Learner Status,ELL,786,290,36.90%,496,63.10%
+5,English Language Learner Status,Not ELL,8462,"2,224",26.30%,6238,73.70%
+5,Gender,Female,4278,"1,218",28.50%,3060,71.50%
+5,Gender,Male,4970,"1,296",26.10%,3674,73.90%
+5,Grade Level,PK,492,239,48.60%,253,51.40%
+5,Grade Level,0K,494,221,44.70%,273,55.30%
+5,Grade Level,1,563,246,43.70%,317,56.30%
+5,Grade Level,2,573,219,38.20%,354,61.80%
+5,Grade Level,3,578,201,34.80%,377,65.20%
+5,Grade Level,4,637,243,38.10%,394,61.90%
+5,Grade Level,5,689,237,34.40%,452,65.60%
+5,Grade Level,6,665,198,29.80%,467,70.20%
+5,Grade Level,7,642,174,27.10%,468,72.90%
+5,Grade Level,8,701,152,21.70%,549,78.30%
+5,Grade Level,9,896,156,17.40%,740,82.60%
+5,Grade Level,10,851,96,11.30%,755,88.70%
+5,Grade Level,11,729,68,9.30%,661,90.70%
+5,Grade Level,12,738,64,8.70%,674,91.30%
+5,Race or Ethnicity,Asian,363,65,17.90%,298,82.10%
+5,Race or Ethnicity,Black,4229,"1,159",27.40%,3070,72.60%
+5,Race or Ethnicity,Hispanic,3756,998,26.60%,2758,73.40%
+5,Race or Ethnicity,Multi-Racial,100,35,35.00%,65,65.00%
+5,Race or Ethnicity,Native American,85,22,25.90%,63,74.10%
+5,Race or Ethnicity,Unknown,92,8,8.70%,84,91.30%
+5,Race or Ethnicity,White,623,227,36.40%,396,63.60%
+6,All District,All District,19141,"5,762",30.10%,13379,69.90%
+6,English Language Learner Status,ELL,4957,"1,737",35.00%,3220,65.00%
+6,English Language Learner Status,Not ELL,14184,"4,025",28.40%,10159,71.60%
+6,Gender,Female,9374,"2,731",29.10%,6643,70.90%
+6,Gender,Male,9767,"3,031",31.00%,6736,69.00%
+6,Grade Level,PK,942,421,44.70%,521,55.30%
+6,Grade Level,0K,1303,616,47.30%,687,52.70%
+6,Grade Level,1,1339,589,44.00%,750,56.00%
+6,Grade Level,2,1395,667,47.80%,728,52.20%
+6,Grade Level,3,1429,592,41.40%,837,58.60%
+6,Grade Level,4,1521,582,38.30%,939,61.70%
+6,Grade Level,5,1519,572,37.70%,947,62.30%
+6,Grade Level,6,1391,366,26.30%,1025,73.70%
+6,Grade Level,7,1424,357,25.10%,1067,74.90%
+6,Grade Level,8,1534,397,25.90%,1137,74.10%
+6,Grade Level,9,1606,166,10.30%,1440,89.70%
+6,Grade Level,10,1315,156,11.90%,1159,88.10%
+6,Grade Level,11,1141,119,10.40%,1022,89.60%
+6,Grade Level,12,1282,162,12.60%,1120,87.40%
+6,Race or Ethnicity,Asian,298,91,30.50%,207,69.50%
+6,Race or Ethnicity,Black,1375,293,21.30%,1082,78.70%
+6,Race or Ethnicity,Hispanic,16061,"4,646",28.90%,11415,71.10%
+6,Race or Ethnicity,Multi-Racial,188,98,52.10%,90,47.90%
+6,Race or Ethnicity,Native American,57,17,29.80%,40,70.20%
+6,Race or Ethnicity,Unknown,58,16,27.60%,42,72.40%
+6,Race or Ethnicity,White,1104,601,54.40%,503,45.60%
+7,All District,All District,16671,"5,605",33.60%,11066,66.40%
+7,English Language Learner Status,ELL,2671,"1,214",45.50%,1457,54.50%
+7,English Language Learner Status,Not ELL,14000,"4,391",31.40%,9609,68.60%
+7,Gender,Female,7791,"2,543",32.60%,5248,67.40%
+7,Gender,Male,8880,"3,062",34.50%,5818,65.50%
+7,Grade Level,PK,1003,536,53.40%,467,46.60%
+7,Grade Level,0K,857,414,48.30%,443,51.70%
+7,Grade Level,1,966,425,44.00%,541,56.00%
+7,Grade Level,2,996,416,41.80%,580,58.20%
+7,Grade Level,3,1058,424,40.10%,634,59.90%
+7,Grade Level,4,1048,433,41.30%,615,58.70%
+7,Grade Level,5,1156,432,37.40%,724,62.60%
+7,Grade Level,6,1063,324,30.50%,739,69.50%
+7,Grade Level,7,1034,284,27.50%,750,72.50%
+7,Grade Level,8,1078,322,29.90%,756,70.10%
+7,Grade Level,9,1740,467,26.80%,1273,73.20%
+7,Grade Level,10,1816,461,25.40%,1355,74.60%
+7,Grade Level,11,1518,350,23.10%,1168,76.90%
+7,Grade Level,12,1338,317,23.70%,1021,76.30%
+7,Race or Ethnicity,Asian,197,46,23.40%,151,76.60%
+7,Race or Ethnicity,Black,4329,"1,471",34.00%,2858,66.00%
+7,Race or Ethnicity,Hispanic,11621,"3,921",33.70%,7700,66.30%
+7,Race or Ethnicity,Multi-Racial,64,18,28.10%,46,71.90%
+7,Race or Ethnicity,Native American,162,54,33.30%,108,66.70%
+7,Race or Ethnicity,Unknown,32,4,12.50%,28,87.50%
+7,Race or Ethnicity,White,266,91,34.20%,175,65.80%
+8,All District,All District,24448,"6,951",28.40%,17497,71.60%
+8,English Language Learner Status,ELL,3492,"1,359",38.90%,2133,61.10%
+8,English Language Learner Status,Not ELL,20956,"5,592",26.70%,15364,73.30%
+8,Gender,Female,11960,"3,353",28.00%,8607,72.00%
+8,Gender,Male,12488,"3,598",28.80%,8890,71.20%
+8,Grade Level,PK,1080,413,38.20%,667,61.80%
+8,Grade Level,0K,1611,576,35.80%,1035,64.20%
+8,Grade Level,1,1761,625,35.50%,1136,64.50%
+8,Grade Level,2,1774,612,34.50%,1162,65.50%
+8,Grade Level,3,1812,598,33.00%,1214,67.00%
+8,Grade Level,4,1911,566,29.60%,1345,70.40%
+8,Grade Level,5,2040,607,29.80%,1433,70.20%
+8,Grade Level,6,1979,617,31.20%,1362,68.80%
+8,Grade Level,7,1913,439,22.90%,1474,77.10%
+8,Grade Level,8,2045,514,25.10%,1531,74.90%
+8,Grade Level,9,1733,437,25.20%,1296,74.80%
+8,Grade Level,10,1853,370,20.00%,1483,80.00%
+8,Grade Level,11,1530,296,19.30%,1234,80.70%
+8,Grade Level,12,1406,281,20.00%,1125,80.00%
+8,Race or Ethnicity,Asian,1687,278,16.50%,1409,83.50%
+8,Race or Ethnicity,Black,5013,"1,523",30.40%,3490,69.60%
+8,Race or Ethnicity,Hispanic,15939,"4,589",28.80%,11350,71.20%
+8,Race or Ethnicity,Multi-Racial,100,23,23.00%,77,77.00%
+8,Race or Ethnicity,Native American,299,62,20.70%,237,79.30%
+8,Race or Ethnicity,Unknown,27,13,48.10%,14,51.90%
+8,Race or Ethnicity,White,1383,463,33.50%,920,66.50%
+9,All District,All District,29117,"8,910",30.60%,20207,69.40%
+9,English Language Learner Status,ELL,6532,"2,464",37.70%,4068,62.30%
+9,English Language Learner Status,Not ELL,22585,"6,446",28.50%,16139,71.50%
+9,Gender,Female,14442,"4,345",30.10%,10097,69.90%
+9,Gender,Male,14675,"4,565",31.10%,10110,68.90%
+9,Grade Level,PK,1195,507,42.40%,688,57.60%
+9,Grade Level,0K,1787,726,40.60%,1061,59.40%
+9,Grade Level,1,2075,804,38.70%,1271,61.30%
+9,Grade Level,2,2152,795,36.90%,1357,63.10%
+9,Grade Level,3,2279,773,33.90%,1506,66.10%
+9,Grade Level,4,2325,787,33.80%,1538,66.20%
+9,Grade Level,5,2409,796,33.00%,1613,67.00%
+9,Grade Level,6,2216,620,28.00%,1596,72.00%
+9,Grade Level,7,2399,627,26.10%,1772,73.90%
+9,Grade Level,8,2445,635,26.00%,1810,74.00%
+9,Grade Level,9,2125,584,27.50%,1541,72.50%
+9,Grade Level,10,2154,477,22.10%,1677,77.90%
+9,Grade Level,11,1816,372,20.50%,1444,79.50%
+9,Grade Level,12,1740,407,23.40%,1333,76.60%
+9,Race or Ethnicity,Asian,404,118,29.20%,286,70.80%
+9,Race or Ethnicity,Black,7633,"2,593",34.00%,5040,66.00%
+9,Race or Ethnicity,Hispanic,20379,"5,971",29.30%,14408,70.70%
+9,Race or Ethnicity,Multi-Racial,56,16,28.60%,40,71.40%
+9,Race or Ethnicity,Native American,193,54,28.00%,139,72.00%
+9,Race or Ethnicity,Unknown,42,19,45.20%,23,54.80%
+9,Race or Ethnicity,White,410,139,33.90%,271,66.10%
+10,All District,All District,48210,"14,272",29.60%,33938,70.40%
+10,English Language Learner Status,ELL,10145,"3,573",35.20%,6572,64.80%
+10,English Language Learner Status,Not ELL,38065,"10,699",28.10%,27366,71.90%
+10,Gender,Female,23592,"6,992",29.60%,16600,70.40%
+10,Gender,Male,24618,"7,280",29.60%,17338,70.40%
+10,Grade Level,PK,1021,447,43.80%,574,56.20%
+10,Grade Level,0K,3153,"1,377",43.70%,1776,56.30%
+10,Grade Level,1,3396,"1,367",40.30%,2029,59.70%
+10,Grade Level,2,3465,"1,286",37.10%,2179,62.90%
+10,Grade Level,3,3707,"1,384",37.30%,2323,62.70%
+10,Grade Level,4,3734,"1,268",34.00%,2466,66.00%
+10,Grade Level,5,3761,"1,293",34.40%,2468,65.60%
+10,Grade Level,6,3663,"1,121",30.60%,2542,69.40%
+10,Grade Level,7,3538,"1,000",28.30%,2538,71.70%
+10,Grade Level,8,3734,"1,088",29.10%,2646,70.90%
+10,Grade Level,9,4106,885,21.60%,3221,78.40%
+10,Grade Level,10,3897,639,16.40%,3258,83.60%
+10,Grade Level,11,3611,586,16.20%,3025,83.80%
+10,Grade Level,12,3424,531,15.50%,2893,84.50%
+10,Race or Ethnicity,Asian,3833,536,14.00%,3297,86.00%
+10,Race or Ethnicity,Black,7087,"2,183",30.80%,4904,69.20%
+10,Race or Ethnicity,Hispanic,33706,"10,104",30.00%,23602,70.00%
+10,Race or Ethnicity,Multi-Racial,302,95,31.50%,207,68.50%
+10,Race or Ethnicity,Native American,412,111,26.90%,301,73.10%
+10,Race or Ethnicity,Unknown,103,35,34.00%,68,66.00%
+10,Race or Ethnicity,White,2767,"1,208",43.70%,1559,56.30%
+11,All District,All District,34236,"11,037",32.20%,23199,67.80%
+11,English Language Learner Status,ELL,4293,"1,684",39.20%,2609,60.80%
+11,English Language Learner Status,Not ELL,29943,"9,353",31.20%,20590,68.80%
+11,Gender,Female,16362,"5,195",31.80%,11167,68.20%
+11,Gender,Male,17874,"5,842",32.70%,12032,67.30%
+11,Grade Level,PK,574,265,46.20%,309,53.80%
+11,Grade Level,0K,2369,"1,038",43.80%,1331,56.20%
+11,Grade Level,1,2524,999,39.60%,1525,60.40%
+11,Grade Level,2,2776,"1,062",38.30%,1714,61.70%
+11,Grade Level,3,2737,972,35.50%,1765,64.50%
+11,Grade Level,4,2770,945,34.10%,1825,65.90%
+11,Grade Level,5,3000,"1,052",35.10%,1948,64.90%
+11,Grade Level,6,2890,961,33.30%,1929,66.70%
+11,Grade Level,7,2928,941,32.10%,1987,67.90%
+11,Grade Level,8,3171,"1,087",34.30%,2084,65.70%
+11,Grade Level,9,2433,511,21.00%,1922,79.00%
+11,Grade Level,10,2292,469,20.50%,1823,79.50%
+11,Grade Level,11,1949,394,20.20%,1555,79.80%
+11,Grade Level,12,1823,341,18.70%,1482,81.30%
+11,Race or Ethnicity,Asian,3102,799,25.80%,2303,74.20%
+11,Race or Ethnicity,Black,12247,"4,063",33.20%,8184,66.80%
+11,Race or Ethnicity,Hispanic,15033,"4,521",30.10%,10512,69.90%
+11,Race or Ethnicity,Multi-Racial,258,84,32.60%,174,67.40%
+11,Race or Ethnicity,Native American,446,119,26.70%,327,73.30%
+11,Race or Ethnicity,Unknown,64,19,29.70%,45,70.30%
+11,Race or Ethnicity,White,3086,"1,432",46.40%,1654,53.60%
+12,All District,All District,18725,"6,409",34.20%,12316,65.80%
+12,English Language Learner Status,ELL,3932,"1,686",42.90%,2246,57.10%
+12,English Language Learner Status,Not ELL,14793,"4,723",31.90%,10070,68.10%
+12,Gender,Female,9172,"3,016",32.90%,6156,67.10%
+12,Gender,Male,9553,"3,393",35.50%,6160,64.50%
+12,Grade Level,PK,535,270,50.50%,265,49.50%
+12,Grade Level,0K,1246,568,45.60%,678,54.40%
+12,Grade Level,1,1472,610,41.40%,862,58.60%
+12,Grade Level,2,1435,616,42.90%,819,57.10%
+12,Grade Level,3,1520,602,39.60%,918,60.40%
+12,Grade Level,4,1568,585,37.30%,983,62.70%
+12,Grade Level,5,1692,612,36.20%,1080,63.80%
+12,Grade Level,6,1419,407,28.70%,1012,71.30%
+12,Grade Level,7,1458,386,26.50%,1072,73.50%
+12,Grade Level,8,1502,420,28.00%,1082,72.00%
+12,Grade Level,9,1168,345,29.50%,823,70.50%
+12,Grade Level,10,1360,401,29.50%,959,70.50%
+12,Grade Level,11,1218,269,22.10%,949,77.90%
+12,Grade Level,12,1132,318,28.10%,814,71.90%
+12,Race or Ethnicity,Asian,594,172,29.00%,422,71.00%
+12,Race or Ethnicity,Black,4387,"1,538",35.10%,2849,64.90%
+12,Race or Ethnicity,Hispanic,13140,"4,518",34.40%,8622,65.60%
+12,Race or Ethnicity,Multi-Racial,62,19,30.60%,43,69.40%
+12,Race or Ethnicity,Native American,230,64,27.80%,166,72.20%
+12,Race or Ethnicity,Unknown,31,11,35.50%,20,64.50%
+12,Race or Ethnicity,White,281,87,31.00%,194,69.00%
+13,All District,All District,20098,"5,530",27.50%,14568,72.50%
+13,English Language Learner Status,ELL,870,415,47.70%,455,52.30%
+13,English Language Learner Status,Not ELL,19228,"5,115",26.60%,14113,73.40%
+13,Gender,Female,9527,"2,723",28.60%,6804,71.40%
+13,Gender,Male,10571,"2,807",26.60%,7764,73.40%
+13,Grade Level,PK,652,400,61.30%,252,38.70%
+13,Grade Level,0K,1046,582,55.60%,464,44.40%
+13,Grade Level,1,950,506,53.30%,444,46.70%
+13,Grade Level,2,1034,556,53.80%,478,46.20%
+13,Grade Level,3,1013,478,47.20%,535,52.80%
+13,Grade Level,4,970,468,48.20%,502,51.80%
+13,Grade Level,5,960,429,44.70%,531,55.30%
+13,Grade Level,6,679,191,28.10%,488,71.90%
+13,Grade Level,7,662,158,23.90%,504,76.10%
+13,Grade Level,8,673,169,25.10%,504,74.90%
+13,Grade Level,9,2861,499,17.40%,2362,82.60%
+13,Grade Level,10,3049,370,12.10%,2679,87.90%
+13,Grade Level,11,2813,354,12.60%,2459,87.40%
+13,Grade Level,12,2736,370,13.50%,2366,86.50%
+13,Race or Ethnicity,Asian,4318,402,9.30%,3916,90.70%
+13,Race or Ethnicity,Black,7917,"2,201",27.80%,5716,72.20%
+13,Race or Ethnicity,Hispanic,3509,"1,171",33.40%,2338,66.60%
+13,Race or Ethnicity,Multi-Racial,517,235,45.50%,282,54.50%
+13,Race or Ethnicity,Native American,166,37,22.30%,129,77.70%
+13,Race or Ethnicity,Unknown,202,19,9.40%,183,90.60%
+13,Race or Ethnicity,White,3469,"1,465",42.20%,2004,57.80%
+14,All District,All District,16695,"5,895",35.30%,10800,64.70%
+14,English Language Learner Status,ELL,1708,738,43.20%,970,56.80%
+14,English Language Learner Status,Not ELL,14987,"5,157",34.40%,9830,65.60%
+14,Gender,Female,7910,"2,702",34.20%,5208,65.80%
+14,Gender,Male,8785,"3,193",36.30%,5592,63.70%
+14,Grade Level,PK,666,334,50.20%,332,49.80%
+14,Grade Level,0K,1083,530,48.90%,553,51.10%
+14,Grade Level,1,1043,485,46.50%,558,53.50%
+14,Grade Level,2,1065,475,44.60%,590,55.40%
+14,Grade Level,3,1092,486,44.50%,606,55.50%
+14,Grade Level,4,1107,477,43.10%,630,56.90%
+14,Grade Level,5,1104,431,39.00%,673,61.00%
+14,Grade Level,6,1138,424,37.30%,714,62.70%
+14,Grade Level,7,1181,375,31.80%,806,68.20%
+14,Grade Level,8,1206,435,36.10%,771,63.90%
+14,Grade Level,9,1643,455,27.70%,1188,72.30%
+14,Grade Level,10,1569,342,21.80%,1227,78.20%
+14,Grade Level,11,1457,343,23.50%,1114,76.50%
+14,Grade Level,12,1341,303,22.60%,1038,77.40%
+14,Race or Ethnicity,Asian,1026,199,19.40%,827,80.60%
+14,Race or Ethnicity,Black,3364,992,29.50%,2372,70.50%
+14,Race or Ethnicity,Hispanic,9257,"3,078",33.30%,6179,66.70%
+14,Race or Ethnicity,Multi-Racial,277,116,41.90%,161,58.10%
+14,Race or Ethnicity,Native American,95,18,18.90%,77,81.10%
+14,Race or Ethnicity,Unknown,110,23,20.90%,87,79.10%
+14,Race or Ethnicity,White,2566,"1,469",57.20%,1097,42.80%
+15,All District,All District,29998,"13,635",45.50%,16363,54.50%
+15,English Language Learner Status,ELL,4357,"1,879",43.10%,2478,56.90%
+15,English Language Learner Status,Not ELL,25641,"11,756",45.80%,13885,54.20%
+15,Gender,Female,15038,"6,776",45.10%,8262,54.90%
+15,Gender,Male,14960,"6,859",45.80%,8101,54.20%
+15,Grade Level,PK,1314,788,60.00%,526,40.00%
+15,Grade Level,0K,2587,"1,374",53.10%,1213,46.90%
+15,Grade Level,1,2672,"1,367",51.20%,1305,48.80%
+15,Grade Level,2,2666,"1,349",50.60%,1317,49.40%
+15,Grade Level,3,2694,"1,331",49.40%,1363,50.60%
+15,Grade Level,4,2703,"1,302",48.20%,1401,51.80%
+15,Grade Level,5,2622,"1,340",51.10%,1282,48.90%
+15,Grade Level,6,2090,865,41.40%,1225,58.60%
+15,Grade Level,7,2083,766,36.80%,1317,63.20%
+15,Grade Level,8,2212,909,41.10%,1303,58.90%
+15,Grade Level,9,1520,585,38.50%,935,61.50%
+15,Grade Level,10,1813,579,31.90%,1234,68.10%
+15,Grade Level,11,1565,504,32.20%,1061,67.80%
+15,Grade Level,12,1457,576,39.50%,881,60.50%
+15,Race or Ethnicity,Asian,4922,"1,102",22.40%,3820,77.60%
+15,Race or Ethnicity,Black,3953,"1,196",30.30%,2757,69.70%
+15,Race or Ethnicity,Hispanic,10833,"5,084",46.90%,5749,53.10%
+15,Race or Ethnicity,Multi-Racial,1105,645,58.40%,460,41.60%
+15,Race or Ethnicity,Native American,142,75,52.80%,67,47.20%
+15,Race or Ethnicity,Unknown,187,83,44.40%,104,55.60%
+15,Race or Ethnicity,White,8856,"5,450",61.50%,3406,38.50%
+16,All District,All District,5829,"1,990",34.10%,3839,65.90%
+16,English Language Learner Status,ELL,327,162,49.50%,165,50.50%
+16,English Language Learner Status,Not ELL,5502,"1,828",33.20%,3674,66.80%
+16,Gender,Female,2781,957,34.40%,1824,65.60%
+16,Gender,Male,3048,"1,033",33.90%,2015,66.10%
+16,Grade Level,PK,552,281,50.90%,271,49.10%
+16,Grade Level,0K,450,199,44.20%,251,55.80%
+16,Grade Level,1,435,187,43.00%,248,57.00%
+16,Grade Level,2,431,165,38.30%,266,61.70%
+16,Grade Level,3,457,191,41.80%,266,58.20%
+16,Grade Level,4,430,172,40.00%,258,60.00%
+16,Grade Level,5,472,156,33.10%,316,66.90%
+16,Grade Level,6,350,96,27.40%,254,72.60%
+16,Grade Level,7,288,72,25.00%,216,75.00%
+16,Grade Level,8,307,82,26.70%,225,73.30%
+16,Grade Level,9,391,123,31.50%,268,68.50%
+16,Grade Level,10,413,93,22.50%,320,77.50%
+16,Grade Level,11,441,98,22.20%,343,77.80%
+16,Grade Level,12,412,75,18.20%,337,81.80%
+16,Race or Ethnicity,Asian,134,53,39.60%,81,60.40%
+16,Race or Ethnicity,Black,4102,"1,323",32.30%,2779,67.70%
+16,Race or Ethnicity,Hispanic,1234,435,35.30%,799,64.70%
+16,Race or Ethnicity,Multi-Racial,51,27,52.90%,24,47.10%
+16,Race or Ethnicity,Native American,61,21,34.40%,40,65.60%
+16,Race or Ethnicity,Unknown,18,3,16.70%,15,83.30%
+16,Race or Ethnicity,White,229,128,55.90%,101,44.10%
+17,All District,All District,19152,"6,248",32.60%,12904,67.40%
+17,English Language Learner Status,ELL,1953,885,45.30%,1068,54.70%
+17,English Language Learner Status,Not ELL,17199,"5,363",31.20%,11836,68.80%
+17,Gender,Female,9723,"3,109",32.00%,6614,68.00%
+17,Gender,Male,9429,"3,139",33.30%,6290,66.70%
+17,Grade Level,PK,506,256,50.60%,250,49.40%
+17,Grade Level,0K,1026,527,51.40%,499,48.60%
+17,Grade Level,1,1120,498,44.50%,622,55.50%
+17,Grade Level,2,1032,470,45.50%,562,54.50%
+17,Grade Level,3,1198,505,42.20%,693,57.80%
+17,Grade Level,4,1173,441,37.60%,732,62.40%
+17,Grade Level,5,1220,473,38.80%,747,61.20%
+17,Grade Level,6,1389,430,31.00%,959,69.00%
+17,Grade Level,7,1475,362,24.50%,1113,75.50%
+17,Grade Level,8,1533,410,26.70%,1123,73.30%
+17,Grade Level,9,2043,576,28.20%,1467,71.80%
+17,Grade Level,10,1854,410,22.10%,1444,77.90%
+17,Grade Level,11,1771,445,25.10%,1326,74.90%
+17,Grade Level,12,1812,445,24.60%,1367,75.40%
+17,Race or Ethnicity,Asian,613,196,32.00%,417,68.00%
+17,Race or Ethnicity,Black,13994,"4,376",31.30%,9618,68.70%
+17,Race or Ethnicity,Hispanic,3357,"1,171",34.90%,2186,65.10%
+17,Race or Ethnicity,Multi-Racial,144,58,40.30%,86,59.70%
+17,Race or Ethnicity,Native American,271,97,35.80%,174,64.20%
+17,Race or Ethnicity,Unknown,105,40,38.10%,65,61.90%
+17,Race or Ethnicity,White,668,310,46.40%,358,53.60%
+18,All District,All District,11925,"3,664",30.70%,8261,69.30%
+18,English Language Learner Status,ELL,899,448,49.80%,451,50.20%
+18,English Language Learner Status,Not ELL,11026,"3,216",29.20%,7810,70.80%
+18,Gender,Female,5689,"1,698",29.80%,3991,70.20%
+18,Gender,Male,6236,"1,966",31.50%,4270,68.50%
+18,Grade Level,PK,421,192,45.60%,229,54.40%
+18,Grade Level,0K,780,314,40.30%,466,59.70%
+18,Grade Level,1,758,321,42.30%,437,57.70%
+18,Grade Level,2,785,316,40.30%,469,59.70%
+18,Grade Level,3,878,282,32.10%,596,67.90%
+18,Grade Level,4,931,330,35.40%,601,64.60%
+18,Grade Level,5,1017,358,35.20%,659,64.80%
+18,Grade Level,6,943,323,34.30%,620,65.70%
+18,Grade Level,7,946,278,29.40%,668,70.60%
+18,Grade Level,8,1059,309,29.20%,750,70.80%
+18,Grade Level,9,866,181,20.90%,685,79.10%
+18,Grade Level,10,898,184,20.50%,714,79.50%
+18,Grade Level,11,770,126,16.40%,644,83.60%
+18,Grade Level,12,873,150,17.20%,723,82.80%
+18,Race or Ethnicity,Asian,276,92,33.30%,184,66.70%
+18,Race or Ethnicity,Black,9843,"2,976",30.20%,6867,69.80%
+18,Race or Ethnicity,Hispanic,1122,314,28.00%,808,72.00%
+18,Race or Ethnicity,Multi-Racial,76,19,25.00%,57,75.00%
+18,Race or Ethnicity,Native American,112,36,32.10%,76,67.90%
+18,Race or Ethnicity,Unknown,35,10,28.60%,25,71.40%
+18,Race or Ethnicity,White,461,217,47.10%,244,52.90%
+19,All District,All District,19485,"5,527",28.40%,13958,71.60%
+19,English Language Learner Status,ELL,2674,985,36.80%,1689,63.20%
+19,English Language Learner Status,Not ELL,16811,"4,542",27.00%,12269,73.00%
+19,Gender,Female,9190,"2,490",27.10%,6700,72.90%
+19,Gender,Male,10295,"3,037",29.50%,7258,70.50%
+19,Grade Level,PK,959,348,36.30%,611,63.70%
+19,Grade Level,0K,1231,482,39.20%,749,60.80%
+19,Grade Level,1,1353,495,36.60%,858,63.40%
+19,Grade Level,2,1374,440,32.00%,934,68.00%
+19,Grade Level,3,1431,460,32.10%,971,67.90%
+19,Grade Level,4,1480,446,30.10%,1034,69.90%
+19,Grade Level,5,1540,438,28.40%,1102,71.60%
+19,Grade Level,6,1423,395,27.80%,1028,72.20%
+19,Grade Level,7,1564,421,26.90%,1143,73.10%
+19,Grade Level,8,1586,376,23.70%,1210,76.30%
+19,Grade Level,9,1587,439,27.70%,1148,72.30%
+19,Grade Level,10,1502,284,18.90%,1218,81.10%
+19,Grade Level,11,1257,251,20.00%,1006,80.00%
+19,Grade Level,12,1198,252,21.00%,946,79.00%
+19,Race or Ethnicity,Asian,1738,404,23.20%,1334,76.80%
+19,Race or Ethnicity,Black,7909,"2,204",27.90%,5705,72.10%
+19,Race or Ethnicity,Hispanic,9016,"2,662",29.50%,6354,70.50%
+19,Race or Ethnicity,Multi-Racial,77,26,33.80%,51,66.20%
+19,Race or Ethnicity,Native American,311,78,25.10%,233,74.90%
+19,Race or Ethnicity,Unknown,58,22,37.90%,36,62.10%
+19,Race or Ethnicity,White,376,131,34.80%,245,65.20%
+20,All District,All District,49711,"14,258",28.70%,35453,71.30%
+20,English Language Learner Status,ELL,11798,"3,572",30.30%,8226,69.70%
+20,English Language Learner Status,Not ELL,37913,"10,686",28.20%,27227,71.80%
+20,Gender,Female,23735,"6,666",28.10%,17069,71.90%
+20,Gender,Male,25976,"7,592",29.20%,18384,70.80%
+20,Grade Level,PK,1283,581,45.30%,702,54.70%
+20,Grade Level,0K,3723,"1,389",37.30%,2334,62.70%
+20,Grade Level,1,3795,"1,242",32.70%,2553,67.30%
+20,Grade Level,2,3682,"1,275",34.60%,2407,65.40%
+20,Grade Level,3,4089,"1,276",31.20%,2813,68.80%
+20,Grade Level,4,3942,"1,302",33.00%,2640,67.00%
+20,Grade Level,5,3856,"1,305",33.80%,2551,66.20%
+20,Grade Level,6,4066,"1,061",26.10%,3005,73.90%
+20,Grade Level,7,3978,899,22.60%,3079,77.40%
+20,Grade Level,8,4119,925,22.50%,3194,77.50%
+20,Grade Level,9,3745,"1,048",28.00%,2697,72.00%
+20,Grade Level,10,3631,797,21.90%,2834,78.10%
+20,Grade Level,11,2950,528,17.90%,2422,82.10%
+20,Grade Level,12,2852,630,22.10%,2222,77.90%
+20,Race or Ethnicity,Asian,22160,"2,540",11.50%,19620,88.50%
+20,Race or Ethnicity,Black,1234,300,24.30%,934,75.70%
+20,Race or Ethnicity,Hispanic,13765,"5,794",42.10%,7971,57.90%
+20,Race or Ethnicity,Multi-Racial,333,125,37.50%,208,62.50%
+20,Race or Ethnicity,Native American,192,63,32.80%,129,67.20%
+20,Race or Ethnicity,Unknown,146,51,34.90%,95,65.10%
+20,Race or Ethnicity,White,11881,"5,385",45.30%,6496,54.70%
+21,All District,All District,34165,"9,522",27.90%,24643,72.10%
+21,English Language Learner Status,ELL,6776,"2,435",35.90%,4341,64.10%
+21,English Language Learner Status,Not ELL,27389,"7,087",25.90%,20302,74.10%
+21,Gender,Female,16688,"4,486",26.90%,12202,73.10%
+21,Gender,Male,17477,"5,036",28.80%,12441,71.20%
+21,Grade Level,PK,883,387,43.80%,496,56.20%
+21,Grade Level,0K,1926,865,44.90%,1061,55.10%
+21,Grade Level,1,2086,808,38.70%,1278,61.30%
+21,Grade Level,2,2043,769,37.60%,1274,62.40%
+21,Grade Level,3,2068,779,37.70%,1289,62.30%
+21,Grade Level,4,2094,715,34.10%,1379,65.90%
+21,Grade Level,5,2077,734,35.30%,1343,64.70%
+21,Grade Level,6,3299,"1,256",38.10%,2043,61.90%
+21,Grade Level,7,3160,974,30.80%,2186,69.20%
+21,Grade Level,8,3172,957,30.20%,2215,69.80%
+21,Grade Level,9,3255,425,13.10%,2830,86.90%
+21,Grade Level,10,3235,350,10.80%,2885,89.20%
+21,Grade Level,11,2436,252,10.30%,2184,89.70%
+21,Grade Level,12,2431,251,10.30%,2180,89.70%
+21,Race or Ethnicity,Asian,9050,"1,581",17.50%,7469,82.50%
+21,Race or Ethnicity,Black,4494,793,17.60%,3701,82.40%
+21,Race or Ethnicity,Hispanic,8875,"2,852",32.10%,6023,67.90%
+21,Race or Ethnicity,Multi-Racial,275,83,30.20%,192,69.80%
+21,Race or Ethnicity,Native American,274,74,27.00%,200,73.00%
+21,Race or Ethnicity,Unknown,324,85,26.20%,239,73.80%
+21,Race or Ethnicity,White,10873,"4,054",37.30%,6819,62.70%
+22,All District,All District,31715,"10,521",33.20%,21194,66.80%
+22,English Language Learner Status,ELL,4134,"2,025",49.00%,2109,51.00%
+22,English Language Learner Status,Not ELL,27581,"8,496",30.80%,19085,69.20%
+22,Gender,Female,15640,"4,950",31.60%,10690,68.40%
+22,Gender,Male,16075,"5,571",34.70%,10504,65.30%
+22,Grade Level,PK,1014,443,43.70%,571,56.30%
+22,Grade Level,0K,2267,"1,107",48.80%,1160,51.20%
+22,Grade Level,1,2389,"1,125",47.10%,1264,52.90%
+22,Grade Level,2,2395,"1,070",44.70%,1325,55.30%
+22,Grade Level,3,2499,"1,114",44.60%,1385,55.40%
+22,Grade Level,4,2456,"1,001",40.80%,1455,59.20%
+22,Grade Level,5,2549,"1,011",39.70%,1538,60.30%
+22,Grade Level,6,1961,741,37.80%,1220,62.20%
+22,Grade Level,7,1980,642,32.40%,1338,67.60%
+22,Grade Level,8,1983,479,24.20%,1504,75.80%
+22,Grade Level,9,2627,610,23.20%,2017,76.80%
+22,Grade Level,10,2707,477,17.60%,2230,82.40%
+22,Grade Level,11,2493,356,14.30%,2137,85.70%
+22,Grade Level,12,2395,345,14.40%,2050,85.60%
+22,Race or Ethnicity,Asian,7166,"1,455",20.30%,5711,79.70%
+22,Race or Ethnicity,Black,8590,"2,460",28.60%,6130,71.40%
+22,Race or Ethnicity,Hispanic,4971,"1,725",34.70%,3246,65.30%
+22,Race or Ethnicity,Multi-Racial,404,165,40.80%,239,59.20%
+22,Race or Ethnicity,Native American,287,92,32.10%,195,67.90%
+22,Race or Ethnicity,Unknown,172,30,17.40%,142,82.60%
+22,Race or Ethnicity,White,10125,"4,594",45.40%,5531,54.60%
+23,All District,All District,7820,"2,640",33.80%,5180,66.20%
+23,English Language Learner Status,ELL,419,204,48.70%,215,51.30%
+23,English Language Learner Status,Not ELL,7401,"2,436",32.90%,4965,67.10%
+23,Gender,Female,3502,"1,179",33.70%,2323,66.30%
+23,Gender,Male,4318,"1,461",33.80%,2857,66.20%
+23,Grade Level,PK,583,246,42.20%,337,57.80%
+23,Grade Level,0K,575,240,41.70%,335,58.30%
+23,Grade Level,1,562,204,36.30%,358,63.70%
+23,Grade Level,2,561,176,31.40%,385,68.60%
+23,Grade Level,3,607,212,34.90%,395,65.10%
+23,Grade Level,4,600,200,33.30%,400,66.70%
+23,Grade Level,5,643,194,30.20%,449,69.80%
+23,Grade Level,6,701,230,32.80%,471,67.20%
+23,Grade Level,7,752,218,29.00%,534,71.00%
+23,Grade Level,8,818,249,30.40%,569,69.60%
+23,Grade Level,9,393,118,30.00%,275,70.00%
+23,Grade Level,10,349,110,31.50%,239,68.50%
+23,Grade Level,11,349,127,36.40%,222,63.60%
+23,Grade Level,12,327,116,35.50%,211,64.50%
+23,Race or Ethnicity,Asian,107,38,35.50%,69,64.50%
+23,Race or Ethnicity,Black,5658,"1,850",32.70%,3808,67.30%
+23,Race or Ethnicity,Hispanic,1771,631,35.60%,1140,64.40%
+23,Race or Ethnicity,Multi-Racial,55,19,34.50%,36,65.50%
+23,Race or Ethnicity,Native American,93,34,36.60%,59,63.40%
+23,Race or Ethnicity,Unknown,8,5,62.50%,3,37.50%
+23,Race or Ethnicity,White,128,63,49.20%,65,50.80%
+24,All District,All District,53060,"23,491",44.30%,29569,55.70%
+24,English Language Learner Status,ELL,12774,"6,949",54.40%,5825,45.60%
+24,English Language Learner Status,Not ELL,40286,"16,542",41.10%,23744,58.90%
+24,Gender,Female,25222,"10,791",42.80%,14431,57.20%
+24,Gender,Male,27838,"12,700",45.60%,15138,54.40%
+24,Grade Level,PK,1486,907,61.00%,579,39.00%
+24,Grade Level,0K,4074,"2,240",55.00%,1834,45.00%
+24,Grade Level,1,4060,"2,218",54.60%,1842,45.40%
+24,Grade Level,2,4268,"2,255",52.80%,2013,47.20%
+24,Grade Level,3,4326,"2,152",49.70%,2174,50.30%
+24,Grade Level,4,4411,"2,171",49.20%,2240,50.80%
+24,Grade Level,5,4354,"2,068",47.50%,2286,52.50%
+24,Grade Level,6,4001,"1,639",41.00%,2362,59.00%
+24,Grade Level,7,4279,"1,671",39.10%,2608,60.90%
+24,Grade Level,8,4309,"1,663",38.60%,2646,61.40%
+24,Grade Level,9,3577,"1,279",35.80%,2298,64.20%
+24,Grade Level,10,3556,"1,201",33.80%,2355,66.20%
+24,Grade Level,11,3047,916,30.10%,2131,69.90%
+24,Grade Level,12,3312,"1,111",33.50%,2201,66.50%
+24,Race or Ethnicity,Asian,10432,"2,769",26.50%,7663,73.50%
+24,Race or Ethnicity,Black,1339,459,34.30%,880,65.70%
+24,Race or Ethnicity,Hispanic,33751,"16,240",48.10%,17511,51.90%
+24,Race or Ethnicity,Multi-Racial,229,100,43.70%,129,56.30%
+24,Race or Ethnicity,Native American,312,119,38.10%,193,61.90%
+24,Race or Ethnicity,Unknown,277,102,36.80%,175,63.20%
+24,Race or Ethnicity,White,6720,"3,702",55.10%,3018,44.90%
+25,All District,All District,35732,"9,892",27.70%,25840,72.30%
+25,English Language Learner Status,ELL,7175,"1,971",27.50%,5204,72.50%
+25,English Language Learner Status,Not ELL,28557,"7,921",27.70%,20636,72.30%
+25,Gender,Female,17435,"4,726",27.10%,12709,72.90%
+25,Gender,Male,18297,"5,166",28.20%,13131,71.80%
+25,Grade Level,PK,1148,389,33.90%,759,66.10%
+25,Grade Level,0K,2679,929,34.70%,1750,65.30%
+25,Grade Level,1,2750,920,33.50%,1830,66.50%
+25,Grade Level,2,2742,914,33.30%,1828,66.70%
+25,Grade Level,3,2857,874,30.60%,1983,69.40%
+25,Grade Level,4,2786,871,31.30%,1915,68.70%
+25,Grade Level,5,2626,854,32.50%,1772,67.50%
+25,Grade Level,6,2776,838,30.20%,1938,69.80%
+25,Grade Level,7,2809,786,28.00%,2023,72.00%
+25,Grade Level,8,2886,800,27.70%,2086,72.30%
+25,Grade Level,9,2467,485,19.70%,1982,80.30%
+25,Grade Level,10,2651,460,17.40%,2191,82.60%
+25,Grade Level,11,2429,377,15.50%,2052,84.50%
+25,Grade Level,12,2126,395,18.60%,1731,81.40%
+25,Race or Ethnicity,Asian,17643,"2,902",16.40%,14741,83.60%
+25,Race or Ethnicity,Black,2291,543,23.70%,1748,76.30%
+25,Race or Ethnicity,Hispanic,11166,"4,329",38.80%,6837,61.20%
+25,Race or Ethnicity,Multi-Racial,377,154,40.80%,223,59.20%
+25,Race or Ethnicity,Native American,214,47,22.00%,167,78.00%
+25,Race or Ethnicity,Unknown,230,27,11.70%,203,88.30%
+25,Race or Ethnicity,White,3811,"1,890",49.60%,1921,50.40%
+26,All District,All District,30621,"7,549",24.70%,23072,75.30%
+26,English Language Learner Status,ELL,2929,667,22.80%,2262,77.20%
+26,English Language Learner Status,Not ELL,27692,"6,882",24.90%,20810,75.10%
+26,Gender,Female,14940,"3,602",24.10%,11338,75.90%
+26,Gender,Male,15681,"3,947",25.20%,11734,74.80%
+26,Grade Level,PK,692,257,37.10%,435,62.90%
+26,Grade Level,0K,1668,677,40.60%,991,59.40%
+26,Grade Level,1,1688,648,38.40%,1040,61.60%
+26,Grade Level,2,1737,670,38.60%,1067,61.40%
+26,Grade Level,3,1821,689,37.80%,1132,62.20%
+26,Grade Level,4,1722,620,36.00%,1102,64.00%
+26,Grade Level,5,1789,677,37.80%,1112,62.20%
+26,Grade Level,6,1927,653,33.90%,1274,66.10%
+26,Grade Level,7,1994,571,28.60%,1423,71.40%
+26,Grade Level,8,2162,587,27.20%,1575,72.80%
+26,Grade Level,9,3889,638,16.40%,3251,83.60%
+26,Grade Level,10,3408,324,9.50%,3084,90.50%
+26,Grade Level,11,3170,265,8.40%,2905,91.60%
+26,Grade Level,12,2954,273,9.20%,2681,90.80%
+26,Race or Ethnicity,Asian,16456,"2,975",18.10%,13481,81.90%
+26,Race or Ethnicity,Black,3376,780,23.10%,2596,76.90%
+26,Race or Ethnicity,Hispanic,5456,"1,595",29.20%,3861,70.80%
+26,Race or Ethnicity,Multi-Racial,446,176,39.50%,270,60.50%
+26,Race or Ethnicity,Native American,350,58,16.60%,292,83.40%
+26,Race or Ethnicity,Unknown,143,40,28.00%,103,72.00%
+26,Race or Ethnicity,White,4394,"1,925",43.80%,2469,56.20%
+27,All District,All District,41875,"11,909",28.40%,29966,71.60%
+27,English Language Learner Status,ELL,4530,"1,545",34.10%,2985,65.90%
+27,English Language Learner Status,Not ELL,37345,"10,364",27.80%,26981,72.20%
+27,Gender,Female,19970,"5,585",28.00%,14385,72.00%
+27,Gender,Male,21905,"6,324",28.90%,15581,71.10%
+27,Grade Level,PK,2758,"1,029",37.30%,1729,62.70%
+27,Grade Level,0K,2809,"1,087",38.70%,1722,61.30%
+27,Grade Level,1,2985,"1,054",35.30%,1931,64.70%
+27,Grade Level,2,3017,972,32.20%,2045,67.80%
+27,Grade Level,3,3046,"1,015",33.30%,2031,66.70%
+27,Grade Level,4,3145,954,30.30%,2191,69.70%
+27,Grade Level,5,3180,"1,003",31.50%,2177,68.50%
+27,Grade Level,6,3407,"1,045",30.70%,2362,69.30%
+27,Grade Level,7,3452,916,26.50%,2536,73.50%
+27,Grade Level,8,3660,"1,035",28.30%,2625,71.70%
+27,Grade Level,9,2854,595,20.80%,2259,79.20%
+27,Grade Level,10,2787,455,16.30%,2332,83.70%
+27,Grade Level,11,2373,393,16.60%,1980,83.40%
+27,Grade Level,12,2402,356,14.80%,2046,85.20%
+27,Race or Ethnicity,Asian,9426,"1,635",17.30%,7791,82.70%
+27,Race or Ethnicity,Black,8793,"2,024",23.00%,6769,77.00%
+27,Race or Ethnicity,Hispanic,17023,"5,318",31.20%,11705,68.80%
+27,Race or Ethnicity,Multi-Racial,375,115,30.70%,260,69.30%
+27,Race or Ethnicity,Native American,1924,320,16.60%,1604,83.40%
+27,Race or Ethnicity,Unknown,163,32,19.60%,131,80.40%
+27,Race or Ethnicity,White,4171,"2,465",59.10%,1706,40.90%
+28,All District,All District,38453,"9,916",25.80%,28537,74.20%
+28,English Language Learner Status,ELL,4419,"1,682",38.10%,2737,61.90%
+28,English Language Learner Status,Not ELL,34034,"8,234",24.20%,25800,75.80%
+28,Gender,Female,19117,"4,724",24.70%,14393,75.30%
+28,Gender,Male,19336,"5,192",26.90%,14144,73.10%
+28,Grade Level,PK,1081,449,41.50%,632,58.50%
+28,Grade Level,0K,2526,"1,123",44.50%,1403,55.50%
+28,Grade Level,1,2655,"1,044",39.30%,1611,60.70%
+28,Grade Level,2,2533,"1,021",40.30%,1512,59.70%
+28,Grade Level,3,2503,971,38.80%,1532,61.20%
+28,Grade Level,4,2506,908,36.20%,1598,63.80%
+28,Grade Level,5,2543,922,36.30%,1621,63.70%
+28,Grade Level,6,2484,802,32.30%,1682,67.70%
+28,Grade Level,7,2550,681,26.70%,1869,73.30%
+28,Grade Level,8,2571,743,28.90%,1828,71.10%
+28,Grade Level,9,3869,448,11.60%,3421,88.40%
+28,Grade Level,10,3729,307,8.20%,3422,91.80%
+28,Grade Level,11,3522,244,6.90%,3278,93.10%
+28,Grade Level,12,3381,253,7.50%,3128,92.50%
+28,Race or Ethnicity,Asian,12043,"2,146",17.80%,9897,82.20%
+28,Race or Ethnicity,Black,7054,"1,642",23.30%,5412,76.70%
+28,Race or Ethnicity,Hispanic,11099,"3,269",29.50%,7830,70.50%
+28,Race or Ethnicity,Multi-Racial,733,290,39.60%,443,60.40%
+28,Race or Ethnicity,Native American,1479,207,14.00%,1272,86.00%
+28,Race or Ethnicity,Unknown,333,38,11.40%,295,88.60%
+28,Race or Ethnicity,White,5712,"2,324",40.70%,3388,59.30%
+29,All District,All District,23443,"6,533",27.90%,16910,72.10%
+29,English Language Learner Status,ELL,2346,919,39.20%,1427,60.80%
+29,English Language Learner Status,Not ELL,21097,"5,614",26.60%,15483,73.40%
+29,Gender,Female,11223,"3,057",27.20%,8166,72.80%
+29,Gender,Male,12220,"3,476",28.40%,8744,71.60%
+29,Grade Level,PK,783,290,37.00%,493,63.00%
+29,Grade Level,0K,1804,562,31.20%,1242,68.80%
+29,Grade Level,1,1987,593,29.80%,1394,70.20%
+29,Grade Level,2,2036,585,28.70%,1451,71.30%
+29,Grade Level,3,2084,594,28.50%,1490,71.50%
+29,Grade Level,4,2104,577,27.40%,1527,72.60%
+29,Grade Level,5,2237,592,26.50%,1645,73.50%
+29,Grade Level,6,2111,596,28.20%,1515,71.80%
+29,Grade Level,7,2174,648,29.80%,1526,70.20%
+29,Grade Level,8,2255,627,27.80%,1628,72.20%
+29,Grade Level,9,1043,248,23.80%,795,76.20%
+29,Grade Level,10,1031,226,21.90%,805,78.10%
+29,Grade Level,11,892,177,19.80%,715,80.20%
+29,Grade Level,12,902,218,24.20%,684,75.80%
+29,Race or Ethnicity,Asian,4072,674,16.60%,3398,83.40%
+29,Race or Ethnicity,Black,13345,"3,941",29.50%,9404,70.50%
+29,Race or Ethnicity,Hispanic,4245,"1,484",35.00%,2761,65.00%
+29,Race or Ethnicity,Multi-Racial,240,54,22.50%,186,77.50%
+29,Race or Ethnicity,Native American,993,207,20.80%,786,79.20%
+29,Race or Ethnicity,Unknown,81,17,21.00%,64,79.00%
+29,Race or Ethnicity,White,467,156,33.40%,311,66.60%
+30,All District,All District,36292,"14,695",40.50%,21597,59.50%
+30,English Language Learner Status,ELL,6394,"3,253",50.90%,3141,49.10%
+30,English Language Learner Status,Not ELL,29898,"11,442",38.30%,18456,61.70%
+30,Gender,Female,18033,"7,110",39.40%,10923,60.60%
+30,Gender,Male,18259,"7,585",41.50%,10674,58.50%
+30,Grade Level,PK,1287,706,54.90%,581,45.10%
+30,Grade Level,0K,2537,"1,340",52.80%,1197,47.20%
+30,Grade Level,1,2671,"1,368",51.20%,1303,48.80%
+30,Grade Level,2,2634,"1,321",50.20%,1313,49.80%
+30,Grade Level,3,2619,"1,268",48.40%,1351,51.60%
+30,Grade Level,4,2657,"1,272",47.90%,1385,52.10%
+30,Grade Level,5,2823,"1,269",45.00%,1554,55.00%
+30,Grade Level,6,3053,"1,298",42.50%,1755,57.50%
+30,Grade Level,7,3056,"1,202",39.30%,1854,60.70%
+30,Grade Level,8,3164,"1,190",37.60%,1974,62.40%
+30,Grade Level,9,2837,883,31.10%,1954,68.90%
+30,Grade Level,10,2548,655,25.70%,1893,74.30%
+30,Grade Level,11,2186,450,20.60%,1736,79.40%
+30,Grade Level,12,2220,473,21.30%,1747,78.70%
+30,Race or Ethnicity,Asian,7712,"2,116",27.40%,5596,72.60%
+30,Race or Ethnicity,Black,2289,641,28.00%,1648,72.00%
+30,Race or Ethnicity,Hispanic,19132,"8,695",45.40%,10437,54.60%
+30,Race or Ethnicity,Multi-Racial,571,268,46.90%,303,53.10%
+30,Race or Ethnicity,Native American,252,70,27.80%,182,72.20%
+30,Race or Ethnicity,Unknown,160,54,33.80%,106,66.30%
+30,Race or Ethnicity,White,6176,"2,851",46.20%,3325,53.80%
+31,All District,All District,59615,"24,574",41.20%,35041,58.80%
+31,English Language Learner Status,ELL,4360,"1,943",44.60%,2417,55.40%
+31,English Language Learner Status,Not ELL,55255,"22,631",41.00%,32624,59.00%
+31,Gender,Female,29132,"11,806",40.50%,17326,59.50%
+31,Gender,Male,30483,"12,768",41.90%,17715,58.10%
+31,Grade Level,PK,2692,"1,553",57.70%,1139,42.30%
+31,Grade Level,0K,4035,"2,311",57.30%,1724,42.70%
+31,Grade Level,1,4223,"2,203",52.20%,2020,47.80%
+31,Grade Level,2,4148,"2,253",54.30%,1895,45.70%
+31,Grade Level,3,4411,"2,292",52.00%,2119,48.00%
+31,Grade Level,4,4481,"2,312",51.60%,2169,48.40%
+31,Grade Level,5,4493,"2,275",50.60%,2218,49.40%
+31,Grade Level,6,4293,"1,938",45.10%,2355,54.90%
+31,Grade Level,7,4336,"1,728",39.90%,2608,60.10%
+31,Grade Level,8,4425,"1,821",41.20%,2604,58.80%
+31,Grade Level,9,4784,"1,208",25.30%,3576,74.70%
+31,Grade Level,10,4642,960,20.70%,3682,79.30%
+31,Grade Level,11,4536,894,19.70%,3642,80.30%
+31,Grade Level,12,4116,826,20.10%,3290,79.90%
+31,Race or Ethnicity,Asian,7764,"1,413",18.20%,6351,81.80%
+31,Race or Ethnicity,Black,7262,"2,855",39.30%,4407,60.70%
+31,Race or Ethnicity,Hispanic,17592,"7,174",40.80%,10418,59.20%
+31,Race or Ethnicity,Multi-Racial,990,448,45.30%,542,54.70%
+31,Race or Ethnicity,Native American,285,101,35.40%,184,64.60%
+31,Race or Ethnicity,Unknown,281,113,40.20%,168,59.80%
+31,Race or Ethnicity,White,25441,"12,470",49.00%,12971,51.00%
+32,All District,All District,9832,"3,812",38.80%,6020,61.20%
+32,English Language Learner Status,ELL,2241,"1,192",53.20%,1049,46.80%
+32,English Language Learner Status,Not ELL,7591,"2,620",34.50%,4971,65.50%
+32,Gender,Female,4746,"1,818",38.30%,2928,61.70%
+32,Gender,Male,5086,"1,994",39.20%,3092,60.80%
+32,Grade Level,PK,375,172,45.90%,203,54.10%
+32,Grade Level,0K,538,286,53.20%,252,46.80%
+32,Grade Level,1,653,330,50.50%,323,49.50%
+32,Grade Level,2,653,336,51.50%,317,48.50%
+32,Grade Level,3,671,328,48.90%,343,51.10%
+32,Grade Level,4,679,319,47.00%,360,53.00%
+32,Grade Level,5,790,347,43.90%,443,56.10%
+32,Grade Level,6,952,381,40.00%,571,60.00%
+32,Grade Level,7,962,369,38.40%,593,61.60%
+32,Grade Level,8,1022,409,40.00%,613,60.00%
+32,Grade Level,9,668,173,25.90%,495,74.10%
+32,Grade Level,10,679,123,18.10%,556,81.90%
+32,Grade Level,11,624,107,17.10%,517,82.90%
+32,Grade Level,12,566,132,23.30%,434,76.70%
+32,Race or Ethnicity,Asian,218,51,23.40%,167,76.60%
+32,Race or Ethnicity,Black,1601,467,29.20%,1134,70.80%
+32,Race or Ethnicity,Hispanic,7659,"3,162",41.30%,4497,58.70%
+32,Race or Ethnicity,Multi-Racial,18,5,27.80%,13,72.20%
+32,Race or Ethnicity,Native American,44,12,27.30%,32,72.70%
+32,Race or Ethnicity,Unknown,27,4,14.80%,23,85.20%
+32,Race or Ethnicity,White,265,111,41.90%,154,58.10%
+75,All District,All District,26322,"10,870",41.30%,15452,58.70%
+75,English Language Learner Status,ELL,5748,"2,294",39.90%,3454,60.10%
+75,English Language Learner Status,Not ELL,20574,"8,576",41.70%,11998,58.30%
+75,Gender,Female,6911,"2,714",39.30%,4197,60.70%
+75,Gender,Male,19411,"8,156",42.00%,11255,58.00%
+75,Grade Level,PK,411,269,65.50%,142,34.50%
+75,Grade Level,0K,1759,898,51.10%,861,48.90%
+75,Grade Level,1,1934,947,49.00%,987,51.00%
+75,Grade Level,2,1897,952,50.20%,945,49.80%
+75,Grade Level,3,1883,818,43.40%,1065,56.60%
+75,Grade Level,4,1802,811,45.00%,991,55.00%
+75,Grade Level,5,1867,791,42.40%,1076,57.60%
+75,Grade Level,6,1738,690,39.70%,1048,60.30%
+75,Grade Level,7,1881,715,38.00%,1166,62.00%
+75,Grade Level,8,1718,670,39.00%,1048,61.00%
+75,Grade Level,9,1873,666,35.60%,1207,64.40%
+75,Grade Level,10,1769,610,34.50%,1159,65.50%
+75,Grade Level,11,1443,511,35.40%,932,64.60%
+75,Grade Level,12,4347,"1,522",35.00%,2825,65.00%
+75,Race or Ethnicity,Asian,2493,842,33.80%,1651,66.20%
+75,Race or Ethnicity,Black,9191,"3,734",40.60%,5457,59.40%
+75,Race or Ethnicity,Hispanic,10786,"4,255",39.40%,6531,60.60%
+75,Race or Ethnicity,Multi-Racial,241,117,48.50%,124,51.50%
+75,Race or Ethnicity,Native American,423,156,36.90%,267,63.10%
+75,Race or Ethnicity,Unknown,13,4,30.80%,9,69.20%
+75,Race or Ethnicity,White,3175,"1,762",55.50%,1413,44.50%
+79,All District,All District,5311,"1,446",27.20%,3865,72.80%
+79,English Language Learner Status,ELL,700,152,21.70%,548,78.30%
+79,English Language Learner Status,Not ELL,4611,"1,294",28.10%,3317,71.90%
+79,Gender,Female,2057,488,23.70%,1569,76.30%
+79,Gender,Male,3254,958,29.40%,2296,70.60%
+79,Grade Level,6,2,s,s,s,s
+79,Grade Level,7,8,s,s,s,s
+79,Grade Level,8,139,47,33.80%,92,66.20%
+79,Grade Level,9,207,37,17.90%,170,82.10%
+79,Grade Level,10,4024,743,18.50%,3281,81.50%
+79,Grade Level,11,107,21,19.60%,86,80.40%
+79,Grade Level,12,824,593,72.00%,231,28.00%
+79,Race or Ethnicity,Asian,535,144,26.90%,391,73.10%
+79,Race or Ethnicity,Black,1878,539,28.70%,1339,71.30%
+79,Race or Ethnicity,Hispanic,2450,642,26.20%,1808,73.80%
+79,Race or Ethnicity,Multi-Racial,25,5,20.00%,20,80.00%
+79,Race or Ethnicity,Native American,64,21,32.80%,43,67.20%
+79,Race or Ethnicity,White,359,95,26.50%,264,73.50%
