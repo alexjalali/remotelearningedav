@@ -4,24 +4,11 @@
 
 <h4>NOTE: If you need to look up and find your district, please refer to [New York City Department of Education Regional Map](https://video.eschoolsolutions.com/udocs/DistrictMap.pdf)</h4>
 
-MANHATTAN: ORANGE
-
-BROOKLYN: BLUE
-
-BRONX: GREEN
-
-QUEENS: PINK
-
-STATEN ISLAND: PURPLE
-
 <meta charset="utf-8">
-
-```{=html}
 <style>
 
 .background {
   fill: #eee;
-  opacity: 0;
   pointer-events: all;
 }
 
@@ -40,7 +27,7 @@ text{
 }
 
 text.big-text{
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 400;
 }
 
@@ -49,14 +36,11 @@ text.big-text{
 }
 
 </style>
-```
-::: {#plot}
-:::
+<body>
 
-```{=html}
-<script src="http://d3js.org/d3.v4.min.js"></script>
-```
-```{=html}
+<svg></svg>
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
 <script>
 
 var width = 960,
@@ -64,22 +48,22 @@ var width = 960,
     centered;
 
 // Define color scale
-var color = d3.scaleLinear()
+var color = d3.scale.linear()
   .domain([1, 20])
   .clamp(true)
   .range(['#fff', '#409A99']);
 
-var projection = d3.geoMercator()
-  .scale(40000)
-  .center([-73.935200, 40.730600])
+var projection = d3.geo.mercator()
+  .scale(45000)
+  // Center the Map in Colombia
+  .center([-73.935242, 40.730610])
   .translate([width / 2, height / 2]);
 
-var path = d3.geoPath()
+var path = d3.geo.path()
   .projection(projection);
 
 // Set svg width & height
-var svg = d3.select("div#plot")
-  .append('svg')
+var svg = d3.select('svg')
   .attr('width', width)
   .attr('height', height);
 
@@ -109,17 +93,12 @@ var bigText = g.append('text')
   .attr('x', 20)
   .attr('y', 45);
 
-var bigText2 = g.append('text')
-  .classed('big-text', true)
-  .attr('x', 20)
-  .attr('y', 65);
-
 // Load map data
 d3.json('https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/School%20Districts.geojson', function(error, mapData) {
   var features = mapData.features;
 
   // Update color scale domain based on data
-  color.domain([0, d3.max(features, length)]);
+  color.domain([0, d3.max(features, nameLength)]);
 
   // Draw each province as a path
   mapLayer.selectAll('path')
@@ -133,37 +112,20 @@ d3.json('https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/Sc
       .on('click', clicked);
 });
 
-function dist(d){
+// Get province name
+function nameFn(d){
   return d && d.properties ? d.properties.school_dist : null;
 }
 
-function length(d){
-  var n = dist(d);
+// Get province name length
+function nameLength(d){
+  var n = nameFn(d);
   return n ? n.length : 0;
 }
 
+// Get province color
 function fillFn(d){
-  if(dist(d) == "1") return "orange";
-  if(dist(d) == "2") return "orange";
-  if(dist(d) == "3") return "orange";
-  if(dist(d) == "4") return "orange";
-  if(dist(d) == "5") return "orange";
-  if(dist(d) == "6") return "orange";
-  if(dist(d) == "31") return "purple";
-  if(dist(d) == "7") return "green";
-  if(dist(d) == "8") return "green";
-  if(dist(d) == "9") return "green";
-  if(dist(d) == "10") return "green";
-  if(dist(d) == "11") return "green";
-  if(dist(d) == "12") return "green";
-  if(dist(d) == "24") return "pink";
-  if(dist(d) == "25") return "pink";
-  if(dist(d) == "26") return "pink";
-  if(dist(d) == "27") return "pink";
-  if(dist(d) == "28") return "pink";
-  if(dist(d) == "29") return "pink";
-  if(dist(d) == "30") return "pink";
-  return color(length(d));
+  return color(nameLength(d));
 }
 
 // When clicked, zoom in
@@ -186,7 +148,7 @@ function clicked(d) {
 
   // Highlight the clicked province
   mapLayer.selectAll('path')
-    .style('fill', function(d){return centered && d===centered ? 'yellow' : fillFn(d);});
+    .style('fill', function(d){return centered && d===centered ? '#D5708B' : fillFn(d);});
 
   // Zoom
   g.transition()
@@ -196,25 +158,26 @@ function clicked(d) {
 
 function mouseover(d){
   // Highlight hovered province
-  d3.select(this).style('fill', 'blue');
+  d3.select(this).style('fill', 'orange');
 
   // Draw effects
   bigText
     .style('font-family', 'Helvetica Neue')
-    .text("District " + dist(d));
-  bigText2
-    .style('font-family', 'Helvetica Neue')
-    .text("Remote Learing Percentage " + dist(d));
+    .text("District " + nameFn(d));
 }
 
 function mouseout(d){
+  // Reset province color
   mapLayer.selectAll('path')
-    .style('fill', function(d){return centered && d===centered ? 'yellow' : fillFn(d);});
-  effectLayer.selectAll('text').transition().style('opacity', 0).remove();
+    .style('fill', function(d){return centered && d===centered ? '#D5708B' : fillFn(d);});
+
+  // Remove effect text
+  effectLayer.selectAll('text').transition()
+    .style('opacity', 0)
+    .remove();
 
   // Clear province name
   bigText.text('');
-  bigText2.text('');
 }
+
 </script>
-```
