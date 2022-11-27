@@ -1,18 +1,6 @@
 # Interactive component
 
-<h2>This is the sample2</h2>
-
-<h4>NOTE: If you need to look up and find your district, please refer to [New York City Department of Education Regional Map](https://video.eschoolsolutions.com/udocs/DistrictMap.pdf)</h4>
-
-MANHATTAN: ORANGE
-
-BROOKLYN: BLUE
-
-BRONX: GREEN
-
-QUEENS: PINK
-
-STATEN ISLAND: PURPLE
+<h2>This is the sample3</h2>
 
 <meta charset="utf-8">
 <style>
@@ -49,9 +37,9 @@ text.big-text{
 </style>
 <body>
 
-<svg></svg>
 
 <script src="https://d3js.org/d3.v7.js"></script>
+<svg></svg>
 <script>
 
 var width = 960,
@@ -73,17 +61,87 @@ var projection = d3.geoMercator()
 var path = d3.geoPath()
   .projection(projection);
 
-// Set svg width & height
 var svg = d3.select('svg')
   .attr('width', width)
   .attr('height', height);
 
-// Add background
 svg.append('rect')
   .attr('class', 'background')
   .attr('width', width)
   .attr('height', height);
 
+svg.append("circle")
+  .attr("cx",200)
+  .attr("cy",130)
+  .attr("r", 9)
+  .style("fill", "orange")
+  
+svg.append("circle")
+  .attr("cx",200)
+  .attr("cy",160)
+  .attr("r", 9)
+  .style("fill", "lightblue")
+  
+svg.append("circle")
+  .attr("cx",200)
+  .attr("cy",190)
+  .attr("r", 9)
+  .style("fill", "green")
+  
+svg.append("circle")
+  .attr("cx",200)
+  .attr("cy",220)
+  .attr("r", 9)
+  .style("fill", "pink")
+
+svg.append("circle")
+  .attr("cx",200)
+  .attr("cy",250)
+  .attr("r", 9)
+  .style("fill", "purple")
+
+svg.append("text")
+  .attr("x", 220)
+  .attr("y", 130)
+  .text("Manhattan")
+  .style("font-size", "20px")
+  .attr("alignment-baseline","middle")
+  
+svg.append("text")
+  .attr("x", 220)
+  .attr("y", 160)
+  .text("Brooklyn")
+  .style("font-size", "20px")
+  .attr("alignment-baseline","middle")
+  
+svg.append("text")
+  .attr("x", 220)
+  .attr("y", 190)
+  .text("Bronx")
+  .style("font-size", "20px")
+  .attr("alignment-baseline","middle")
+  
+svg.append("text")
+  .attr("x", 220)
+  .attr("y", 220)
+  .text("Queens")
+  .style("font-size", "20px")
+  .attr("alignment-baseline","middle")
+
+svg.append("text")
+  .attr("x", 220)
+  .attr("y", 250)
+  .text("Staten Island")
+  .style("font-size", "20px")
+  .attr("alignment-baseline","middle")
+
+svg.append("text")
+  .attr("x", 350)
+  .attr("y", 30)
+  .text("Find Your District")
+  .style("font-size", "35px")
+  .attr("alignment-baseline","middle")
+  
 var g = svg.append('g');
 
 var effectLayer = g.append('g')
@@ -142,7 +200,7 @@ function fill(d){
   if(String(name(d)) == "28") return "pink";
   if(String(name(d)) == "29") return "pink";
   if(String(name(d)) == "30") return "pink";
-  return color(1);
+  return "lightblue";
 }
 
 function mouseover(event, d){
