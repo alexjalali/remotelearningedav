@@ -1,6 +1,6 @@
 # Interactive component
 
-<h2>This is the sample</h2>
+<h2>This is the sample2</h2>
 
 <h4>NOTE: If you need to look up and find your district, please refer to [New York City Department of Education Regional Map](https://video.eschoolsolutions.com/udocs/DistrictMap.pdf)</h4>
 
@@ -16,6 +16,7 @@ STATEN ISLAND: PURPLE
 
 <meta charset="utf-8">
 
+```{=html}
 <style>
 
 .background {
@@ -48,9 +49,14 @@ text.big-text{
 }
 
 </style>
-<div id="plot"></div>
+```
+::: {#plot}
+:::
 
-<script src="http://d3js.org/d3.v3.min.js"></script>
+```{=html}
+<script src="http://d3js.org/d3.v4.min.js"></script>
+```
+```{=html}
 <script>
 
 var width = 960,
@@ -58,17 +64,17 @@ var width = 960,
     centered;
 
 // Define color scale
-var color = d3.scale.linear()
+var color = d3.scaleLinear()
   .domain([1, 20])
   .clamp(true)
   .range(['#fff', '#409A99']);
 
-var projection = d3.geo.mercator()
+var projection = d3.geoMercator()
   .scale(40000)
   .center([-73.935200, 40.730600])
   .translate([width / 2, height / 2]);
 
-var path = d3.geo.path()
+var path = d3.geoPath()
   .projection(projection);
 
 // Set svg width & height
@@ -211,3 +217,4 @@ function mouseout(d){
   bigText2.text('');
 }
 </script>
+```
