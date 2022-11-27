@@ -8,6 +8,8 @@ data-set-4-demographic-snapshot-citywide-borough-district-and-school-as-of-2022
 data
 sources
 cleaning-transformation
+loading-in-data
+cleaning-and-consolidating-data
 missing-value-analysis
 results
 interactive-component
