@@ -16,7 +16,6 @@ STATEN ISLAND: PURPLE
 
 <meta charset="utf-8">
 
-```{=html}
 <style>
 
 .background {
@@ -49,13 +48,8 @@ text.big-text{
 }
 
 </style>
-```
-```{=html}
 <script src="http://d3js.org/d3.v3.min.js"></script>
-```
 <svg></svg>
-
-```{=html}
 <script>
 
 var width = 960,
