@@ -11,10 +11,8 @@ library(tidyverse)
 library(here)
 library(readxl)
 library(dplyr)
-
 #reading in learning preferences dataset
 learning_pref <- read_csv(here::here("datasets", "Learning_Preferences.csv"),show_col_types = FALSE)
-
 #Our other datasets have multiple sheets, so this is a function to read all of them in
 read_excel_allsheets <- function(filename, tibble = FALSE) {
     sheets <- readxl::excel_sheets(filename)
@@ -23,7 +21,6 @@ read_excel_allsheets <- function(filename, tibble = FALSE) {
     names(x) <- sheets
     x
 }
-
 #reading district math results excel and creating dataframes for each relevant sheet
 math_scores <- read_excel_allsheets(here::here("datasets","district-math-results-2013-2022-(public).xlsx"))
 math_scores_all <- math_scores[["All"]] 
@@ -32,6 +29,14 @@ math_scores_ethnicity <- math_scores[["Ethnicity"]]
 math_scores_gender <- math_scores[["Gender"]]  
 math_scores_econstatus <- math_scores[["Econ Status"]] 
 math_scores_ell <- math_scores[["ELL"]]
+
+math_scores_2019 <- read_excel_allsheets(here::here("datasets","district-math-results-2013-2022-(public).xlsx"))
+math_scores_all_2019 <- math_scores[["All"]] 
+math_scores_swd_2019 <- math_scores[["SWD"]] 
+math_scores_ethnicity_2019 <- math_scores[["Ethnicity"]]
+math_scores_gender_2019 <- math_scores[["Gender"]]  
+math_scores_econstatus_2019 <- math_scores[["Econ Status"]] 
+math_scores_ell_2019 <- math_scores[["ELL"]]
 
 #reading district ELA results excel and creating dataframes for each relevant sheet
 ela_scores <- read_excel_allsheets(here::here("datasets","district-ela-results-2013-2022-(public).xlsx"))
@@ -42,6 +47,14 @@ ela_scores_gender <- ela_scores[["Gender"]]
 ela_scores_econstatus <- ela_scores[["Econ Status"]] 
 ela_scores_ell <- ela_scores[["ELL"]]
 
+ela_scores_2019 <- read_excel_allsheets(here::here("datasets","district-ela-results-2013-2022-(public).xlsx"))
+ela_scores_all_2019 <- ela_scores[["All"]] 
+ela_scores_swd_2019 <- ela_scores[["SWD"]] 
+ela_scores_ethnicity_2019 <- ela_scores[["Ethnicity"]]
+ela_scores_gender_2019 <- ela_scores[["Gender"]]  
+ela_scores_econstatus_2019 <- ela_scores[["Econ Status"]] 
+ela_scores_ell_2019 <- ela_scores[["ELL"]]
+
 #reading demographic snapshot excel and creating a dataframe for just the district sheet
 demo <- read_excel_allsheets(here::here("datasets","demographic-snapshot.xlsx"))[["District"]]
 ```
@@ -51,23 +64,43 @@ demo <- read_excel_allsheets(here::here("datasets","demographic-snapshot.xlsx"))
 ```{r}
 #keeping only the 32 school districts in learning_pref and dropping grades 1-2,9-12,PK and 0K to be consistent with other datasets
 learning_pref <- learning_pref %>% subset(District<33) %>% subset(!Category=="1") %>% subset(!Category=="2") %>% subset(!Category=="9") %>% subset(!Category=="10") %>% subset(!Category=="11") %>% subset(!Category=="12") %>% subset(!Category=="PK")%>% subset(!Category=="0K") %>% subset(!Category=="All District")
-names(learning_pref)[names(learning_pref) == "`Disaggregation Category`"] = "Disaggregation Category" #renaming variable to make it easier to merge with other datasets - removing unecessary ``
-
+names(learning_pref)[names(learning_pref) == "`Disaggregation Category`"] = "Disaggregation Category"
+names(learning_pref)[names(learning_pref) == "# Total Enrollment"] = "Total Enrollment"
+names(learning_pref)[names(learning_pref) == "# Remote"] = "Remote"
+names(learning_pref)[names(learning_pref) == "% Remote"] = "Percent Remote"
+#renaming variable to make it easier to merge with other datasets 
 #keeping only scores from 2022, and removing the "all grade" category
-math_scores_all <- math_scores_all %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
-math_scores_ethnicity <- math_scores_ethnicity %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
-math_scores_gender <- math_scores_gender %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
-math_scores_econstatus <- math_scores_econstatus %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
-math_scores_ell <- math_scores_ell %>% subset(Year=="2022") %>% subset(!Grade=="All Grades") %>% mutate(Category = recode(Category, 
+math_scores_all_2022 <- math_scores_all %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
+math_scores_ethnicity_2022 <- math_scores_ethnicity %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
+math_scores_gender_2022 <- math_scores_gender %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
+math_scores_econstatus_2022 <- math_scores_econstatus %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
+math_scores_ell_2022 <- math_scores_ell %>% subset(Year=="2022") %>% subset(!Grade=="All Grades") %>% mutate(Category = recode(Category, 
+     "Current ELL" = "ELL",
+     "Ever ELL" = "ELL",
+     "Never ELL" = "Not ELL")) #renaming factor levels to match learning_pref dataset
+ela_scores_all_2022 <- ela_scores_all %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
+ela_scores_ethnicity_2022 <- ela_scores_ethnicity %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
+ela_scores_gender_2022 <- ela_scores_gender %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
+ela_scores_econstatus_2022 <- ela_scores_econstatus %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
+ela_scores_ell_2022 <- ela_scores_ell %>% subset(Year=="2022") %>% subset(!Grade=="All Grades") %>% mutate(Category = recode(Category, 
      "Current ELL" = "ELL",
      "Ever ELL" = "ELL",
      "Never ELL" = "Not ELL")) #renaming factor levels to match learning_pref dataset
 
-ela_scores_all <- ela_scores_all %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
-ela_scores_ethnicity <- ela_scores_ethnicity %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
-ela_scores_gender <- ela_scores_gender %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
-ela_scores_econstatus <- ela_scores_econstatus %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
-ela_scores_ell <- ela_scores_ell %>% subset(Year=="2022") %>% subset(!Grade=="All Grades") %>% mutate(Category = recode(Category, 
+#keeping only scores from 2019, and removing the "all grade" category
+math_scores_all_2019 <- math_scores_all_2019 %>% subset(Year=="2019") %>% subset(!Grade=="All Grades")
+math_scores_ethnicity_2019 <- math_scores_ethnicity %>% subset(Year=="2019") %>% subset(!Grade=="All Grades")
+math_scores_gender_2019 <- math_scores_gender %>% subset(Year=="2019") %>% subset(!Grade=="All Grades")
+math_scores_econstatus_2019 <- math_scores_econstatus %>% subset(Year=="2019") %>% subset(!Grade=="All Grades")
+math_scores_ell_2019 <- math_scores_ell %>% subset(Year=="2019") %>% subset(!Grade=="All Grades") %>% mutate(Category = recode(Category, 
+     "Current ELL" = "ELL",
+     "Ever ELL" = "ELL",
+     "Never ELL" = "Not ELL")) #renaming factor levels to match learning_pref dataset
+ela_scores_all_2019 <- ela_scores_all %>% subset(Year=="2019") %>% subset(!Grade=="All Grades")
+ela_scores_ethnicity_2019 <- ela_scores_ethnicity %>% subset(Year=="2019") %>% subset(!Grade=="All Grades")
+ela_scores_gender_2019 <- ela_scores_gender %>% subset(Year=="2019") %>% subset(!Grade=="All Grades")
+ela_scores_econstatus_2019 <- ela_scores_econstatus %>% subset(Year=="2019") %>% subset(!Grade=="All Grades")
+ela_scores_ell_2019 <- ela_scores_ell %>% subset(Year=="2019") %>% subset(!Grade=="All Grades") %>% mutate(Category = recode(Category, 
      "Current ELL" = "ELL",
      "Ever ELL" = "ELL",
      "Never ELL" = "Not ELL")) #renaming factor levels to match learning_pref dataset
@@ -75,94 +108,359 @@ ela_scores_ell <- ela_scores_ell %>% subset(Year=="2022") %>% subset(!Grade=="Al
 
 ```{r scratch}
 ##District 1##
+#Math scores
+#Mean math scores by ELL
+math_scores_ell_temp_2019 <- split(math_scores_ell_2019, f = math_scores_ell_2019$District)
+math_scores_ell_temp_1_2019 <- math_scores_ell_temp_2019[["1"]] %>%
+  group_by(Category) %>%
+  summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+math_scores_ell_temp_1_2019$District <- "1"
+math_scores_ell_temp_1_2019$"Disaggregation Category" <- "English Language Learner Status"
+math_scores_ell_temp_1_2019 <- math_scores_ell_temp_1_2019[, c(3, 4, 1, 2)] 
+#Mean math scores by gender
+math_scores_gender_temp_2019 <- split(math_scores_gender_2019, f = math_scores_gender_2019$District)
+math_scores_gender_temp_1_2019 <- math_scores_gender_temp_2019[["1"]] %>%
+  group_by(Category) %>%
+  summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+math_scores_gender_temp_1_2019$District <- "1"
+math_scores_gender_temp_1_2019$"Disaggregation Category" <- "Gender"
+math_scores_gender_temp_1_2019 <- math_scores_gender_temp_1_2019[, c(3, 4, 1, 2)] 
+#Mean math scores by grade level
+math_scores_all_temp_2019 <- split(math_scores_all_2019, f = math_scores_all_2019$District)
+math_scores_all_temp_1_2019 <- math_scores_all_temp_2019[["1"]] %>%
+  group_by(Grade) %>%
+  summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+math_scores_all_temp_1_2019$District <- "1"
+math_scores_all_temp_1_2019$"Disaggregation Category" <- "Grade Level"
+math_scores_all_temp_1_2019 <- math_scores_all_temp_1_2019[, c(3, 4, 1, 2)] 
+names(math_scores_all_temp_1_2019)[names(math_scores_all_temp_1_2019) == "Grade"] = "Category"
+#Mean math scores by race/ethnicity
+math_scores_ethnicity_temp_2019 <- split(math_scores_ethnicity_2019, f = math_scores_ethnicity_2019$District)
+math_scores_ethnicity_temp_1_2019 <- math_scores_ethnicity_temp_2019[["1"]] %>%
+  group_by(Category) %>%
+  summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+math_scores_ethnicity_temp_1_2019$District <- "1"
+math_scores_ethnicity_temp_1_2019$"Disaggregation Category" <- "Race or Ethnicity"
+math_scores_ethnicity_temp_1_2019 <- math_scores_ethnicity_temp_1_2019[, c(3, 4, 1, 2)]
+#combining all math score datasets
+math_scores_temp_2019 <- rbind(math_scores_ell_temp_1_2019,math_scores_gender_temp_1_2019,math_scores_all_temp_1_2019,math_scores_ethnicity_temp_1_2019)
+#ELA scores
+#Mean ela scores by ELL
+ela_scores_ell_temp_2019 <- split(ela_scores_ell_2019, f = ela_scores_ell_2019$District)
+ela_scores_ell_temp_1_2019 <- ela_scores_ell_temp_2019[["1"]] %>%
+  group_by(Category) %>%
+  summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+ela_scores_ell_temp_1_2019$District <- "1"
+ela_scores_ell_temp_1_2019$"Disaggregation Category" <- "English Language Learner Status"
+ela_scores_ell_temp_1_2019 <- ela_scores_ell_temp_1_2019[, c(3, 4, 1, 2)] 
+#Mean ela scores by gender
+ela_scores_gender_temp_2019 <- split(ela_scores_gender_2019, f = ela_scores_gender_2019$District)
+ela_scores_gender_temp_1_2019 <- ela_scores_gender_temp_2019[["1"]] %>%
+  group_by(Category) %>%
+  summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+ela_scores_gender_temp_1_2019$District <- "1"
+ela_scores_gender_temp_1_2019$"Disaggregation Category" <- "Gender"
+ela_scores_gender_temp_1_2019 <- ela_scores_gender_temp_1_2019[, c(3, 4, 1, 2)] 
+#Mean ela scores by grade level
+ela_scores_all_temp_2019 <- split(ela_scores_all_2019, f = ela_scores_all_2019$District)
+ela_scores_all_temp_1_2019 <- ela_scores_all_temp_2019[["1"]] %>%
+  group_by(Grade) %>%
+  summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+ela_scores_all_temp_1_2019$District <- "1"
+ela_scores_all_temp_1_2019$"Disaggregation Category" <- "Grade Level"
+ela_scores_all_temp_1_2019 <- ela_scores_all_temp_1_2019[, c(3, 4, 1, 2)] 
+names(ela_scores_all_temp_1_2019)[names(ela_scores_all_temp_1_2019) == "Grade"] = "Category"
+#Mean ela scores by race/ethnicity
+ela_scores_ethnicity_temp_2019 <- split(ela_scores_ethnicity_2019, f = ela_scores_ethnicity_2019$District)
+ela_scores_ethnicity_temp_1_2019 <- ela_scores_ethnicity_temp_2019[["1"]] %>%
+  group_by(Category) %>%
+  summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+ela_scores_ethnicity_temp_1_2019$District <- "1"
+ela_scores_ethnicity_temp_1_2019$"Disaggregation Category" <- "Race or Ethnicity"
+ela_scores_ethnicity_temp_1_2019 <- ela_scores_ethnicity_temp_1_2019[, c(3, 4, 1, 2)]
+#combining all ela score datasets
+ela_scores_temp_2019 <- rbind(ela_scores_ell_temp_1_2019,ela_scores_gender_temp_1_2019,ela_scores_all_temp_1_2019,ela_scores_ethnicity_temp_1_2019)
+#combining Math + ela score datasets
+district_1_scores_2019 <- merge(math_scores_temp_2019,ela_scores_temp_2019,by=c("District","Disaggregation Category","Category"))
 
 #Math scores
 #Mean math scores by ELL
-math_scores_ell_temp <- split(math_scores_ell, f = math_scores_ell$District)
-math_scores_ell_temp_1 <- math_scores_ell_temp[["1"]] %>%
+math_scores_ell_temp_2022 <- split(math_scores_ell_2022, f = math_scores_ell_2022$District)
+math_scores_ell_temp_1_2022 <- math_scores_ell_temp_2022[["1"]] %>%
   group_by(Category) %>%
   summarise_at(vars('Mean Scale Score'), list(name = mean)) 
-math_scores_ell_temp_1$District <- "1"
-math_scores_ell_temp_1$"Disaggregation Category" <- "English Language Learner Status"
-math_scores_ell_temp_1 <- math_scores_ell_temp_1[, c(3, 4, 1, 2)] 
+math_scores_ell_temp_1_2022$District <- "1"
+math_scores_ell_temp_1_2022$"Disaggregation Category" <- "English Language Learner Status"
+math_scores_ell_temp_1_2022 <- math_scores_ell_temp_1_2022[, c(3, 4, 1, 2)] 
 #Mean math scores by gender
-math_scores_gender_temp <- split(math_scores_gender, f = math_scores_gender$District)
-math_scores_gender_temp_1 <- math_scores_gender_temp[["1"]] %>%
+math_scores_gender_temp_2022 <- split(math_scores_gender_2022, f = math_scores_gender_2022$District)
+math_scores_gender_temp_1_2022 <- math_scores_gender_temp_2022[["1"]] %>%
   group_by(Category) %>%
   summarise_at(vars('Mean Scale Score'), list(name = mean)) 
-math_scores_gender_temp_1$District <- "1"
-math_scores_gender_temp_1$"Disaggregation Category" <- "Gender"
-math_scores_gender_temp_1 <- math_scores_gender_temp_1[, c(3, 4, 1, 2)] 
+math_scores_gender_temp_1_2022$District <- "1"
+math_scores_gender_temp_1_2022$"Disaggregation Category" <- "Gender"
+math_scores_gender_temp_1_2022 <- math_scores_gender_temp_1_2022[, c(3, 4, 1, 2)] 
 #Mean math scores by grade level
-math_scores_all_temp <- split(math_scores_all, f = math_scores_all$District)
-math_scores_all_temp_1 <- math_scores_all_temp[["1"]] %>%
+math_scores_all_temp_2022 <- split(math_scores_all_2022, f = math_scores_all_2022$District)
+math_scores_all_temp_1_2022 <- math_scores_all_temp_2022[["1"]] %>%
   group_by(Grade) %>%
   summarise_at(vars('Mean Scale Score'), list(name = mean)) 
-math_scores_all_temp_1$District <- "1"
-math_scores_all_temp_1$"Disaggregation Category" <- "Grade Level"
-math_scores_all_temp_1 <- math_scores_all_temp_1[, c(3, 4, 1, 2)] 
-names(math_scores_all_temp_1)[names(math_scores_all_temp_1) == "Grade"] = "Category"
+math_scores_all_temp_1_2022$District <- "1"
+math_scores_all_temp_1_2022$"Disaggregation Category" <- "Grade Level"
+math_scores_all_temp_1_2022 <- math_scores_all_temp_1_2022[, c(3, 4, 1, 2)] 
+names(math_scores_all_temp_1_2022)[names(math_scores_all_temp_1_2022) == "Grade"] = "Category"
 #Mean math scores by race/ethnicity
-math_scores_ethnicity_temp <- split(math_scores_ethnicity, f = math_scores_ethnicity$District)
-math_scores_ethnicity_temp_1 <- math_scores_ethnicity_temp[["1"]] %>%
+math_scores_ethnicity_temp_2022 <- split(math_scores_ethnicity_2022, f = math_scores_ethnicity_2022$District)
+math_scores_ethnicity_temp_1_2022 <- math_scores_ethnicity_temp_2022[["1"]] %>%
   group_by(Category) %>%
   summarise_at(vars('Mean Scale Score'), list(name = mean)) 
-math_scores_ethnicity_temp_1$District <- "1"
-math_scores_ethnicity_temp_1$"Disaggregation Category" <- "Race or Ethnicity"
-math_scores_ethnicity_temp_1 <- math_scores_ethnicity_temp_1[, c(3, 4, 1, 2)]
+math_scores_ethnicity_temp_1_2022$District <- "1"
+math_scores_ethnicity_temp_1_2022$"Disaggregation Category" <- "Race or Ethnicity"
+math_scores_ethnicity_temp_1_2022 <- math_scores_ethnicity_temp_1_2022[, c(3, 4, 1, 2)]
 #combining all math score datasets
-math_scores_temp <- rbind(math_scores_ell_temp_1,math_scores_gender_temp_1,math_scores_all_temp_1,math_scores_ethnicity_temp_1)
-
-
+math_scores_temp_2022 <- rbind(math_scores_ell_temp_1_2022,math_scores_gender_temp_1_2022,math_scores_all_temp_1_2022,math_scores_ethnicity_temp_1_2022)
 #ELA scores
 #Mean ela scores by ELL
-ela_scores_ell_temp <- split(ela_scores_ell, f = ela_scores_ell$District)
-ela_scores_ell_temp_1 <- ela_scores_ell_temp[["1"]] %>%
+ela_scores_ell_temp_2022 <- split(ela_scores_ell_2022, f = ela_scores_ell_2022$District)
+ela_scores_ell_temp_1_2022 <- ela_scores_ell_temp_2022[["1"]] %>%
   group_by(Category) %>%
   summarise_at(vars('Mean Scale Score'), list(name = mean)) 
-ela_scores_ell_temp_1$District <- "1"
-ela_scores_ell_temp_1$"Disaggregation Category" <- "English Language Learner Status"
-ela_scores_ell_temp_1 <- ela_scores_ell_temp_1[, c(3, 4, 1, 2)] 
+ela_scores_ell_temp_1_2022$District <- "1"
+ela_scores_ell_temp_1_2022$"Disaggregation Category" <- "English Language Learner Status"
+ela_scores_ell_temp_1_2022 <- ela_scores_ell_temp_1_2022[, c(3, 4, 1, 2)] 
 #Mean ela scores by gender
-ela_scores_gender_temp <- split(ela_scores_gender, f = ela_scores_gender$District)
-ela_scores_gender_temp_1 <- ela_scores_gender_temp[["1"]] %>%
+ela_scores_gender_temp_2022 <- split(ela_scores_gender_2022, f = ela_scores_gender_2022$District)
+ela_scores_gender_temp_1_2022 <- ela_scores_gender_temp_2022[["1"]] %>%
   group_by(Category) %>%
   summarise_at(vars('Mean Scale Score'), list(name = mean)) 
-ela_scores_gender_temp_1$District <- "1"
-ela_scores_gender_temp_1$"Disaggregation Category" <- "Gender"
-ela_scores_gender_temp_1 <- ela_scores_gender_temp_1[, c(3, 4, 1, 2)] 
+ela_scores_gender_temp_1_2022$District <- "1"
+ela_scores_gender_temp_1_2022$"Disaggregation Category" <- "Gender"
+ela_scores_gender_temp_1_2022 <- ela_scores_gender_temp_1_2022[, c(3, 4, 1, 2)] 
 #Mean ela scores by grade level
-ela_scores_all_temp <- split(ela_scores_all, f = ela_scores_all$District)
-ela_scores_all_temp_1 <- ela_scores_all_temp[["1"]] %>%
+ela_scores_all_temp_2022 <- split(ela_scores_all_2022, f = ela_scores_all_2022$District)
+ela_scores_all_temp_1_2022 <- ela_scores_all_temp_2022[["1"]] %>%
   group_by(Grade) %>%
   summarise_at(vars('Mean Scale Score'), list(name = mean)) 
-ela_scores_all_temp_1$District <- "1"
-ela_scores_all_temp_1$"Disaggregation Category" <- "Grade Level"
-ela_scores_all_temp_1 <- ela_scores_all_temp_1[, c(3, 4, 1, 2)] 
-names(ela_scores_all_temp_1)[names(ela_scores_all_temp_1) == "Grade"] = "Category"
+ela_scores_all_temp_1_2022$District <- "1"
+ela_scores_all_temp_1_2022$"Disaggregation Category" <- "Grade Level"
+ela_scores_all_temp_1_2022 <- ela_scores_all_temp_1_2022[, c(3, 4, 1, 2)] 
+names(ela_scores_all_temp_1_2022)[names(ela_scores_all_temp_1_2022) == "Grade"] = "Category"
 #Mean ela scores by race/ethnicity
-ela_scores_ethnicity_temp <- split(ela_scores_ethnicity, f = ela_scores_ethnicity$District)
-ela_scores_ethnicity_temp_1 <- ela_scores_ethnicity_temp[["1"]] %>%
+ela_scores_ethnicity_temp_2022 <- split(ela_scores_ethnicity_2022, f = ela_scores_ethnicity_2022$District)
+ela_scores_ethnicity_temp_1_2022 <- ela_scores_ethnicity_temp_2022[["1"]] %>%
   group_by(Category) %>%
   summarise_at(vars('Mean Scale Score'), list(name = mean)) 
-ela_scores_ethnicity_temp_1$District <- "1"
-ela_scores_ethnicity_temp_1$"Disaggregation Category" <- "Race or Ethnicity"
-ela_scores_ethnicity_temp_1 <- ela_scores_ethnicity_temp_1[, c(3, 4, 1, 2)]
+ela_scores_ethnicity_temp_1_2022$District <- "1"
+ela_scores_ethnicity_temp_1_2022$"Disaggregation Category" <- "Race or Ethnicity"
+ela_scores_ethnicity_temp_1_2022 <- ela_scores_ethnicity_temp_1_2022[, c(3, 4, 1, 2)]
 #combining all ela score datasets
-ela_scores_temp <- rbind(ela_scores_ell_temp_1,ela_scores_gender_temp_1,ela_scores_all_temp_1,ela_scores_ethnicity_temp_1)
-
+ela_scores_temp_2022 <- rbind(ela_scores_ell_temp_1_2022,ela_scores_gender_temp_1_2022,ela_scores_all_temp_1_2022,ela_scores_ethnicity_temp_1_2022)
 #combining Math + ela score datasets
-as.data.frame(district_1_scores <- merge(math_scores_temp,ela_scores_temp,by=c("District","Disaggregation Category","Category")))
+district_1_scores_2022 <- merge(math_scores_temp_2022,ela_scores_temp_2022,by=c("District","Disaggregation Category","Category"))
 
 #creating sub dataset of just district 1 for the main dataset (learning_pref)
 learning_pref_temp <- split(learning_pref, f = learning_pref$District)
 learning_pref_temp_1 <- learning_pref_temp[["1"]]
-
 #combining district_1_scores with learning_pref_temp 
-district_1 <- merge(district_1_scores,learning_pref_temp_1,by=c("District","Disaggregation Category","Category")) 
-names(district_1)[names(district_1) == "name.x"] = "Math_Scores"
-names(district_1)[names(district_1) == "name.y"] = "ELA_Scores"
+district_1 <- merge(district_1_scores_2019,district_1_scores_2022,by=c("District","Disaggregation Category","Category"))
+district_1 <- merge(district_1, learning_pref_temp_1, by=c("District","Disaggregation Category","Category"))
+
+names(district_1)[names(district_1) == "name.x.x"] = "Math_Scores_2019"
+names(district_1)[names(district_1) == "name.y.x"] = "ELA_Scores_2019"
+names(district_1)[names(district_1) == "name.x.y"] = "Math_Scores_2022"
+names(district_1)[names(district_1) == "name.y.y"] = "ELA_Scores_2022"
+
+
+district_1$Remote <- as.numeric(gsub(",","",district_1$Remote))
+district_1$`Percent Remote` <- as.numeric(gsub("%","",district_1$`Percent Remote`))
+district_1$`# Blended` <- as.numeric(gsub(",","",district_1$`# Blended`))
+district_1$`% Blended` <- as.numeric(gsub("%","",district_1$`% Blended`))
+
+district_1[nrow(district_1) + 1,] <- c("1","total", "total", round(((district_1$Math_Scores_2019[1]*district_1$`Total Enrollment`[1])+(district_1$Math_Scores_2019[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), round(((district_1$ELA_Scores_2019[1]*district_1$`Total Enrollment`[1])+(district_1$ELA_Scores_2019[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), round(((district_1$Math_Scores_2022[1]*district_1$`Total Enrollment`[1])+(district_1$Math_Scores_2022[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), round(((district_1$ELA_Scores_2022[1]*district_1$`Total Enrollment`[1])+(district_1$ELA_Scores_2022[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2], district_1$`# Blended`[1] + district_1$`# Blended`[2], 100*round((district_1$`# Blended`[1] + district_1$`# Blended`[2])/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), district_1$Remote[1] + district_1$Remote[2], 100*round((district_1$Remote[1] + district_1$Remote[2])/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4))
+
+df_super = district_1
+```
+
+```{r loop}
+for (i in 2:32)
+{
+    math_scores_ell_temp_2019 <- split(math_scores_ell_2019, f = math_scores_ell_2019$District)
+  math_scores_ell_temp_1_2019 <- math_scores_ell_temp_2019[[as.character(i)]] %>%
+    group_by(Category) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  math_scores_ell_temp_1_2019$District <- as.character(i)
+  math_scores_ell_temp_1_2019$"Disaggregation Category" <- "English Language Learner Status"
+  math_scores_ell_temp_1_2019 <- math_scores_ell_temp_1_2019[, c(3, 4, 1, 2)] 
+  #Mean math scores by gender
+  math_scores_gender_temp_2019 <- split(math_scores_gender_2019, f = math_scores_gender_2019$District)
+  math_scores_gender_temp_1_2019 <- math_scores_gender_temp_2019[[as.character(i)]] %>%
+    group_by(Category) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  math_scores_gender_temp_1_2019$District <- as.character(i)
+  math_scores_gender_temp_1_2019$"Disaggregation Category" <- "Gender"
+  math_scores_gender_temp_1_2019 <- math_scores_gender_temp_1_2019[, c(3, 4, 1, 2)] 
+  #Mean math scores by grade level
+  math_scores_all_temp_2019 <- split(math_scores_all_2019, f = math_scores_all_2019$District)
+  math_scores_all_temp_1_2019 <- math_scores_all_temp_2019[[as.character(i)]] %>%
+    group_by(Grade) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  math_scores_all_temp_1_2019$District <- as.character(i)
+  math_scores_all_temp_1_2019$"Disaggregation Category" <- "Grade Level"
+  math_scores_all_temp_1_2019 <- math_scores_all_temp_1_2019[, c(3, 4, 1, 2)] 
+  names(math_scores_all_temp_1_2019)[names(math_scores_all_temp_1_2019) == "Grade"] = "Category"
+  #Mean math scores by race/ethnicity
+  math_scores_ethnicity_temp_2019 <- split(math_scores_ethnicity_2019, f = math_scores_ethnicity_2019$District)
+  math_scores_ethnicity_temp_1_2019 <- math_scores_ethnicity_temp_2019[[as.character(i)]] %>%
+    group_by(Category) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  math_scores_ethnicity_temp_1_2019$District <- as.character(i)
+  math_scores_ethnicity_temp_1_2019$"Disaggregation Category" <- "Race or Ethnicity"
+  math_scores_ethnicity_temp_1_2019 <- math_scores_ethnicity_temp_1_2019[, c(3, 4, 1, 2)]
+  #combining all math score datasets
+  math_scores_temp_2019 <- rbind(math_scores_ell_temp_1_2019,math_scores_gender_temp_1_2019,math_scores_all_temp_1_2019,math_scores_ethnicity_temp_1_2019)
+  #ELA scores
+  #Mean ela scores by ELL
+  ela_scores_ell_temp_2019 <- split(ela_scores_ell_2019, f = ela_scores_ell_2019$District)
+  ela_scores_ell_temp_1_2019 <- ela_scores_ell_temp_2019[[as.character(i)]] %>%
+    group_by(Category) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  ela_scores_ell_temp_1_2019$District <- as.character(i)
+  ela_scores_ell_temp_1_2019$"Disaggregation Category" <- "English Language Learner Status"
+  ela_scores_ell_temp_1_2019 <- ela_scores_ell_temp_1_2019[, c(3, 4, 1, 2)] 
+  #Mean ela scores by gender
+  ela_scores_gender_temp_2019 <- split(ela_scores_gender_2019, f = ela_scores_gender_2019$District)
+  ela_scores_gender_temp_1_2019 <- ela_scores_gender_temp_2019[[as.character(i)]] %>%
+    group_by(Category) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  ela_scores_gender_temp_1_2019$District <- as.character(i)
+  ela_scores_gender_temp_1_2019$"Disaggregation Category" <- "Gender"
+  ela_scores_gender_temp_1_2019 <- ela_scores_gender_temp_1_2019[, c(3, 4, 1, 2)] 
+  #Mean ela scores by grade level
+  ela_scores_all_temp_2019 <- split(ela_scores_all_2019, f = ela_scores_all_2019$District)
+  ela_scores_all_temp_1_2019 <- ela_scores_all_temp_2019[[as.character(i)]] %>%
+    group_by(Grade) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  ela_scores_all_temp_1_2019$District <- as.character(i)
+  ela_scores_all_temp_1_2019$"Disaggregation Category" <- "Grade Level"
+  ela_scores_all_temp_1_2019 <- ela_scores_all_temp_1_2019[, c(3, 4, 1, 2)] 
+  names(ela_scores_all_temp_1_2019)[names(ela_scores_all_temp_1_2019) == "Grade"] = "Category"
+  #Mean ela scores by race/ethnicity
+  ela_scores_ethnicity_temp_2019 <- split(ela_scores_ethnicity_2019, f = ela_scores_ethnicity_2019$District)
+  ela_scores_ethnicity_temp_1_2019 <- ela_scores_ethnicity_temp_2019[[as.character(i)]] %>%
+    group_by(Category) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  ela_scores_ethnicity_temp_1_2019$District <- as.character(i)
+  ela_scores_ethnicity_temp_1_2019$"Disaggregation Category" <- "Race or Ethnicity"
+  ela_scores_ethnicity_temp_1_2019 <- ela_scores_ethnicity_temp_1_2019[, c(3, 4, 1, 2)]
+  #combining all ela score datasets
+  ela_scores_temp_2019 <- rbind(ela_scores_ell_temp_1_2019,ela_scores_gender_temp_1_2019,ela_scores_all_temp_1_2019,ela_scores_ethnicity_temp_1_2019)
+  #combining Math + ela score datasets
+  district_1_scores_2019 <- merge(math_scores_temp_2019,ela_scores_temp_2019,by=c("District","Disaggregation Category","Category"))
+  #Math scores
+  #Mean math scores by ELL
+  math_scores_ell_temp_2022 <- split(math_scores_ell_2022, f = math_scores_ell_2022$District)
+  math_scores_ell_temp_1_2022 <- math_scores_ell_temp_2022[[as.character(i)]] %>%
+    group_by(Category) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  math_scores_ell_temp_1_2022$District <- as.character(i)
+  math_scores_ell_temp_1_2022$"Disaggregation Category" <- "English Language Learner Status"
+  math_scores_ell_temp_1_2022 <- math_scores_ell_temp_1_2022[, c(3, 4, 1, 2)] 
+  #Mean math scores by gender
+  math_scores_gender_temp_2022 <- split(math_scores_gender_2022, f = math_scores_gender_2022$District)
+  math_scores_gender_temp_1_2022 <- math_scores_gender_temp_2022[[as.character(i)]] %>%
+    group_by(Category) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  math_scores_gender_temp_1_2022$District <- as.character(i)
+  math_scores_gender_temp_1_2022$"Disaggregation Category" <- "Gender"
+  math_scores_gender_temp_1_2022 <- math_scores_gender_temp_1_2022[, c(3, 4, 1, 2)] 
+  #Mean math scores by grade level
+  math_scores_all_temp_2022 <- split(math_scores_all_2022, f = math_scores_all_2022$District)
+  math_scores_all_temp_1_2022 <- math_scores_all_temp_2022[[as.character(i)]] %>%
+    group_by(Grade) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  math_scores_all_temp_1_2022$District <- as.character(i)
+  math_scores_all_temp_1_2022$"Disaggregation Category" <- "Grade Level"
+  math_scores_all_temp_1_2022 <- math_scores_all_temp_1_2022[, c(3, 4, 1, 2)] 
+  names(math_scores_all_temp_1_2022)[names(math_scores_all_temp_1_2022) == "Grade"] = "Category"
+  #Mean math scores by race/ethnicity
+  math_scores_ethnicity_temp_2022 <- split(math_scores_ethnicity_2022, f = math_scores_ethnicity_2022$District)
+  math_scores_ethnicity_temp_1_2022 <- math_scores_ethnicity_temp_2022[[as.character(i)]] %>%
+    group_by(Category) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  math_scores_ethnicity_temp_1_2022$District <- as.character(i)
+  math_scores_ethnicity_temp_1_2022$"Disaggregation Category" <- "Race or Ethnicity"
+  math_scores_ethnicity_temp_1_2022 <- math_scores_ethnicity_temp_1_2022[, c(3, 4, 1, 2)]
+  #combining all math score datasets
+  math_scores_temp_2022 <- rbind(math_scores_ell_temp_1_2022,math_scores_gender_temp_1_2022,math_scores_all_temp_1_2022,math_scores_ethnicity_temp_1_2022)
+  #ELA scores
+  #Mean ela scores by ELL
+  ela_scores_ell_temp_2022 <- split(ela_scores_ell_2022, f = ela_scores_ell_2022$District)
+  ela_scores_ell_temp_1_2022 <- ela_scores_ell_temp_2022[[as.character(i)]] %>%
+    group_by(Category) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  ela_scores_ell_temp_1_2022$District <- as.character(i)
+  ela_scores_ell_temp_1_2022$"Disaggregation Category" <- "English Language Learner Status"
+  ela_scores_ell_temp_1_2022 <- ela_scores_ell_temp_1_2022[, c(3, 4, 1, 2)] 
+  #Mean ela scores by gender
+  ela_scores_gender_temp_2022 <- split(ela_scores_gender_2022, f = ela_scores_gender_2022$District)
+  ela_scores_gender_temp_1_2022 <- ela_scores_gender_temp_2022[[as.character(i)]] %>%
+    group_by(Category) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  ela_scores_gender_temp_1_2022$District <- as.character(i)
+  ela_scores_gender_temp_1_2022$"Disaggregation Category" <- "Gender"
+  ela_scores_gender_temp_1_2022 <- ela_scores_gender_temp_1_2022[, c(3, 4, 1, 2)] 
+  #Mean ela scores by grade level
+  ela_scores_all_temp_2022 <- split(ela_scores_all_2022, f = ela_scores_all_2022$District)
+  ela_scores_all_temp_1_2022 <- ela_scores_all_temp_2022[[as.character(i)]] %>%
+    group_by(Grade) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  ela_scores_all_temp_1_2022$District <- as.character(i)
+  ela_scores_all_temp_1_2022$"Disaggregation Category" <- "Grade Level"
+  ela_scores_all_temp_1_2022 <- ela_scores_all_temp_1_2022[, c(3, 4, 1, 2)] 
+  names(ela_scores_all_temp_1_2022)[names(ela_scores_all_temp_1_2022) == "Grade"] = "Category"
+  #Mean ela scores by race/ethnicity
+  ela_scores_ethnicity_temp_2022 <- split(ela_scores_ethnicity_2022, f = ela_scores_ethnicity_2022$District)
+  ela_scores_ethnicity_temp_1_2022 <- ela_scores_ethnicity_temp_2022[[as.character(i)]] %>%
+    group_by(Category) %>%
+    summarise_at(vars('Mean Scale Score'), list(name = mean)) 
+  ela_scores_ethnicity_temp_1_2022$District <- as.character(i)
+  ela_scores_ethnicity_temp_1_2022$"Disaggregation Category" <- "Race or Ethnicity"
+  ela_scores_ethnicity_temp_1_2022 <- ela_scores_ethnicity_temp_1_2022[, c(3, 4, 1, 2)]
+  #combining all ela score datasets
+  ela_scores_temp_2022 <- rbind(ela_scores_ell_temp_1_2022,ela_scores_gender_temp_1_2022,ela_scores_all_temp_1_2022,ela_scores_ethnicity_temp_1_2022)
+  #combining Math + ela score datasets
+  district_1_scores_2022 <- merge(math_scores_temp_2022,ela_scores_temp_2022,by=c("District","Disaggregation Category","Category"))
+  
+  #creating sub dataset of just district 1 for the main dataset (learning_pref)
+  learning_pref_temp <- split(learning_pref, f = learning_pref$District)
+  learning_pref_temp_1 <- learning_pref_temp[[as.character(i)]]
+  #combining district_1_scores with learning_pref_temp 
+  district_1 <- merge(district_1_scores_2019,district_1_scores_2022,by=c("District","Disaggregation Category","Category"))
+  district_1 <- merge(district_1, learning_pref_temp_1, by=c("District","Disaggregation Category","Category"))
+  
+  names(district_1)[names(district_1) == "name.x.x"] = "Math_Scores_2019"
+  names(district_1)[names(district_1) == "name.y.x"] = "ELA_Scores_2019"
+  names(district_1)[names(district_1) == "name.x.y"] = "Math_Scores_2022"
+  names(district_1)[names(district_1) == "name.y.y"] = "ELA_Scores_2022"
+  
+  
+  district_1$Remote <- as.numeric(gsub(",","",district_1$Remote))
+  district_1$`Percent Remote` <- as.numeric(gsub("%","",district_1$`Percent Remote`))
+  district_1$`# Blended` <- as.numeric(gsub(",","",district_1$`# Blended`))
+  district_1$`% Blended` <- as.numeric(gsub("%","",district_1$`% Blended`))
+  
+  district_1[nrow(district_1) + 1,] <- c(as.character(i),"total", "total", round(((district_1$Math_Scores_2019[1]*district_1$`Total Enrollment`[1])+(district_1$Math_Scores_2019[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), round(((district_1$ELA_Scores_2019[1]*district_1$`Total Enrollment`[1])+(district_1$ELA_Scores_2019[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), round(((district_1$Math_Scores_2022[1]*district_1$`Total Enrollment`[1])+(district_1$Math_Scores_2022[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), round(((district_1$ELA_Scores_2022[1]*district_1$`Total Enrollment`[1])+(district_1$ELA_Scores_2022[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2], district_1$`# Blended`[1] + district_1$`# Blended`[2], 100*round((district_1$`# Blended`[1] + district_1$`# Blended`[2])/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), district_1$Remote[1] + district_1$Remote[2], 100*round((district_1$Remote[1] + district_1$Remote[2])/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4))
+
+  df_super <- rbind(df_super,district_1)
+}
+```
+
+```{r}
+head(df_super, 10)
+```
+
+```{r}
+tail(df_super, 10)
 ```
 
 ## Missing value analysis
-
