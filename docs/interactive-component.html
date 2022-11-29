@@ -134,9 +134,11 @@ This is the sample3
   stroke: #aaa;
 }
 
+
 .effect-layer{
   pointer-events:none;
 }
+
 
 text{
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -148,17 +150,23 @@ text.big-text{
   font-weight: 400;
 }
 
-.effect-layer text, text.dummy-text{
+.effect-layer text{
   font-size: 12px;
 }
 
 </style>
 <body>
 <script src="https://d3js.org/d3.v7.js"></script>
-<svg>
-</svg>
-<script>
+<div id="graph1">
 
+</div>
+<h2>
+This is the second graph
+</h2>
+<div id="graph2">
+
+</div>
+<script>
 var width = 960,
     height = 500,
     centered;
@@ -178,7 +186,8 @@ var projection = d3.geoMercator()
 var path = d3.geoPath()
   .projection(projection);
 
-var svg = d3.select('svg')
+var svg = d3.select('div#graph1')
+  .append('svg')
   .attr('width', width)
   .attr('height', height);
 
@@ -253,9 +262,9 @@ svg.append("text")
   .attr("alignment-baseline","middle")
 
 svg.append("text")
-  .attr("x", 350)
-  .attr("y", 30)
-  .text("Find Your District")
+  .attr("x", 280)
+  .attr("y", 25)
+  .text("Find Your District: ")
   .style("font-size", "35px")
   .attr("alignment-baseline","middle")
   
@@ -269,17 +278,15 @@ var mapLayer = g.append('g')
 
 const bigText = g.append('text')
   .classed('big-text', true)
-  .attr('x', 20)
-  .attr('y', 45);
+  .attr('x', 550)
+  .attr('y', 33);
 
 // Load map data
 d3.json('https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/School%20Districts.geojson').then(function(mapData) {
   var features = mapData.features;
 
-  // Update color scale domain based on data
   color.domain([0, 1]);
 
-  // Draw each province as a path
   mapLayer.selectAll('path')
       .data(features)
     .enter().append('path')
@@ -290,7 +297,6 @@ d3.json('https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/Sc
       .on('mouseout', mouseout);
 });
 
-// Get province name
 function name(d){
   return d.properties.school_dist;
 }
@@ -322,23 +328,77 @@ function fill(d){
 
 function mouseover(event, d){
   d3.select(this).style('fill', 'yellow');
-  
   bigText
     .style('font-family', 'Helvetica Neue')
     .text("District " + String(name(d)));
 }
 
 function mouseout(d){
-  // Reset province color
   mapLayer.selectAll('path')
     .style('fill', function(d){return centered && d===centered ? '#D5708B' : fill(d);});
 
-  // Remove effect text
   effectLayer.selectAll('text').transition()
     .style('opacity', 0)
     .remove();
+  bigText
+    .text("");
 }
 
+
+var svg2 = d3.select('div#graph2')
+  .append('svg')
+  .attr('width', width)
+  .attr('height', height);
+
+svg2.append('rect')
+  .attr('class', 'background')
+  .attr('width', width)
+  .attr('height', height);
+
+svg2.append("circle")
+  .attr("cx",200)
+  .attr("cy",130)
+  .attr("r", 9)
+  .style("fill", "orange")
+
+var g2 = svg2.append('g');
+
+var effectLayer2 = g2.append('g')
+  .classed('effect-layer', true);
+
+var mapLayer2 = g2.append('g')
+  .classed('map-layer', true);
+
+const bigText2 = g2.append('text')
+  .classed('big-text', true)
+  .attr('x', 20)
+  .attr('y', 45);
+
+d3.json('https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/School%20Districts.geojson').then(function(mapData) {
+  var features = mapData.features;
+
+  color.domain([0, 1]);
+
+  mapLayer2.selectAll('path')
+      .data(features)
+    .enter().append('path')
+      .attr('d', path)
+      .attr('vector-effect', 'non-scaling-stroke')
+      .style('fill', fill)
+      .on('mouseover', mouseover)
+      .on('mouseout', mouseout2);
+});
+
+function mouseout2(d){
+  mapLayer2.selectAll('path')
+    .style('fill', function(d){return centered && d===centered ? '#D5708B' : fill(d);});
+
+  effectLayer.selectAll('text').transition()
+    .style('opacity', 0)
+    .remove();
+  bigText
+    .text("");
+}
 </script>
 
 </div>
