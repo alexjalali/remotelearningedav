@@ -1,1 +1,19 @@
 # Results
+
+## Packages
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+```
+
+## Try 1
+
+```{r}
+df <- read.csv(file='./datasets/DataClean.csv')
+df_total <- subset(df, Category == "total")
+ggplot(data = df_total, aes(y = Math_Scores_2019, x = District)) +
+  geom_point() + xlab("District") + ylab("Average Math Scores in 2019") + ggtitle("Math scores by district") +
+  scale_x_continuous(breaks = seq(1, 32, 1))
+```

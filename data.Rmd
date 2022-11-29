@@ -464,7 +464,7 @@ tail(df_super, 10)
 ```
 
 ```{r}
-write.csv(df_super, file="./data/DataClean.csv")
+write.csv(df_super, file="./datasets/DataClean.csv")
 ```
 
 ## Missing value analysis

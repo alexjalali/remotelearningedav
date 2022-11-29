@@ -12,5 +12,7 @@ loading-in-data
 cleaning-and-consolidating-data
 missing-value-analysis
 results
+packages
+try-1
 interactive-component
 conclusion
