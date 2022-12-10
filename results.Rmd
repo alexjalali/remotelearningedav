@@ -6,6 +6,9 @@
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
+library(geojsonio)
+library(sp)
+json_map <- geojson_read("https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/School%20Districts.geojson", what = "sp")
 ```
 
 ## Try 1
@@ -16,4 +19,10 @@ df_total <- subset(df, Category == "total")
 ggplot(data = df_total, aes(y = Math_Scores_2019, x = District)) +
   geom_point() + xlab("District") + ylab("Average Math Scores in 2019") + ggtitle("Math scores by district") +
   scale_x_continuous(breaks = seq(1, 32, 1))
+```
+
+## Plot from JSON
+
+```{r}
+plot(json_map, col = "grey")
 ```

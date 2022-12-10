@@ -14,5 +14,6 @@ missing-value-analysis
 results
 packages
 try-1
+plot-from-json
 interactive-component
 conclusion
