@@ -23,7 +23,7 @@
 <meta name="author" content="Alexandra Jalali, Liang Zhuang, Victoria Xu" />
 
 
-<meta name="date" content="2022-12-10" />
+<meta name="date" content="2022-12-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -132,7 +132,7 @@
 </div>
 <div id="cleaning-and-consolidating-data" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Cleaning and Consolidating Data<a href="data.html#cleaning-and-consolidating-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>##    District         Disaggregation Category Category Math_Scores_2019  ELA_Scores_2019 Math_Scores_2022
+<pre><code>##    District         Disaggregation_Category Category Math_Scores_2019  ELA_Scores_2019 Math_Scores_2022
 ## 1         1 English Language Learner Status      ELL 604.901772427697 599.747109961157 604.167012439457
 ## 2         1 English Language Learner Status  Not ELL  603.95721400978 606.117786776444 600.664937679363
 ## 3         1                          Gender   Female 604.992963863494  608.89795392398 601.509349449209
@@ -143,18 +143,18 @@
 ## 8         1                     Grade Level        6      604.7839966      604.2026978      605.1715698
 ## 9         1                     Grade Level        7      604.7492676      608.3583374      600.4692993
 ## 10        1                     Grade Level        8      602.7237549      603.5318604      599.2103271
-##     ELA_Scores_2022 Total Enrollment # Blended % Blended Remote Percent Remote
-## 1   602.52254235041              908       235      25.9    673           74.1
-## 2  605.536302949589             9641      2800        29   6841             71
-## 3   608.13571579013             5042      1455      28.9   3587           71.1
-## 4   602.39586509346             5507      1580      28.7   3927           71.3
-## 5       603.6296997              784       281      35.8    503           64.2
-## 6       600.9227905              772       283      36.7    489           63.3
-## 7       605.8739014              787       228        29    559             71
-## 8       607.6148682              753       166        22    587             78
-## 9       607.9724731              752       148      19.7    604           80.3
-## 10      604.0621338              753       145      19.3    608           80.7</code></pre>
-<pre><code>##     District Disaggregation Category Category Math_Scores_2019  ELA_Scores_2019 Math_Scores_2022  ELA_Scores_2022
+##     ELA_Scores_2022 Total_Enrollment Blended Percent_Blended Remote Percent_Remote
+## 1   602.52254235041              908     235            25.9    673           74.1
+## 2  605.536302949589             9641    2800              29   6841             71
+## 3   608.13571579013             5042    1455            28.9   3587           71.1
+## 4   602.39586509346             5507    1580            28.7   3927           71.3
+## 5       603.6296997              784     281            35.8    503           64.2
+## 6       600.9227905              772     283            36.7    489           63.3
+## 7       605.8739014              787     228              29    559             71
+## 8       607.6148682              753     166              22    587             78
+## 9       607.9724731              752     148            19.7    604           80.3
+## 10      604.0621338              753     145            19.3    608           80.7</code></pre>
+<pre><code>##     District Disaggregation_Category Category Math_Scores_2019  ELA_Scores_2019 Math_Scores_2022  ELA_Scores_2022
 ## 471       32             Grade Level        4      592.6130371      590.8512573      580.9855957      585.3267212
 ## 472       32             Grade Level        5      592.3306274      592.5820313      584.5095825      593.6851196
 ## 473       32             Grade Level        6      593.7106934      594.4906006       586.305603      596.7045288
@@ -165,17 +165,17 @@
 ## 478       32       Race or Ethnicity Hispanic 593.292480366882 593.265234549841 585.703727807232 593.300315319554
 ## 479       32       Race or Ethnicity    White 600.957265477778  600.46825929127             &lt;NA&gt; 604.775867868103
 ## 480       32                   total    total         595.0106         595.4436         588.6827         596.5947
-##     Total Enrollment # Blended % Blended Remote Percent Remote
-## 471              679       319        47    360             53
-## 472              790       347      43.9    443           56.1
-## 473              952       381        40    571             60
-## 474              962       369      38.4    593           61.6
-## 475             1022       409        40    613             60
-## 476              218        51      23.4    167           76.6
-## 477             1601       467      29.2   1134           70.8
-## 478             7659      3162      41.3   4497           58.7
-## 479              265       111      41.9    154           58.1
-## 480             9832      3812     38.77   6020          61.23</code></pre>
+##     Total_Enrollment Blended Percent_Blended Remote Percent_Remote
+## 471              679     319              47    360             53
+## 472              790     347            43.9    443           56.1
+## 473              952     381              40    571             60
+## 474              962     369            38.4    593           61.6
+## 475             1022     409              40    613             60
+## 476              218      51            23.4    167           76.6
+## 477             1601     467            29.2   1134           70.8
+## 478             7659    3162            41.3   4497           58.7
+## 479              265     111            41.9    154           58.1
+## 480             9832    3812           38.77   6020          61.23</code></pre>
 </div>
 </div>
 <div id="missing-value-analysis" class="section level2 hasAnchor" number="3.3">

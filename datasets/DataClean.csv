@@ -1,4 +1,4 @@
-"","District","Disaggregation Category","Category","Math_Scores_2019","ELA_Scores_2019","Math_Scores_2022","ELA_Scores_2022","Total Enrollment","# Blended","% Blended","Remote","Percent Remote"
+"","District","Disaggregation_Category","Category","Math_Scores_2019","ELA_Scores_2019","Math_Scores_2022","ELA_Scores_2022","Total_Enrollment","Blended","Percent_Blended","Remote","Percent_Remote"
 "1","1","English Language Learner Status","ELL","604.901772427697","599.747109961157","604.167012439457","602.52254235041","908","235","25.9","673","74.1"
 "2","1","English Language Learner Status","Not ELL","603.95721400978","606.117786776444","600.664937679363","605.536302949589","9641","2800","29","6841","71"
 "3","1","Gender","Female","604.992963863494","608.89795392398","601.509349449209","608.13571579013","5042","1455","28.9","3587","71.1"
