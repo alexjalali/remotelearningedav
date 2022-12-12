@@ -279,11 +279,15 @@ district_1$`% Blended` <- as.numeric(gsub("%","",district_1$`% Blended`))
 
 district_1[nrow(district_1) + 1,] <- c("1","total", "total", round(((district_1$Math_Scores_2019[1]*district_1$`Total Enrollment`[1])+(district_1$Math_Scores_2019[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), round(((district_1$ELA_Scores_2019[1]*district_1$`Total Enrollment`[1])+(district_1$ELA_Scores_2019[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), round(((district_1$Math_Scores_2022[1]*district_1$`Total Enrollment`[1])+(district_1$Math_Scores_2022[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), round(((district_1$ELA_Scores_2022[1]*district_1$`Total Enrollment`[1])+(district_1$ELA_Scores_2022[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2], district_1$`# Blended`[1] + district_1$`# Blended`[2], 100*round((district_1$`# Blended`[1] + district_1$`# Blended`[2])/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), district_1$Remote[1] + district_1$Remote[2], 100*round((district_1$Remote[1] + district_1$Remote[2])/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4))
 
-names(district_1)[names(district_1) == "Disaggregation Category"] = "Disaggregation_Category"
-names(district_1)[names(district_1) == "Total Enrollment"] = "Total_Enrollment"
+names(district_1)[names(district_1) == "Math_Scores_2019"] = "MathScores2019"
+names(district_1)[names(district_1) == "ELA_Scores_2019"] = "ELAScores2019"
+names(district_1)[names(district_1) == "Math_Scores_2022"] = "MathScores2022"
+names(district_1)[names(district_1) == "ELA_Scores_2022"] = "ELAScores2022"
+names(district_1)[names(district_1) == "Disaggregation Category"] = "DisaggregationCategory"
+names(district_1)[names(district_1) == "Total Enrollment"] = "TotalEnrollment"
 names(district_1)[names(district_1) == "# Blended"] = "Blended"
-names(district_1)[names(district_1) == "% Blended"] = "Percent_Blended"
-names(district_1)[names(district_1) == "Percent Remote"] = "Percent_Remote"
+names(district_1)[names(district_1) == "% Blended"] = "PercentBlended"
+names(district_1)[names(district_1) == "Percent Remote"] = "PercentRemote"
 
 df_super = district_1
 ```
@@ -458,11 +462,15 @@ for (i in 2:32)
   
   district_1[nrow(district_1) + 1,] <- c(as.character(i),"total", "total", round(((district_1$Math_Scores_2019[1]*district_1$`Total Enrollment`[1])+(district_1$Math_Scores_2019[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), round(((district_1$ELA_Scores_2019[1]*district_1$`Total Enrollment`[1])+(district_1$ELA_Scores_2019[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), round(((district_1$Math_Scores_2022[1]*district_1$`Total Enrollment`[1])+(district_1$Math_Scores_2022[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), round(((district_1$ELA_Scores_2022[1]*district_1$`Total Enrollment`[1])+(district_1$ELA_Scores_2022[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2], district_1$`# Blended`[1] + district_1$`# Blended`[2], 100*round((district_1$`# Blended`[1] + district_1$`# Blended`[2])/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), district_1$Remote[1] + district_1$Remote[2], 100*round((district_1$Remote[1] + district_1$Remote[2])/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4))
 
-names(district_1)[names(district_1) == "Disaggregation Category"] = "Disaggregation_Category"
-names(district_1)[names(district_1) == "Total Enrollment"] = "Total_Enrollment"
+names(district_1)[names(district_1) == "Math_Scores_2019"] = "MathScores2019"
+names(district_1)[names(district_1) == "ELA_Scores_2019"] = "ELAScores2019"
+names(district_1)[names(district_1) == "Math_Scores_2022"] = "MathScores2022"
+names(district_1)[names(district_1) == "ELA_Scores_2022"] = "ELAScores2022"
+names(district_1)[names(district_1) == "Disaggregation Category"] = "DisaggregationCategory"
+names(district_1)[names(district_1) == "Total Enrollment"] = "TotalEnrollment"
 names(district_1)[names(district_1) == "# Blended"] = "Blended"
-names(district_1)[names(district_1) == "% Blended"] = "Percent_Blended"
-names(district_1)[names(district_1) == "Percent Remote"] = "Percent_Remote"
+names(district_1)[names(district_1) == "% Blended"] = "PercentBlended"
+names(district_1)[names(district_1) == "Percent Remote"] = "PercentRemote"
   
   df_super <- rbind(df_super,district_1)
 }

@@ -16,7 +16,7 @@ json_map <- geojson_read("https://raw.githubusercontent.com/alexjalali/remotelea
 ```{r}
 df <- read.csv(file='./datasets/DataClean.csv')
 df_total <- subset(df, Category == "total")
-ggplot(data = df_total, aes(y = Math_Scores_2019, x = District)) +
+ggplot(data = df_total, aes(y = MathScores2019, x = District)) +
   geom_point() + xlab("District") + ylab("Average Math Scores in 2019") + ggtitle("Math scores by district") +
   scale_x_continuous(breaks = seq(1, 32, 1))
 ```
