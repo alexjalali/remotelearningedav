@@ -23,7 +23,7 @@
 <meta name="author" content="Alexandra Jalali, Liang Zhuang, Victoria Xu" />
 
 
-<meta name="date" content="2022-12-11" />
+<meta name="date" content="2022-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -123,7 +123,7 @@
 <div id="interactive-component" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Interactive component<a href="interactive-component.html#interactive-component" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <h2>
-This is the sample3
+This is the sample4
 </h2>
 <meta charset="utf-8">
 <style>
@@ -139,11 +139,9 @@ This is the sample3
   stroke: #aaa;
 }
 
-
 .effect-layer{
   pointer-events:none;
 }
-
 
 text{
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -172,26 +170,23 @@ This is the second graph
 
 </div>
 <script>
-var width = 960,
-    height = 500,
-    centered;
+var width = 960,height = 500,centered;
 
 // Define color scale
-var color = d3.scaleLinear()
+const color = d3.scaleLinear()
   .domain([1, 20])
   .clamp(true)
   .range(['#fff', '#409A99']);
 
-var projection = d3.geoMercator()
+const projection = d3.geoMercator()
   .scale(45000)
-  // Center the Map in Colombia
   .center([-73.935242, 40.730610])
   .translate([width / 2, height / 2]);
 
-var path = d3.geoPath()
+const path = d3.geoPath()
   .projection(projection);
 
-var svg = d3.select('div#graph1')
+const svg = d3.select('div#graph1')
   .append('svg')
   .attr('width', width)
   .attr('height', height);
@@ -273,12 +268,12 @@ svg.append("text")
   .style("font-size", "35px")
   .attr("alignment-baseline","middle")
   
-var g = svg.append('g');
+const g = svg.append('g');
 
-var effectLayer = g.append('g')
+const effectLayer = g.append('g')
   .classed('effect-layer', true);
 
-var mapLayer = g.append('g')
+const mapLayer = g.append('g')
   .classed('map-layer', true);
 
 const bigText = g.append('text')
@@ -286,7 +281,6 @@ const bigText = g.append('text')
   .attr('x', 550)
   .attr('y', 33);
 
-// Load map data
 d3.json('https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/School%20Districts.geojson').then(function(mapData) {
   var features = mapData.features;
 
@@ -308,26 +302,10 @@ function name(d){
 
 
 function fill(d){
-  if(String(name(d)) == "1") return "orange";
-  if(String(name(d)) == "2") return "orange";
-  if(String(name(d)) == "3") return "orange";
-  if(String(name(d)) == "4") return "orange";
-  if(String(name(d)) == "5") return "orange";
-  if(String(name(d)) == "6") return "orange";
+  if(parseInt(name(d)) <= 6) return "orange";
   if(String(name(d)) == "31") return "purple";
-  if(String(name(d)) == "7") return "green";
-  if(String(name(d)) == "8") return "green";
-  if(String(name(d)) == "9") return "green";
-  if(String(name(d)) == "10") return "green";
-  if(String(name(d)) == "11") return "green";
-  if(String(name(d)) == "12") return "green";
-  if(String(name(d)) == "24") return "pink";
-  if(String(name(d)) == "25") return "pink";
-  if(String(name(d)) == "26") return "pink";
-  if(String(name(d)) == "27") return "pink";
-  if(String(name(d)) == "28") return "pink";
-  if(String(name(d)) == "29") return "pink";
-  if(String(name(d)) == "30") return "pink";
+  if(parseInt(name(d)) <= 12 && parseInt(name(d)) >= 7) return "green";
+  if(parseInt(name(d)) <= 30 && parseInt(name(d)) >= 24) return "pink";
   return "lightblue";
 }
 
@@ -350,7 +328,7 @@ function mouseout(d){
 }
 
 
-var svg2 = d3.select('div#graph2')
+const svg2 = d3.select('div#graph2')
   .append('svg')
   .attr('width', width)
   .attr('height', height);
@@ -366,12 +344,12 @@ svg2.append("circle")
   .attr("r", 9)
   .style("fill", "orange")
 
-var g2 = svg2.append('g');
+const g2 = svg2.append('g');
 
-var effectLayer2 = g2.append('g')
+const effectLayer2 = g2.append('g')
   .classed('effect-layer', true);
 
-var mapLayer2 = g2.append('g')
+const mapLayer2 = g2.append('g')
   .classed('map-layer', true);
 
 const bigText2 = g2.append('text')
@@ -379,24 +357,42 @@ const bigText2 = g2.append('text')
   .attr('x', 20)
   .attr('y', 45);
 
+d3.csv("https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/datasets/DataClean.csv", function(data) {
+  function opacity(d){
+  const ArrayPercent = [71.23, 67.48, 58.14, 68.22, 72.82, 69.9,
+                        66.38, 71.57, 69.4, 70.4, 67.76, 65.77,
+                                72.48, 64.69, 54.55, 65.86, 67.38, 69.27,
+                                71.63, 71.32, 72.13, 66.83, 66.24, 55.73,
+                                72.32, 75.35, 71.56, 74.21, 72.13, 59.51,
+                                58.78, 61.23];
+  const min = d3.min(ArrayPercent);
+  const max = d3.max(ArrayPercent);
+  return (ArrayPercent[parseInt(name(d))-1]-min)/(max-min);
+  }
+  
 d3.json('https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/School%20Districts.geojson').then(function(mapData) {
   var features = mapData.features;
-
   color.domain([0, 1]);
 
   mapLayer2.selectAll('path')
-      .data(features)
-    .enter().append('path')
-      .attr('d', path)
-      .attr('vector-effect', 'non-scaling-stroke')
-      .style('fill', fill)
-      .on('mouseover', mouseover)
+      .data(features).enter().append('path').attr('d', path)
+      .attr('vector-effect', 'non-scaling-stroke').style('fill', "red")
+      .style('opacity', opacity)
+      .on('mouseover', mouseover2)
       .on('mouseout', mouseout2);
 });
+});
 
+function mouseover2(event, d){
+  d3.select(this).style('fill', 'yellow').style('opacity', 1);
+  bigText
+    .style('font-family', 'Helvetica Neue')
+    .text("District " + String(name(d)));
+}
+  
 function mouseout2(d){
   mapLayer2.selectAll('path')
-    .style('fill', function(d){return centered && d===centered ? '#D5708B' : fill(d);});
+    .style('fill', function(d){return centered && d===centered ? '#D5708B' : "red";}).style('opacity', opacity);
 
   effectLayer.selectAll('text').transition()
     .style('opacity', 0)
