@@ -29,25 +29,25 @@ ggplot(data = df_total, aes(y = MathScores2019, x = District)) +
 plot(json_map, col = "grey")
 ```
 
+### 1.Normal bar plot of remote learning preferences
+```{r}
+p1 <- ggplot(df_total, aes(PercentRemote)) +
+  geom_histogram(binwidth = 5, boundary = 60,
+                 fill = "lightBlue", col = "black") +
+  xlab("% Remote")+
+  ggtitle("Histogram of Percent of Students who Prefer Remote Learning per District")
+p1
+```
+
+
 ### Parallel coordinates plot
 
 ```{r pcp}
 #this isn't working i am going to work on this tomorrow
-df_nona_temp <- df[complete.cases(df),] #trying a temp data frame because this isn't working
-as.factor(df_nona_temp$remote_cat)
-as.numeric(as.character(df_nona_temp$ELAScores2019))
-as.numeric(as.character(df_nona_temp$ELAScores2022))
-as.numeric(as.character(df_nona_temp$MathScores2019))
-as.numeric(as.character(df_nona_temp$MathScores2022))
-ggparcoord(df_nona_temp,
-    columns = c("ELAScores2019", "ELAScores2022", "MathScores2019", "MathScores2022"), groupColumn = "remote_cat",order='anyClass',
-    showPoints = TRUE, 
-    title = "Parallel Coordinate Plot",
-    alphaLines = 0.3
-    ) + 
-  scale_color_viridis(discrete=TRUE) +
-  theme_ipsum()+
-  theme(
-    plot.title = element_text(size=10)
-  )
+#highlight the clusters based on the Species column
+pcpdf <- df_total %>% subset(select=c("ELAScores2019","ELAScores2022","MathScores2019","MathScores2022","remote_cat")) 
+
+#highlight the clusters based on the remote categorical column
+pcp<-ggparcoord(pcpdf, columns=1:4, groupColumn = 5, title = "Parallel Coordiantes Plot for average test scores per district, grouped by percent remote",scale = "globalminmax") 
+pcp
 ```

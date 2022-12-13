@@ -477,8 +477,30 @@ names(district_1)[names(district_1) == "Percent Remote"] = "PercentRemote"
 }
 ```
 
+```{r NA replacement}
+library(Hmisc)
+df_super_MVA <- df_super #saving df_super with missing values included into a new df so when we do missing value analysis we can visualize it
+##now replacing the NA's##
+#show NA's per column
+colSums(is.na(df_super_MVA)) %>%
+  sort(decreasing = TRUE)
+#replacing NA's with column means per district
+df_super <- df_super %>%
+    group_by(District) %>%
+    mutate(
+        MathScores2022 = impute(as.numeric(MathScores2022),mean),
+        ELAScores2022 = impute(as.numeric(ELAScores2022),mean),
+        MathScores2019 = impute(as.numeric(MathScores2019),mean),
+        ELAScores2019 = impute(as.numeric(ELAScores2019),mean)
+    )
+#now show if there are any NA's per column
+colSums(is.na(df_super)) %>%
+  sort(decreasing = TRUE)
+```
+
 ```{r making PercentRemote categorical}
 # First, find the minimum and maximum values of percent remote
+df_super$PercentRemote <- as.numeric(df_super$PercentRemote)
 min_percent_remote <- as.numeric(min(df_super$PercentRemote))
 max_percent_remote <- as.numeric(max(df_super$PercentRemote))
 
@@ -487,7 +509,7 @@ lower_bound <- min_percent_remote + (max_percent_remote - min_percent_remote) / 
 upper_bound <- max_percent_remote - (max_percent_remote - min_percent_remote) / 3
 
 # Create the new categorical variable using the cut() function
-df_super$remote_cat <- cut(df$PercentRemote, breaks = c(min_percent_remote, lower_bound, upper_bound, max_percent_remote), labels = c("Low", "Middle", "High"))
+df_super$remote_cat <- cut(df_super$PercentRemote, breaks = c(min_percent_remote-1, lower_bound, upper_bound, max_percent_remote), labels = c("Low", "Middle", "High"))
 ```
 
 
@@ -511,7 +533,4 @@ df_total <- subset(df, Category == "total") #dataframe with just aggregates
 
 
 ## Missing value analysis
-```{r temp missing value analysis}
-#THIS IS NOT HOW I PLAN TO DO THIS I JUST NEED TO DO THIS TEMPORARILY SO THE GRAPH I AM TRYNA MAKE WORKS LOL
-df[is.na(df)] <- 0
-```
+``
