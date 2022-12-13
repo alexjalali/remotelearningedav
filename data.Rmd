@@ -11,6 +11,7 @@ library(tidyverse)
 library(here)
 library(readxl)
 library(dplyr)
+library(zoo)
 #reading in learning preferences dataset
 learning_pref <- read_csv(here::here("datasets", "Learning_Preferences.csv"),show_col_types = FALSE)
 #Our other datasets have multiple sheets, so this is a function to read all of them in
@@ -476,6 +477,20 @@ names(district_1)[names(district_1) == "Percent Remote"] = "PercentRemote"
 }
 ```
 
+```{r making PercentRemote categorical}
+# First, find the minimum and maximum values of percent remote
+min_percent_remote <- as.numeric(min(df_super$PercentRemote))
+max_percent_remote <- as.numeric(max(df_super$PercentRemote))
+
+# Next, calculate the lower, middle, and upper bounds of the new categories
+lower_bound <- min_percent_remote + (max_percent_remote - min_percent_remote) / 3
+upper_bound <- max_percent_remote - (max_percent_remote - min_percent_remote) / 3
+
+# Create the new categorical variable using the cut() function
+df_super$remote_cat <- cut(df$PercentRemote, breaks = c(min_percent_remote, lower_bound, upper_bound, max_percent_remote), labels = c("Low", "Middle", "High"))
+```
+
+
 ```{r}
 head(df_super, 10)
 ```
@@ -484,8 +499,19 @@ head(df_super, 10)
 tail(df_super, 10)
 ```
 
-```{r}
+```{r saving to csv "dataClean"}
 write.csv(df_super, file="./datasets/DataClean.csv")
 ```
 
+```{r reading csv file into df}
+df <- read.csv(file='./datasets/DataClean.csv')
+df_total <- subset(df, Category == "total") #dataframe with just aggregates
+```
+
+
+
 ## Missing value analysis
+```{r temp missing value analysis}
+#THIS IS NOT HOW I PLAN TO DO THIS I JUST NEED TO DO THIS TEMPORARILY SO THE GRAPH I AM TRYNA MAKE WORKS LOL
+df[is.na(df)] <- 0
+```

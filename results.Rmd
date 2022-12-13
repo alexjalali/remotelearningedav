@@ -8,14 +8,16 @@ library(dplyr)
 library(ggplot2)
 library(geojsonio)
 library(sp)
+#for pcp
+library(hrbrthemes)
+library(GGally)
+library(viridis)
 json_map <- geojson_read("https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/School%20Districts.geojson", what = "sp")
 ```
 
 ## Try 1
 
 ```{r}
-df <- read.csv(file='./datasets/DataClean.csv')
-df_total <- subset(df, Category == "total")
 ggplot(data = df_total, aes(y = MathScores2019, x = District)) +
   geom_point() + xlab("District") + ylab("Average Math Scores in 2019") + ggtitle("Math scores by district") +
   scale_x_continuous(breaks = seq(1, 32, 1))
@@ -25,4 +27,27 @@ ggplot(data = df_total, aes(y = MathScores2019, x = District)) +
 
 ```{r}
 plot(json_map, col = "grey")
+```
+
+### Parallel coordinates plot
+
+```{r pcp}
+#this isn't working i am going to work on this tomorrow
+df_nona_temp <- df[complete.cases(df),] #trying a temp data frame because this isn't working
+as.factor(df_nona_temp$remote_cat)
+as.numeric(as.character(df_nona_temp$ELAScores2019))
+as.numeric(as.character(df_nona_temp$ELAScores2022))
+as.numeric(as.character(df_nona_temp$MathScores2019))
+as.numeric(as.character(df_nona_temp$MathScores2022))
+ggparcoord(df_nona_temp,
+    columns = c("ELAScores2019", "ELAScores2022", "MathScores2019", "MathScores2022"), groupColumn = "remote_cat",order='anyClass',
+    showPoints = TRUE, 
+    title = "Parallel Coordinate Plot",
+    alphaLines = 0.3
+    ) + 
+  scale_color_viridis(discrete=TRUE) +
+  theme_ipsum()+
+  theme(
+    plot.title = element_text(size=10)
+  )
 ```
