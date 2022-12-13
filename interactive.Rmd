@@ -1,6 +1,6 @@
 # Interactive component
 
-<h2>This is the sample4</h2>
+<h2>This is the sample5</h2>
 
 <meta charset="utf-8">
 <style>
@@ -52,13 +52,7 @@ text.small-text{
 
 <div id = "graph2"></div>
 <script>
-var width = 960,height = 600,centered;
-
-// Define color scale
-const color = d3.scaleLinear()
-  .domain([1, 20])
-  .clamp(true)
-  .range(['#fff', '#409A99']);
+var width = 960,height = 720,centered;
 
 const projection = d3.geoMercator()
   .scale(45000)
@@ -174,8 +168,6 @@ const bigText = g.append('text')
 d3.json('https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/School%20Districts.geojson').then(function(mapData) {
   var features = mapData.features;
 
-  color.domain([0, 1]);
-
   mapLayer.selectAll('path')
       .data(features)
     .enter().append('path')
@@ -244,7 +236,7 @@ const bigText2 = g2.append('text')
 const remotelearning = g2.append('text')
   .classed('medium-text', true)
   .attr('x', 33)
-  .attr('y', 45);
+  .attr('y', 50);
 
 const mediumText1 = g2.append('text')
   .classed('small-text', true);
@@ -284,64 +276,45 @@ g2.append('text')
 
 g2.append("rect").attr('x', 120).attr('y', 119.2).attr('width', 30)
   .attr('height', 100).attr('fill', 'white').style('opacity',1).attr('stroke', 'black');
-  
+//created legend
 g2.append("rect").attr('x', 120).attr('y', 120).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',1);
-  
 g2.append("rect").attr('x', 120).attr('y', 125).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.95);
-  
 g2.append("rect").attr('x', 120).attr('y', 130).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.9);
-  
 g2.append("rect").attr('x', 120).attr('y', 135).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.85);
-  
 g2.append("rect").attr('x', 120).attr('y', 140).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.80);
-  
 g2.append("rect").attr('x', 120).attr('y', 145).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.75);
-  
 g2.append("rect").attr('x', 120).attr('y', 150).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.70);
-  
 g2.append("rect").attr('x', 120).attr('y', 155).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.65);
-  
 g2.append("rect").attr('x', 120).attr('y', 160).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.6);
-  
 g2.append("rect").attr('x', 120).attr('y', 165).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.55);
-  
 g2.append("rect").attr('x', 120).attr('y', 170).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.5);
-  
 g2.append("rect").attr('x', 120).attr('y', 175).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.45);
-  
 g2.append("rect").attr('x', 120).attr('y', 180).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.4);
-  
 g2.append("rect").attr('x', 120).attr('y', 185).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.35);
-  
 g2.append("rect").attr('x', 120).attr('y', 190).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.30);
-  
 g2.append("rect").attr('x', 120).attr('y', 195).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.25);
-  
 g2.append("rect").attr('x', 120).attr('y', 200).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.20);
-  
 g2.append("rect").attr('x', 120).attr('y', 205).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.15);
-  
 g2.append("rect").attr('x', 120).attr('y', 210).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.10);
-  
 g2.append("rect").attr('x', 120).attr('y', 215).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.05);
 
@@ -363,12 +336,12 @@ const legendname = g2.append('text')
   .attr('x', 110)
   .attr('y', 105)
 	.text('% remote');
-
+//bar for graph1
 const bar1 = g2.append("rect");
 const bar2 = g2.append("rect");
 const bar3 = g2.append("rect");
 const bar4 = g2.append("rect");
-
+//label for graph1
 const xlabel = g2.append('text');
 const ylabel = g2.append('text');
 const chartname1 = g2.append('text')
@@ -378,6 +351,119 @@ const legend2 = g2.append("rect");
 const legendlabel1 = g2.append('text')
 	.classed('small-text', true);
 const legendlabel2 = g2.append('text')
+	.classed('small-text', true);
+
+//bar for graph2
+const genderbar1 = g2.append("rect");
+const genderbar2 = g2.append("rect");
+const ethnicitybar1 = g2.append("rect");
+const ethnicitybar2 = g2.append("rect");
+const ethnicitybar3 = g2.append("rect");
+const ethnicitybar4 = g2.append("rect");
+const gradebar3 = g2.append("rect");
+const gradebar4 = g2.append("rect");
+const gradebar5 = g2.append("rect");
+const gradebar6 = g2.append("rect");
+const gradebar7 = g2.append("rect");
+const gradebar8 = g2.append("rect");
+const ellbar1 = g2.append("rect");
+const ellbar2 = g2.append("rect");
+
+//label for graph2
+const xlabel2 = g2.append('text');
+const ylabel2 = g2.append('text');
+const chartname2 = g2.append('text')
+  .classed('small-text', true);
+  
+var xAxis2 = d3.axisBottom()
+.scale(d3.scaleBand().domain(['Gender', 'Race/Ethnicity', 'Grade Level', 'ELL Status']).range([0,320]));
+
+var yAxis2 = d3.axisLeft()
+.scale(d3.scaleLinear().domain([100,0]).range([0,207]));
+
+const xAxisshow2 = g2.append('g')
+    .attr("transform",`translate(${550},${465})`);
+
+const yAxisshow2 = g2.append('g')
+    .attr("transform",`translate(${550},${258})`);
+
+const mediumText5 = g2.append('text')
+  .classed('small-text', true);
+
+const mediumText6 = g2.append('text')
+  .classed('small-text', true);
+
+const legend3 = g2.append("rect");
+const legend4 = g2.append("rect");
+const legend5 = g2.append("rect");
+const legend6 = g2.append("rect");
+const legend7 = g2.append("rect");
+const legend8 = g2.append("rect");
+const legend9 = g2.append("rect");
+const legend10 = g2.append("rect");
+const legend11 = g2.append("rect");
+const legend12 = g2.append("rect");
+const legend13 = g2.append("rect");
+const legend14 = g2.append("rect");
+const legend15 = g2.append("rect");
+const legend16 = g2.append("rect");
+
+const legendlabel3 = g2.append('text')
+	.classed('small-text', true);
+const legendlabel4 = g2.append('text')
+	.classed('small-text', true);
+const legendlabel5 = g2.append('text')
+	.classed('small-text', true);
+const legendlabel6 = g2.append('text')
+	.classed('small-text', true);
+const legendlabel7 = g2.append('text')
+	.classed('small-text', true);
+const legendlabel8 = g2.append('text')
+	.classed('small-text', true);
+const legendlabel9 = g2.append('text')
+	.classed('small-text', true);
+const legendlabel10 = g2.append('text')
+	.classed('small-text', true);
+const legendlabel11 = g2.append('text')
+	.classed('small-text', true);
+const legendlabel12 = g2.append('text')
+	.classed('small-text', true);
+const legendlabel13 = g2.append('text')
+	.classed('small-text', true);
+const legendlabel14 = g2.append('text')
+	.classed('small-text', true);
+const legendlabel15 = g2.append('text')
+	.classed('small-text', true);
+const legendlabel16 = g2.append('text')
+	.classed('small-text', true);
+  
+const legendvalue3 = g2.append('text')
+	.classed('small-text', true);
+const legendvalue4 = g2.append('text')
+	.classed('small-text', true);
+const legendvalue5 = g2.append('text')
+	.classed('small-text', true);
+const legendvalue6 = g2.append('text')
+	.classed('small-text', true);
+const legendvalue7 = g2.append('text')
+	.classed('small-text', true);
+const legendvalue8 = g2.append('text')
+	.classed('small-text', true);
+const legendvalue9 = g2.append('text')
+	.classed('small-text', true);
+const legendvalue10 = g2.append('text')
+	.classed('small-text', true);
+const legendvalue11 = g2.append('text')
+	.classed('small-text', true);
+const legendvalue12 = g2.append('text')
+	.classed('small-text', true);
+const legendvalue13 = g2.append('text')
+	.classed('small-text', true);
+const legendvalue14 = g2.append('text')
+	.classed('small-text', true);
+const legendvalue15 = g2.append('text')
+	.classed('small-text', true);
+const legendvalue16 = g2.append('text')
 	.classed('small-text', true);
 
 d3.csv("https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/datasets/DataClean.csv").then(function(data) {
@@ -427,6 +513,57 @@ d3.csv("https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/dat
     	ArrayELA2022.push(parseFloat(data[i*15-1].ELAScores2022));
   	}
     return ArrayELA2022[parseInt(name(d))-1].toFixed(1);
+  }
+  
+  function male(d){
+    const Arraymale = [];
+    for (var i=1; i <= 32; i++){
+    	Arraymale.push(100 * parseFloat(data[(i-1)*15+3].TotalEnrollment)/(parseFloat(data[(i-1)*15+3].TotalEnrollment) + parseFloat(data[(i-1)*15+2].TotalEnrollment)));
+  	}
+    return Arraymale[parseInt(name(d))-1].toFixed(1);
+  }
+  
+  function female(d){
+    return 100-male(d);
+  }
+  function totalenthnicity(d){
+    const ethnicity = [];
+    for (var i=1; i <= 32; i++){
+      ethnicity.push(parseFloat(data[(i-1)*15+10].TotalEnrollment) + parseFloat(data[(i-1)*15+11].TotalEnrollment) + parseFloat(data[(i-1)*15+12].TotalEnrollment) + parseFloat(data[(i-1)*15+13].TotalEnrollment))
+    }
+    return ethnicity[parseInt(name(d))-1];
+  }
+  
+  function asian(d){
+    const asianArray = [];
+    for (var i=1; i <= 32; i++){
+      asianArray.push(100*parseFloat(data[(i-1)*15+10].TotalEnrollment)/totalenthnicity(d))
+    }
+    return asianArray[parseInt(name(d))-1].toFixed(1);
+  }
+  
+  function black(d){
+    const blackArray = [];
+    for (var i=1; i <= 32; i++){
+      blackArray.push(100*parseFloat(data[(i-1)*15+11].TotalEnrollment)/totalenthnicity(d))
+    }
+    return blackArray[parseInt(name(d))-1].toFixed(1);
+  }
+  
+  function hispanic(d){
+    const hispanicArray = [];
+    for (var i=1; i <= 32; i++){
+      hispanicArray.push(100*parseFloat(data[(i-1)*15+12].TotalEnrollment)/totalenthnicity(d))
+    }
+    return hispanicArray[parseInt(name(d))-1].toFixed(1);
+  }
+  
+  function white(d){
+    const whiteArray = [];
+    for (var i=1; i <= 32; i++){
+      whiteArray.push(100*parseFloat(data[(i-1)*15+13].TotalEnrollment)/totalenthnicity(d))
+    }
+    return whiteArray[parseInt(name(d))-1].toFixed(1);
   }
   
   function mouseover2(event, d){
@@ -484,7 +621,42 @@ d3.csv("https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/dat
   .attr('height', 10).attr('fill', '#597D35').style('opacity',0.8);
   legendlabel1.attr('x', 790).attr('y', 85).text('Math Score');
   legendlabel2.attr('x', 790).attr('y', 100).text('ELA Score');
+  xAxisshow2.call(xAxis2);
+	yAxisshow2.call(yAxis2);
+  mediumText5.attr('x', 510).attr('y',243).text('Percentage');
+  mediumText6.attr('x', 880).attr('y',470).text('Category');
+  legend3.attr('x', 560).attr('y', 530).attr('width', 10)
+  .attr('height', 10).attr('fill', '#800000').attr('opacity', 0.7);
+  legend4.attr('x', 560).attr('y', 500).attr('width', 10)
+  .attr('height', 10).attr('fill', '#008080').attr('opacity', 0.7);
+  legendlabel3.attr('x', 580).attr('y', 540).text('Male');
+  legendlabel4.attr('x', 580).attr('y', 509).text('Female');
+  legendvalue3.attr('x', 580).attr('y', 525).text(female(d) + "%");
+  legendvalue4.attr('x', 580).attr('y', 555).text(male(d) + "%");
+  genderbar1.attr('x', 575)
+    .attr('y', 465-(male(d))*(2.07)).attr('width', 30)
+  	.attr('height', (male(d))*(2.07)).attr('fill', '#800000').attr('opacity', 0.7);
+  genderbar2.attr('x', 575)
+    .attr('y', 258).attr('width', 30)
+  	.attr('height', (female(d))*(2.07))
+    .attr('fill','#008080').attr('opacity', 0.7);
+  legendlabel5.attr('x', 670).attr('y', 509).text('Asian');
+  legendlabel6.attr('x', 670).attr('y', 540).text('Black');
+  legendlabel7.attr('x', 670).attr('y', 570).text('Hispanic');
+  legendlabel8.attr('x', 670).attr('y', 600).text('White');
+  legendvalue5.attr('x', 670).attr('y', 525).text(asian(d) + "%");
+  legendvalue6.attr('x', 670).attr('y', 555).text(black(d) + "%");
+  legendvalue7.attr('x', 670).attr('y', 585).text(hispanic(d) + "%");
+  legendvalue8.attr('x', 670).attr('y', 615).text(white(d) + "%");
 	}
+  legend5.attr('x', 650).attr('y', 500).attr('width', 10)
+  .attr('height', 10).attr('fill', '#F1948A');
+  legend6.attr('x', 650).attr('y', 530).attr('width', 10)
+  .attr('height', 10).attr('fill', '#BB8FCE');
+	legend7.attr('x', 650).attr('y', 560).attr('width', 10)
+  .attr('height', 10).attr('fill', '#85C1E9');
+  legend8.attr('x', 650).attr('y', 590).attr('width', 10)
+  .attr('height', 10).attr('fill', '#82E0AA');
   
   function mouseout2(d){
   mapLayer2.selectAll('path')
