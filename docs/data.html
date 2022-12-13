@@ -23,7 +23,7 @@
 <meta name="author" content="Alexandra Jalali, Liang Zhuang, Victoria Xu" />
 
 
-<meta name="date" content="2022-12-12" />
+<meta name="date" content="2022-12-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -96,8 +96,15 @@
 <li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#packages"><i class="fa fa-check"></i><b>4.1</b> Packages</a></li>
-<li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#try-1"><i class="fa fa-check"></i><b>4.2</b> Try 1</a></li>
-<li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#plot-from-json"><i class="fa fa-check"></i><b>4.3</b> Plot from JSON</a></li>
+<li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#plot-from-json"><i class="fa fa-check"></i><b>4.2</b> Plot from JSON</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="results.html"><a href="results.html#cleveland-dot-plot-of-remote-learning-preferences-per-district-order-by-highest-to-lowest"><i class="fa fa-check"></i><b>4.2.1</b> <span style="color:darksalmon"> 2.Cleveland dot plot of remote learning preferences per district (Order by Highest to Lowest) </span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#section-2-comparing-same-category-across-different-districts"><i class="fa fa-check"></i><b>4.3</b> <span style="color:darksalmon"> Section 2: Comparing same category across different districts </span></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="results.html"><a href="results.html#cleveland-dot-plot-showing-gender-vs.-remote-learning-and-ell-vs.-remote-learning"><i class="fa fa-check"></i><b>4.3.1</b> <span style="color:darksalmon"> Cleveland dot plot showing gender vs. remote learning AND ELL vs. remote learning </span></a></li>
+<li class="chapter" data-level="4.3.2" data-path="results.html"><a href="results.html#two-cleveland-dot-plot-with-facets-showing-ethnicity-and-grade"><i class="fa fa-check"></i><b>4.3.2</b> <span style="color:darksalmon"> TWO Cleveland dot plot with facets showing ethnicity AND grade </span></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>5</b> Interactive component</a></li>
 <li class="chapter" data-level="6" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a></li>
@@ -132,54 +139,55 @@
 </div>
 <div id="cleaning-and-consolidating-data" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Cleaning and Consolidating Data<a href="data.html#cleaning-and-consolidating-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>##    District          DisaggregationCategory Category   MathScores2019    ELAScores2019   MathScores2022
-## 1         1 English Language Learner Status      ELL 604.901772427697 599.747109961157 604.167012439457
-## 2         1 English Language Learner Status  Not ELL  603.95721400978 606.117786776444 600.664937679363
-## 3         1                          Gender   Female 604.992963863494  608.89795392398 601.509349449209
-## 4         1                          Gender     Male 603.307252127006 601.776491736491 600.979984424203
-## 5         1                     Grade Level        3      605.5933228      606.7185059      599.6660156
-## 6         1                     Grade Level        4      603.5265503      604.5339355      598.0969849
-## 7         1                     Grade Level        5      602.8304443      603.5418091       603.305603
-## 8         1                     Grade Level        6      604.7839966      604.2026978      605.1715698
-## 9         1                     Grade Level        7      604.7492676      608.3583374      600.4692993
-## 10        1                     Grade Level        8      602.7237549      603.5318604      599.2103271
-##       ELAScores2022 TotalEnrollment Blended PercentBlended Remote PercentRemote
-## 1   602.52254235041             908     235           25.9    673          74.1
-## 2  605.536302949589            9641    2800             29   6841            71
-## 3   608.13571579013            5042    1455           28.9   3587          71.1
-## 4   602.39586509346            5507    1580           28.7   3927          71.3
-## 5       603.6296997             784     281           35.8    503          64.2
-## 6       600.9227905             772     283           36.7    489          63.3
-## 7       605.8739014             787     228             29    559            71
-## 8       607.6148682             753     166             22    587            78
-## 9       607.9724731             752     148           19.7    604          80.3
-## 10      604.0621338             753     145           19.3    608          80.7</code></pre>
-<pre><code>##     District DisaggregationCategory Category   MathScores2019    ELAScores2019   MathScores2022    ELAScores2022
-## 471       32            Grade Level        4      592.6130371      590.8512573      580.9855957      585.3267212
-## 472       32            Grade Level        5      592.3306274      592.5820313      584.5095825      593.6851196
-## 473       32            Grade Level        6      593.7106934      594.4906006       586.305603      596.7045288
-## 474       32            Grade Level        7      594.4210815      596.8899536      589.9391479       600.815979
-## 475       32            Grade Level        8      597.4102783      597.8345337      588.7999878      597.6488647
-## 476       32      Race or Ethnicity    Asian  608.65413901203 604.096292224444             &lt;NA&gt; 605.712765941489
-## 477       32      Race or Ethnicity    Black 594.303355995502   597.3165571384 588.838189228909 599.391789389416
-## 478       32      Race or Ethnicity Hispanic 593.292480366882 593.265234549841 585.703727807232 593.300315319554
-## 479       32      Race or Ethnicity    White 600.957265477778  600.46825929127             &lt;NA&gt; 604.775867868103
-## 480       32                  total    total         595.0106         595.4436         588.6827         596.5947
-##     TotalEnrollment Blended PercentBlended Remote PercentRemote
-## 471             679     319             47    360            53
-## 472             790     347           43.9    443          56.1
-## 473             952     381             40    571            60
-## 474             962     369           38.4    593          61.6
-## 475            1022     409             40    613            60
-## 476             218      51           23.4    167          76.6
-## 477            1601     467           29.2   1134          70.8
-## 478            7659    3162           41.3   4497          58.7
-## 479             265     111           41.9    154          58.1
-## 480            9832    3812          38.77   6020         61.23</code></pre>
+<pre><code>##         MathScores2022          ELAScores2022         MathScores2019          ELAScores2019               District 
+##                      8                      6                      4                      4                      0 
+## DisaggregationCategory               Category        TotalEnrollment                Blended         PercentBlended 
+##                      0                      0                      0                      0                      0 
+##                 Remote          PercentRemote 
+##                      0                      0</code></pre>
+<pre><code>##               District DisaggregationCategory               Category         MathScores2019          ELAScores2019 
+##                      0                      0                      0                      0                      0 
+##         MathScores2022          ELAScores2022        TotalEnrollment                Blended         PercentBlended 
+##                      0                      0                      0                      0                      0 
+##                 Remote          PercentRemote 
+##                      0                      0</code></pre>
+<pre><code>## # A tibble: 10 × 13
+## # Groups:   District [1]
+##    District DisaggregationCateg…¹ Categ…² MathS…³ ELASc…⁴ MathS…⁵ ELASc…⁶ Total…⁷ Blended Perce…⁸ Remote Perce…⁹ remot…˟
+##    &lt;chr&gt;    &lt;chr&gt;                 &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;fct&gt;  
+##  1 1        English Language Lea… ELL        605.    600.    604.    603. 908     235     25.9    673       74.1 High   
+##  2 1        English Language Lea… Not ELL    604.    606.    601.    606. 9641    2800    29      6841      71   Middle 
+##  3 1        Gender                Female     605.    609.    602.    608. 5042    1455    28.9    3587      71.1 Middle 
+##  4 1        Gender                Male       603.    602.    601.    602. 5507    1580    28.7    3927      71.3 Middle 
+##  5 1        Grade Level           3          606.    607.    600.    604. 784     281     35.8    503       64.2 Middle 
+##  6 1        Grade Level           4          604.    605.    598.    601. 772     283     36.7    489       63.3 Middle 
+##  7 1        Grade Level           5          603.    604.    603.    606. 787     228     29      559       71   Middle 
+##  8 1        Grade Level           6          605.    604.    605.    608. 753     166     22      587       78   High   
+##  9 1        Grade Level           7          605.    608.    600.    608. 752     148     19.7    604       80.3 High   
+## 10 1        Grade Level           8          603.    604.    599.    604. 753     145     19.3    608       80.7 High   
+## # … with abbreviated variable names ¹​DisaggregationCategory, ²​Category, ³​MathScores2019, ⁴​ELAScores2019,
+## #   ⁵​MathScores2022, ⁶​ELAScores2022, ⁷​TotalEnrollment, ⁸​PercentBlended, ⁹​PercentRemote, ˟​remote_cat</code></pre>
+<pre><code>## # A tibble: 10 × 13
+## # Groups:   District [1]
+##    District DisaggregationCateg…¹ Categ…² MathS…³ ELASc…⁴ MathS…⁵ ELASc…⁶ Total…⁷ Blended Perce…⁸ Remote Perce…⁹ remot…˟
+##    &lt;chr&gt;    &lt;chr&gt;                 &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;fct&gt;  
+##  1 32       Grade Level           4          593.    591.    581.    585. 679     319     47      360       53   Low    
+##  2 32       Grade Level           5          592.    593.    585.    594. 790     347     43.9    443       56.1 Middle 
+##  3 32       Grade Level           6          594.    594.    586.    597. 952     381     40      571       60   Middle 
+##  4 32       Grade Level           7          594.    597.    590.    601. 962     369     38.4    593       61.6 Middle 
+##  5 32       Grade Level           8          597.    598.    589.    598. 1022    409     40      613       60   Middle 
+##  6 32       Race or Ethnicity     Asian      609.    604.    587.    606. 218     51      23.4    167       76.6 High   
+##  7 32       Race or Ethnicity     Black      594.    597.    589.    599. 1601    467     29.2    1134      70.8 Middle 
+##  8 32       Race or Ethnicity     Hispan…    593.    593.    586.    593. 7659    3162    41.3    4497      58.7 Middle 
+##  9 32       Race or Ethnicity     White      601.    600.    587.    605. 265     111     41.9    154       58.1 Middle 
+## 10 32       total                 total      595.    595.    589.    597. 9832    3812    38.77   6020      61.2 Middle 
+## # … with abbreviated variable names ¹​DisaggregationCategory, ²​Category, ³​MathScores2019, ⁴​ELAScores2019,
+## #   ⁵​MathScores2022, ⁶​ELAScores2022, ⁷​TotalEnrollment, ⁸​PercentBlended, ⁹​PercentRemote, ˟​remote_cat</code></pre>
 </div>
 </div>
 <div id="missing-value-analysis" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Missing value analysis<a href="data.html#missing-value-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>``</p>
 
 </div>
 </div>
