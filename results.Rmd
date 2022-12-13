@@ -13,6 +13,9 @@ library(hrbrthemes)
 library(GGally)
 library(viridis)
 json_map <- geojson_read("https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/School%20Districts.geojson", what = "sp")
+
+df <- read.csv(file='./datasets/DataClean.csv')
+df_total <- subset(df, Category == "total") #dataframe with just aggregates
 ```
 
 ## Try 1
@@ -28,17 +31,85 @@ ggplot(data = df_total, aes(y = MathScores2019, x = District)) +
 ```{r}
 plot(json_map, col = "grey")
 ```
-
-### 1.Normal bar plot of remote learning preferences
+## <span style="color:darksalmon"> Section 1: Remote Learning Preferences for different districts </span>
+### <span style="color:darksalmon"> 1.Normal bar plot of remote learning preferences </span>
 ```{r}
 p1 <- ggplot(df_total, aes(PercentRemote)) +
   geom_histogram(binwidth = 5, boundary = 60,
                  fill = "lightBlue", col = "black") +
   xlab("% Remote")+
   ggtitle("Histogram of Percent of Students who Prefer Remote Learning per District")
-p1
 ```
 
+
+```{r}
+p1
+```
+### <span style="color:darksalmon"> 2.Cleveland dot plot of remote learning preferences per district (Order by Highest to Lowest) </span>
+```{r}
+district_remover_per_reorder <- fct_reorder(as.character(df_total$District), df_total$PercentRemote, min)
+
+p2 <- ggplot(df_total, aes(PercentRemote,district_remover_per_reorder)) +
+  geom_point(color = "darksalmon") +
+  xlab("% Remote")+
+  ylab("District")+theme_linedraw()+
+  ggtitle("Cleveland dot plot of Percent of Students who Prefer Remote Learning per District")
+p2
+```
+
+## <span style="color:darksalmon"> Section 2: Comparing same category across different districts </span>
+### <span style="color:darksalmon"> Cleveland dot plot showing gender vs. remote learning AND ELL vs. remote learning </span>
+
+```{r}
+gender_plot <- df%>%filter(DisaggregationCategory == "Gender")
+district_remover_per_reorder2 <- fct_reorder(as.character(gender_plot$District), gender_plot$PercentRemote, min)
+
+p3 <- ggplot(gender_plot, aes(PercentRemote,district_remover_per_reorder2)) +
+  geom_point(aes(color =Category)) + geom_line(aes(group = District),alpha=0.3) +
+  xlab("% Remote")+
+  ylab("District")+theme_linedraw()+
+  ggtitle("Cleveland dot plot of Percent showing gender vs. remote learning per District")
+p3
+```
+
+```{r}
+ELL_plot <- df%>%filter(DisaggregationCategory == "English Language Learner Status")
+district_remover_per_reorder3 <- fct_reorder(as.character(ELL_plot$District), ELL_plot$PercentRemote, min)
+
+p4 <- ggplot(ELL_plot, aes(PercentRemote,district_remover_per_reorder3)) +
+  geom_point(aes(color=Category)) + geom_line(aes(group = District),alpha=0.3) +
+  xlab("% Remote")+
+  ylab("District")+theme_linedraw()+
+  ggtitle("Cleveland dot plot of Percent showing ELL vs. remote learning per District")
+p4
+```
+
+### <span style="color:darksalmon"> TWO Cleveland dot plot with facets showing ethnicity AND grade </span>
+
+```{r}
+
+Ethnicity_plot <- df%>%filter(DisaggregationCategory == "Race or Ethnicity")
+district_remover_per_reorder3 <- fct_reorder(as.character(ELL_plot$District), ELL_plot$PercentRemote, min)
+
+p4 <- ggplot(ELL_plot, aes(PercentRemote,district_remover_per_reorder3)) +
+  geom_point(aes(color=Category)) + geom_line(aes(group = District),alpha=0.3) +
+  xlab("% Remote")+
+  ylab("District")+theme_linedraw()+
+  ggtitle("Cleveland dot plot of Percent showing ELL vs. remote learning per District")
+p4
+
+
+
+ggplot(USStates, aes(x = IQ, y = reorder(State, IQ))) +
+  geom_point(color = "blue") +
+  facet_grid(Pres2008 ~ ., scales = "free_y", space = "free_y") +
+  ggtitle('IQ of US state residents facet by Pres2008') +
+  xlab("IQ") +
+  ylab('') +
+  theme_linedraw() +
+  theme(panel.grid.major.x = element_blank(), panel.grid.minor.x = element_blank())
+
+```
 
 ### Parallel coordinates plot
 
@@ -50,4 +121,9 @@ pcpdf <- df_total %>% subset(select=c("ELAScores2019","ELAScores2022","MathScore
 #highlight the clusters based on the remote categorical column
 pcp<-ggparcoord(pcpdf, columns=1:4, groupColumn = 5, title = "Parallel Coordiantes Plot for average test scores per district, grouped by percent remote",scale = "globalminmax") 
 pcp
+```
+### Parallel coordinates plot
+
+```{r}
+
 ```
