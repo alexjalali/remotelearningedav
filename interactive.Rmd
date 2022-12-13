@@ -1,4 +1,5 @@
 # Interactive component
+
 <h2>This is the sample4</h2>
 
 <meta charset="utf-8">
@@ -28,7 +29,6 @@ text.big-text{
   font-size: 30px;
   font-weight: 400;
 }
-
 text.medium-text{
   font-size: 15px;
   font-weight: 400;
@@ -52,7 +52,7 @@ text.small-text{
 
 <div id = "graph2"></div>
 <script>
-var width = 960,height = 500,centered;
+var width = 960,height = 600,centered;
 
 // Define color scale
 const color = d3.scaleLinear()
@@ -63,10 +63,18 @@ const color = d3.scaleLinear()
 const projection = d3.geoMercator()
   .scale(45000)
   .center([-73.935242, 40.730610])
+  .translate([width / 3.3, height / 2]);
+  
+const projection2 = d3.geoMercator()
+  .scale(45000)
+  .center([-73.935242, 40.730610])
   .translate([width / 2, height / 2]);
 
 const path = d3.geoPath()
   .projection(projection);
+
+const path2 = d3.geoPath()
+  .projection(projection2);
 
 const svg = d3.select('div#graph1')
   .append('svg')
@@ -171,7 +179,7 @@ d3.json('https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/Sc
   mapLayer.selectAll('path')
       .data(features)
     .enter().append('path')
-      .attr('d', path)
+      .attr('d', path2)
       .attr('vector-effect', 'non-scaling-stroke')
       .style('fill', fill)
       .on('mouseover', mouseover)
@@ -230,8 +238,13 @@ const mapLayer2 = g2.append('g')
 
 const bigText2 = g2.append('text')
   .classed('big-text', true)
-  .attr('x', 10)
+  .attr('x', 30)
   .attr('y', 25);
+  
+const remotelearning = g2.append('text')
+  .classed('medium-text', true)
+  .attr('x', 33)
+  .attr('y', 45);
 
 const mediumText1 = g2.append('text')
   .classed('small-text', true);
@@ -247,89 +260,89 @@ const mediumText4 = g2.append('text')
 
 g2.append('text')
   .classed('small-text', true)
-  .attr('x', 237).attr('y', 125).text('75%');
+  .attr('x', 157).attr('y', 125).text('75%');
 
 g2.append('text')
   .classed('small-text', true)
-  .attr('x', 237).attr('y', 144).text('70%');
+  .attr('x', 157).attr('y', 144).text('70%');
 
 g2.append('text')
   .classed('small-text', true)
-  .attr('x', 237).attr('y', 163).text('65%');
+  .attr('x', 157).attr('y', 163).text('65%');
 
 g2.append('text')
   .classed('small-text', true)
-  .attr('x', 237).attr('y', 182).text('60%');
+  .attr('x', 157).attr('y', 182).text('60%');
 
 g2.append('text')
   .classed('small-text', true)
-  .attr('x', 237).attr('y', 201).text('55%');
+  .attr('x', 157).attr('y', 201).text('55%');
 
 g2.append('text')
   .classed('small-text', true)
-  .attr('x', 237).attr('y', 220).text('50%');
+  .attr('x', 157).attr('y', 220).text('50%');
 
-g2.append("rect").attr('x', 200).attr('y', 119.2).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 119.2).attr('width', 30)
   .attr('height', 100).attr('fill', 'white').style('opacity',1).attr('stroke', 'black');
   
-g2.append("rect").attr('x', 200).attr('y', 120).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 120).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',1);
   
-g2.append("rect").attr('x', 200).attr('y', 125).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 125).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.95);
   
-g2.append("rect").attr('x', 200).attr('y', 130).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 130).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.9);
   
-g2.append("rect").attr('x', 200).attr('y', 135).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 135).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.85);
   
-g2.append("rect").attr('x', 200).attr('y', 140).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 140).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.80);
   
-g2.append("rect").attr('x', 200).attr('y', 145).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 145).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.75);
   
-g2.append("rect").attr('x', 200).attr('y', 150).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 150).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.70);
   
-g2.append("rect").attr('x', 200).attr('y', 155).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 155).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.65);
   
-g2.append("rect").attr('x', 200).attr('y', 160).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 160).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.6);
   
-g2.append("rect").attr('x', 200).attr('y', 165).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 165).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.55);
   
-g2.append("rect").attr('x', 200).attr('y', 170).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 170).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.5);
   
-g2.append("rect").attr('x', 200).attr('y', 175).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 175).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.45);
   
-g2.append("rect").attr('x', 200).attr('y', 180).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 180).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.4);
   
-g2.append("rect").attr('x', 200).attr('y', 185).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 185).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.35);
   
-g2.append("rect").attr('x', 200).attr('y', 190).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 190).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.30);
   
-g2.append("rect").attr('x', 200).attr('y', 195).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 195).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.25);
   
-g2.append("rect").attr('x', 200).attr('y', 200).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 200).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.20);
   
-g2.append("rect").attr('x', 200).attr('y', 205).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 205).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.15);
   
-g2.append("rect").attr('x', 200).attr('y', 210).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 210).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.10);
   
-g2.append("rect").attr('x', 200).attr('y', 215).attr('width', 30)
+g2.append("rect").attr('x', 120).attr('y', 215).attr('width', 30)
   .attr('height', 5).attr('fill', 'red').style('opacity',0.05);
 
 
@@ -340,18 +353,14 @@ var yAxis = d3.axisLeft()
 .scale(d3.scaleLinear().domain([650, 550]).range([0,150]));
 
 const xAxisshow = g2.append('g')
-    .attr("transform",`translate(${600},${160})`);
+    .attr("transform",`translate(${550},${210})`);
 
 const yAxisshow = g2.append('g')
-    .attr("transform",`translate(${600},${10})`);
+    .attr("transform",`translate(${550},${60})`);
 
-const bigText3 = g2.append('text')
-  .classed('big-text', true)
-  .attr('x', 550)
-  .attr('y', 33);
 const legendname = g2.append('text')
   .classed('small-text', true)
-  .attr('x', 190)
+  .attr('x', 110)
   .attr('y', 105)
 	.text('% remote');
 
@@ -362,6 +371,14 @@ const bar4 = g2.append("rect");
 
 const xlabel = g2.append('text');
 const ylabel = g2.append('text');
+const chartname1 = g2.append('text')
+  .classed('small-text', true);
+const legend1 = g2.append("rect");
+const legend2 = g2.append("rect");
+const legendlabel1 = g2.append('text')
+	.classed('small-text', true);
+const legendlabel2 = g2.append('text')
+	.classed('small-text', true);
 
 d3.csv("https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/datasets/DataClean.csv").then(function(data) {
   function opacity(d){
@@ -373,7 +390,13 @@ d3.csv("https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/dat
   const max = d3.max(ArrayPercent);
   return (ArrayPercent[parseInt(name(d))-1]-min)/(max-min);
   }
-  
+  function remote(d){
+    const remotel = [];
+    for (var i=1; i <= 32; i++){
+    	remotel.push(parseFloat(data[i*15-1].PercentRemote));
+  	}
+    return remotel[parseInt(name(d))-1].toFixed(1);
+  }
   function math19(d){
     const ArrayMath2019 = [];
     for (var i=1; i <= 32; i++){
@@ -411,46 +434,56 @@ d3.csv("https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/dat
   bigText2
     .style('font-family', 'Helvetica Neue')
     .text("District " + String(name(d)));
+  remotelearning
+  	.style('font-family', 'Helvetica Neue')
+    .text("Remote Learning Percentage: " + String(remote(d)) + "%");
   mediumText1
     .style('font-family', 'Helvetica Neue')
-    .attr('x', 618)
-  	.attr('y', 155-(math19(d)-550)*(150/100))
+    .attr('x', 568)
+  	.attr('y', 205-(math19(d)-550)*(150/100))
     .text(String(math19(d)));
   mediumText2
     .style('font-family', 'Helvetica Neue')
-    .attr('x', 718)
-  	.attr('y', 155-(math22(d)-550)*(150/100))
+    .attr('x', 668)
+  	.attr('y', 205-(math22(d)-550)*(150/100))
     .text(String(math22(d)));
   mediumText3
     .style('font-family', 'Helvetica Neue')
-    .attr('x', 652)
-  	.attr('y', 155-(ela19(d)-550)*(150/100))
+    .attr('x', 602)
+  	.attr('y', 205-(ela19(d)-550)*(150/100))
     .text(String(ela19(d)));
   mediumText4
     .style('font-family', 'Helvetica Neue')
-    .attr('x', 752)
-  	.attr('y', 155-(ela22(d)-550)*(150/100))
+    .attr('x', 702)
+  	.attr('y', 205-(ela22(d)-550)*(150/100))
     .text(String(ela22(d)));
   xAxisshow.call(xAxis);
 	yAxisshow.call(yAxis);
 
-  bar1.attr('x', 620)
-    .attr('y', 160-(math19(d)-550)*(150/100)).attr('width', 30)
+  bar1.attr('x', 570)
+    .attr('y', 210-(math19(d)-550)*(150/100)).attr('width', 30)
   	.attr('height', (math19(d)-550)*(150/100)).attr('fill', '#0492C2').attr('opacity', 0.8);
     
-  bar2.attr('x', 650)
-    .attr('y', 160-(ela19(d)-550)*(150/100)).attr('width', 30)
+  bar2.attr('x', 600)
+    .attr('y', 210-(ela19(d)-550)*(150/100)).attr('width', 30)
   	.attr('height', (ela19(d)-550)*(150/100)).attr('fill', '#597D35').attr('opacity', 0.8);
     
-  bar3.attr('x', 720)
-    .attr('y', 160-(math22(d)-550)*(150/100)).attr('width', 30)
+  bar3.attr('x', 670)
+    .attr('y', 210-(math22(d)-550)*(150/100)).attr('width', 30)
   	.attr('height', (math22(d)-550)*(150/100)).attr('fill', '#0492C2').attr('opacity', 0.8);
   
-  bar4.attr('x', 750)
-    .attr('y', 160-(ela22(d)-550)*(150/100)).attr('width', 30)
+  bar4.attr('x', 700)
+    .attr('y', 210-(ela22(d)-550)*(150/100)).attr('width', 30)
   	.attr('height', (ela22(d)-550)*(150/100)).attr('fill', '#597D35').attr('opacity', 0.8);
-  xlabel.classed('small-text', true).attr('x', 540).attr('y',10).text('Score').attr('font-weight', 800);
-  ylabel.classed('small-text', true).attr('x', 810).attr('y',165).text('Year').attr('font-weight', 800);
+  xlabel.classed('small-text', true).attr('x', 520).attr('y',45).text('Score');
+  ylabel.classed('small-text', true).attr('x', 760).attr('y',215).text('Year');
+  chartname1.attr('x', 570).attr('y', 55).text('Average Test Scores for 2018 & 2022');
+  legend1.attr('x', 770).attr('y', 75).attr('width', 10)
+  .attr('height', 10).attr('fill', '#0492C2').style('opacity',0.8);
+  legend2.attr('x', 770).attr('y', 90).attr('width', 10)
+  .attr('height', 10).attr('fill', '#597D35').style('opacity',0.8);
+  legendlabel1.attr('x', 790).attr('y', 85).text('Math Score');
+  legendlabel2.attr('x', 790).attr('y', 100).text('ELA Score');
 	}
   
   function mouseout2(d){
