@@ -1,6 +1,6 @@
 # Interactive component
 
-<h2>This is the sample5</h2>
+<h2>This is the sample6</h2>
 
 <meta charset="utf-8">
 <style>
@@ -566,6 +566,74 @@ d3.csv("https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/dat
     return whiteArray[parseInt(name(d))-1].toFixed(1);
   }
   
+  function totalgrade(d){
+    const grade = [];
+    for (var i=1; i <= 32; i++){
+      grade.push(parseFloat(data[(i-1)*15+4].TotalEnrollment) + parseFloat(data[(i-1)*15+5].TotalEnrollment) + parseFloat(data[(i-1)*15+6].TotalEnrollment) + parseFloat(data[(i-1)*15+7].TotalEnrollment) + parseFloat(data[(i-1)*15+8].TotalEnrollment) + parseFloat(data[(i-1)*15+9].TotalEnrollment))
+    }
+    return grade[parseInt(name(d))-1];
+  }
+  
+  function grade3(d){
+    const grade3Array = [];
+    for (var i=1; i <= 32; i++){
+      grade3Array.push(100*parseFloat(data[(i-1)*15+4].TotalEnrollment)/totalgrade(d))
+    }
+    return grade3Array[parseInt(name(d))-1].toFixed(1);
+  }
+  
+  function grade4(d){
+    const grade4Array = [];
+    for (var i=1; i <= 32; i++){
+      grade4Array.push(100*parseFloat(data[(i-1)*15+5].TotalEnrollment)/totalgrade(d))
+    }
+    return grade4Array[parseInt(name(d))-1].toFixed(1);
+  }
+  
+  function grade5(d){
+    const grade5Array = [];
+    for (var i=1; i <= 32; i++){
+      grade5Array.push(100*parseFloat(data[(i-1)*15+6].TotalEnrollment)/totalgrade(d))
+    }
+    return grade5Array[parseInt(name(d))-1].toFixed(1);
+  }
+  
+  function grade6(d){
+    const grade6Array = [];
+    for (var i=1; i <= 32; i++){
+      grade6Array.push(100*parseFloat(data[(i-1)*15+7].TotalEnrollment)/totalgrade(d))
+    }
+    return grade6Array[parseInt(name(d))-1].toFixed(1);
+  }
+  
+  function grade7(d){
+    const grade7Array = [];
+    for (var i=1; i <= 32; i++){
+      grade7Array.push(100*parseFloat(data[(i-1)*15+8].TotalEnrollment)/totalgrade(d))
+    }
+    return grade7Array[parseInt(name(d))-1].toFixed(1);
+  }
+  
+  function grade8(d){
+    const grade8Array = [];
+    for (var i=1; i <= 32; i++){
+      grade8Array.push(100*parseFloat(data[(i-1)*15+9].TotalEnrollment)/totalgrade(d))
+    }
+    return grade8Array[parseInt(name(d))-1].toFixed(1);
+  }
+  
+  function ELL(d){
+    const ArrayELL = [];
+    for (var i=1; i <= 32; i++){
+    	ArrayELL.push(100 * parseFloat(data[(i-1)*15].TotalEnrollment)/(parseFloat(data[(i-1)*15+1].TotalEnrollment) + parseFloat(data[(i-1)*15].TotalEnrollment)));
+  	}
+    return ArrayELL[parseInt(name(d))-1].toFixed(1);
+  }
+  
+  function NoELL(d){
+    return 100-ELL(d);
+  }
+  
   function mouseover2(event, d){
   d3.select(this).style('fill', 'yellow').style('opacity', 1);
   bigText2
@@ -648,7 +716,7 @@ d3.csv("https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/dat
   legendvalue6.attr('x', 670).attr('y', 555).text(black(d) + "%");
   legendvalue7.attr('x', 670).attr('y', 585).text(hispanic(d) + "%");
   legendvalue8.attr('x', 670).attr('y', 615).text(white(d) + "%");
-	}
+  
   legend5.attr('x', 650).attr('y', 500).attr('width', 10)
   .attr('height', 10).attr('fill', '#F1948A');
   legend6.attr('x', 650).attr('y', 530).attr('width', 10)
@@ -658,10 +726,85 @@ d3.csv("https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/dat
   legend8.attr('x', 650).attr('y', 590).attr('width', 10)
   .attr('height', 10).attr('fill', '#82E0AA');
   
+  ethnicitybar1.attr('x', 655)
+    .attr('y', 258).attr('width', 30)
+  	.attr('height', (asian(d))*(2.07)).attr('fill','#F1948A');
+  ethnicitybar2.attr('x', 655)
+    .attr('y', 465-(white(d))*(2.07)-(hispanic(d))*(2.07)-(black(d))*(2.07)).attr('width', 30)
+  	.attr('height', (black(d))*(2.07)).attr('fill', '#BB8FCE');
+  ethnicitybar3.attr('x', 655)
+    .attr('y', 465-(white(d))*(2.07)-(hispanic(d))*(2.07)).attr('width', 30)
+  	.attr('height', (hispanic(d))*(2.07)).attr('fill', '#85C1E9');
+  ethnicitybar4.attr('x', 655)
+    .attr('y', 465-(white(d))*(2.07)).attr('width', 30)
+  	.attr('height', (white(d))*(2.07)).attr('fill', '#82E0AA');
+  
+  legendlabel9.attr('x', 745).attr('y', 509).text('Grade 3');
+  legendlabel10.attr('x', 745).attr('y', 540).text('Grade 4');
+  legendlabel11.attr('x', 745).attr('y', 570).text('Grade 5');
+  legendlabel12.attr('x', 745).attr('y', 600).text('Grade 6');
+  legendlabel13.attr('x', 745).attr('y', 630).text('Grade 7');
+  legendlabel14.attr('x', 745).attr('y', 660).text('Grade 8');
+  
+  legendvalue9.attr('x', 745).attr('y', 525).text(grade3(d) + "%");
+  legendvalue10.attr('x', 745).attr('y', 555).text(grade4(d) + "%");
+  legendvalue11.attr('x', 745).attr('y', 585).text(grade5(d) + "%");
+  legendvalue12.attr('x', 745).attr('y', 615).text(grade6(d) + "%");
+  legendvalue13.attr('x', 745).attr('y', 645).text(grade7(d) + "%");
+  legendvalue14.attr('x', 745).attr('y', 675).text(grade8(d) + "%");
+  
+  legend9.attr('x', 725).attr('y', 500).attr('width', 10)
+  .attr('height', 10).attr('fill', '#D6EAF8');
+  legend10.attr('x', 725).attr('y', 530).attr('width', 10)
+  .attr('height', 10).attr('fill', '#85C1E9');
+	legend11.attr('x', 725).attr('y', 560).attr('width', 10)
+  .attr('height', 10).attr('fill', '#5DADE2');
+  legend12.attr('x', 725).attr('y', 590).attr('width', 10)
+  .attr('height', 10).attr('fill', '#007AFF');
+  legend13.attr('x', 725).attr('y', 620).attr('width', 10)
+  .attr('height', 10).attr('fill', '#0000FF');
+  legend14.attr('x', 725).attr('y', 650).attr('width', 10)
+  .attr('height', 10).attr('fill', '#011F4B');
+  
+  gradebar3.attr('x', 735)
+    .attr('y', 258).attr('width', 30)
+  	.attr('height', (grade3(d))*(2.07)).attr('fill','#D6EAF8');
+  gradebar4.attr('x', 735)
+    .attr('y', 258+(grade3(d))*(2.07)).attr('width', 30)
+  	.attr('height', (grade4(d))*(2.07)).attr('fill','#85C1E9');
+  gradebar5.attr('x', 735)
+    .attr('y', 465-(grade5(d))*(2.07)-(grade6(d))*(2.07)-(grade7(d))*(2.07)-(grade8(d))*(2.07)).attr('width', 30).attr('height', (grade5(d))*(2.07)).attr('fill', '#5DADE2');
+  gradebar6.attr('x', 735)
+    .attr('y', 465-(grade6(d))*(2.07)-(grade7(d))*(2.07)-(grade8(d))*(2.07)).attr('width', 30)
+  	.attr('height', (grade6(d))*(2.07)).attr('fill', '#007AFF');
+  gradebar7.attr('x', 735)
+    .attr('y', 465-(grade7(d))*(2.07)-(grade8(d))*(2.07)).attr('width', 30)
+  	.attr('height', (grade7(d))*(2.07)).attr('fill', '#0000FF');
+  gradebar8.attr('x', 735)
+    .attr('y', 465-(grade8(d))*(2.07)).attr('width', 30)
+  	.attr('height', (grade8(d))*(2.07)).attr('fill', '#011F4B');
+  
+  legendlabel15.attr('x', 825).attr('y', 509).text('ELL');
+  legendlabel16.attr('x', 825).attr('y', 540).text('Not ELL');
+  legendvalue15.attr('x', 825).attr('y', 525).text(ELL(d) + "%");
+  legendvalue16.attr('x', 825).attr('y', 555).text(NoELL(d) + "%");
+  legend15.attr('x', 805).attr('y', 500).attr('width', 10)
+  .attr('height', 10).attr('fill', '#D98880');
+  legend16.attr('x', 805).attr('y', 530).attr('width', 10)
+  .attr('height', 10).attr('fill', '#1A5276');
+  ellbar1.attr('x', 814)
+    .attr('y', 465-(NoELL(d))*(2.07)).attr('width', 30)
+  	.attr('height', (NoELL(d))*(2.07)).attr('fill', '#1A5276');
+  ellbar2.attr('x', 814)
+    .attr('y', 258).attr('width', 30)
+  	.attr('height', (ELL(d))*(2.07))
+    .attr('fill','#D98880');
+	}
+
   function mouseout2(d){
   mapLayer2.selectAll('path')
     .style('fill', 'red').style('opacity', opacity);
-}
+	}
 
 d3.json('https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/School%20Districts.geojson').then(function(mapData) {
   var features = mapData.features;
