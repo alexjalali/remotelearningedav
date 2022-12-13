@@ -5,9 +5,11 @@
 ```{r}
 library(tidyverse)
 library(dplyr)
+library(tidyr)
 library(ggplot2)
 library(geojsonio)
 library(sp)
+library(tidytext)
 #for pcp
 library(hrbrthemes)
 library(GGally)
@@ -18,13 +20,6 @@ df <- read.csv(file='./datasets/DataClean.csv')
 df_total <- subset(df, Category == "total") #dataframe with just aggregates
 ```
 
-## Try 1
-
-```{r}
-ggplot(data = df_total, aes(y = MathScores2019, x = District)) +
-  geom_point() + xlab("District") + ylab("Average Math Scores in 2019") + ggtitle("Math scores by district") +
-  scale_x_continuous(breaks = seq(1, 32, 1))
-```
 
 ## Plot from JSON
 
@@ -34,17 +29,18 @@ plot(json_map, col = "grey")
 ## <span style="color:darksalmon"> Section 1: Remote Learning Preferences for different districts </span>
 ### <span style="color:darksalmon"> 1.Normal bar plot of remote learning preferences </span>
 ```{r}
+library(wesanderson)
+
 p1 <- ggplot(df_total, aes(PercentRemote)) +
-  geom_histogram(binwidth = 5, boundary = 60,
-                 fill = "lightBlue", col = "black") +
+  geom_histogram(binwidth = 2.5, boundary = 60,
+                col = "navajowhite4",bins=10,fill="honeydew3")+
   xlab("% Remote")+
   ggtitle("Histogram of Percent of Students who Prefer Remote Learning per District")
-```
 
-
-```{r}
 p1
 ```
+
+
 ### <span style="color:darksalmon"> 2.Cleveland dot plot of remote learning preferences per district (Order by Highest to Lowest) </span>
 ```{r}
 district_remover_per_reorder <- fct_reorder(as.character(df_total$District), df_total$PercentRemote, min)
@@ -62,7 +58,7 @@ p2
 
 ```{r}
 gender_plot <- df%>%filter(DisaggregationCategory == "Gender")
-district_remover_per_reorder2 <- fct_reorder(as.character(gender_plot$District), gender_plot$PercentRemote, min)
+district_remover_per_reorder2 <- fct_reorder(as.character(gender_plot$District), gender_plot$PercentRemote)
 
 p3 <- ggplot(gender_plot, aes(PercentRemote,district_remover_per_reorder2)) +
   geom_point(aes(color =Category)) + geom_line(aes(group = District),alpha=0.3) +
@@ -74,7 +70,7 @@ p3
 
 ```{r}
 ELL_plot <- df%>%filter(DisaggregationCategory == "English Language Learner Status")
-district_remover_per_reorder3 <- fct_reorder(as.character(ELL_plot$District), ELL_plot$PercentRemote, min)
+district_remover_per_reorder3 <- fct_reorder(as.character(ELL_plot$District), ELL_plot$PercentRemote)
 
 p4 <- ggplot(ELL_plot, aes(PercentRemote,district_remover_per_reorder3)) +
   geom_point(aes(color=Category)) + geom_line(aes(group = District),alpha=0.3) +
@@ -86,31 +82,26 @@ p4
 
 ### <span style="color:darksalmon"> TWO Cleveland dot plot with facets showing ethnicity AND grade </span>
 
-```{r}
+```{r fig.height=4 }
 
 Ethnicity_plot <- df%>%filter(DisaggregationCategory == "Race or Ethnicity")
-district_remover_per_reorder3 <- fct_reorder(as.character(ELL_plot$District), ELL_plot$PercentRemote, min)
 
-p4 <- ggplot(ELL_plot, aes(PercentRemote,district_remover_per_reorder3)) +
-  geom_point(aes(color=Category)) + geom_line(aes(group = District),alpha=0.3) +
-  xlab("% Remote")+
-  ylab("District")+theme_linedraw()+
-  ggtitle("Cleveland dot plot of Percent showing ELL vs. remote learning per District")
-p4
+p5 <- ggplot(Ethnicity_plot, aes(x = reorder_within(District, PercentRemote, Category), y = PercentRemote)) +
+    geom_point(color="darksalmon",stat = "identity") + scale_x_reordered() +
+    facet_wrap(Category ~ ., ncol = 2, scales = "free_x", strip.position = "right", )+ylab("% Remote")+ xlab("District") + ggtitle("Cleveland dot plot of Percent with facets showing Race or Ethnicity")
 
-
-
-ggplot(USStates, aes(x = IQ, y = reorder(State, IQ))) +
-  geom_point(color = "blue") +
-  facet_grid(Pres2008 ~ ., scales = "free_y", space = "free_y") +
-  ggtitle('IQ of US state residents facet by Pres2008') +
-  xlab("IQ") +
-  ylab('') +
-  theme_linedraw() +
-  theme(panel.grid.major.x = element_blank(), panel.grid.minor.x = element_blank())
-
+p5
 ```
+```{r fig.height=4 }
 
+Grade_plot <- df%>%filter(DisaggregationCategory == "Grade Level")
+
+p6 <- ggplot(Grade_plot, aes(x = reorder_within(District, PercentRemote, Category), y = PercentRemote)) +
+    geom_point(color="darksalmon",stat = "identity") + scale_x_reordered() +
+    facet_wrap(Category ~ ., ncol = 2, scales = "free_x", strip.position = "right")+ylab("% Remote")+ xlab("District") + ggtitle("Cleveland dot plot of Percent with facets showing Grade Label")
+
+p6
+```
 ### Parallel coordinates plot
 
 ```{r pcp}
@@ -123,6 +114,7 @@ pcp<-ggparcoord(pcpdf, columns=1:4, groupColumn = 5, title = "Parallel Coordiant
 pcp
 ```
 ### Parallel coordinates plot
+
 
 ```{r}
 
