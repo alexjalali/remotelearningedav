@@ -26,8 +26,11 @@ df_total <- subset(df, Category == "total") #dataframe with just aggregates
 ```{r}
 plot(json_map, col = "grey")
 ```
-## <span style="color:darksalmon"> Section 1: Remote Learning Preferences for different districts </span>
-### <span style="color:darksalmon"> 1.Normal bar plot of remote learning preferences </span>
+
+## Section 1: Remote Learning Preferences for different districts
+
+### 1.Normal bar plot of remote learning preferences
+
 ```{r}
 library(wesanderson)
 
@@ -41,7 +44,7 @@ p1
 ```
 
 
-### <span style="color:darksalmon"> 2.Cleveland dot plot of remote learning preferences per district (Order by Highest to Lowest) </span>
+### 2.Cleveland dot plot of remote learning preferences per district (Order by Highest to Lowest)
 ```{r}
 district_remover_per_reorder <- fct_reorder(as.character(df_total$District), df_total$PercentRemote, min)
 
@@ -53,8 +56,8 @@ p2 <- ggplot(df_total, aes(PercentRemote,district_remover_per_reorder)) +
 p2
 ```
 
-## <span style="color:darksalmon"> Section 2: Comparing same category across different districts </span>
-### <span style="color:darksalmon"> Cleveland dot plot showing gender vs. remote learning AND ELL vs. remote learning </span>
+## Section 2: Comparing same category across different districts
+### Cleveland dot plot showing gender vs. remote learning AND ELL vs. remote learning
 
 ```{r}
 gender_plot <- df%>%filter(DisaggregationCategory == "Gender")
@@ -80,7 +83,7 @@ p4 <- ggplot(ELL_plot, aes(PercentRemote,district_remover_per_reorder3)) +
 p4
 ```
 
-### <span style="color:darksalmon"> TWO Cleveland dot plot with facets showing ethnicity AND grade </span>
+### Two Cleveland dot plot with facets showing ethnicity and grade
 
 ```{r fig.height=6 }
 
@@ -102,7 +105,7 @@ p6 <- ggplot(Grade_plot, aes(x = reorder_within(District, PercentRemote, Categor
 
 p6
 ```
-### <span style="color:darksalmon"> Parallel coordinates plot </span>
+### Parallel coordinates plot
 
 ```{r pcp}
 #this isn't working i am going to work on this tomorrow
@@ -113,7 +116,7 @@ pcpdf <- df_total %>% subset(select=c("ELAScores2019","ELAScores2022","MathScore
 pcp<-ggparcoord(pcpdf, columns=1:4, groupColumn = 5, title = "Parallel Coordiantes Plot for average test scores per district, grouped by percent remote",scale = "globalminmax") 
 pcp
 ```
-### <span style="color:darksalmon"> Boxplot </span>
+### Boxplot
 ```{r}
 library(ggpubr)
 library(cowplot)

@@ -14,6 +14,8 @@ missing-value-analysis
 results
 packages
 plot-from-json
+section-1-remote-learning-preferences-for-different-districts
+normal-bar-plot-of-remote-learning-preferences
 cleveland-dot-plot-of-remote-learning-preferences-per-district-order-by-highest-to-lowest
 section-2-comparing-same-category-across-different-districts
 cleveland-dot-plot-showing-gender-vs.-remote-learning-and-ell-vs.-remote-learning
