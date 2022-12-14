@@ -21,15 +21,22 @@ df_total <- subset(df, Category == "total") #dataframe with just aggregates
 ```
 
 
-## Plot from JSON
-
-```{r}
-plot(json_map, col = "grey")
-```
-
 ## Section 1: Remote Learning Preferences for different districts
 
-### 1.Normal bar plot of remote learning preferences
+### Plot from JSON
+
+```{r}
+layout(matrix(1:2,ncol=2), width = c(3,1),height = c(1,1))
+plot(json_map, col = alpha("red", (df$PercentRemote[as.numeric(json_map$school_dist)*15]-53)/24), main = "Heat Map for Remote Learning")
+legend_image <- as.raster(matrix(colorRampPalette(c("red", "white"))(20), ncol=1))
+plot(c(0,2),c(0,1),type = 'n', xlab = '', ylab = '', axes = F)
+text(x=1.5, y = seq(0,1,l=15), 
+     labels = c('50%','52%','54%','56%','58%','60%','62%','64%','66%','68%','70%','72%','74%','76%', '78%'), 
+     cex = 0.5)
+rasterImage(legend_image, 0, 0, 1, 1) 
+```
+
+### Normal bar plot of remote learning preferences
 
 ```{r}
 library(wesanderson)
@@ -44,7 +51,7 @@ p1
 ```
 
 
-### 2.Cleveland dot plot of remote learning preferences per district (Order by Highest to Lowest)
+### Cleveland dot plot of remote learning preferences per district (Order by Highest to Lowest)
 ```{r}
 district_remover_per_reorder <- fct_reorder(as.character(df_total$District), df_total$PercentRemote, min)
 
@@ -105,6 +112,7 @@ p6 <- ggplot(Grade_plot, aes(x = reorder_within(District, PercentRemote, Categor
 
 p6
 ```
+
 ### Parallel coordinates plot
 
 ```{r pcp}
@@ -116,7 +124,9 @@ pcpdf <- df_total %>% subset(select=c("ELAScores2019","ELAScores2022","MathScore
 pcp<-ggparcoord(pcpdf, columns=1:4, groupColumn = 5, title = "Parallel Coordiantes Plot for average test scores per district, grouped by percent remote",scale = "globalminmax") 
 pcp
 ```
+
 ### Boxplot
+
 ```{r}
 library(ggpubr)
 library(cowplot)
