@@ -334,8 +334,10 @@ annotate_figure(bptotal_12, top = text_grob("Boxplots of Test Scores by Ethnicit
 
 ```
 
-```{r pt5 grade boxplot by scores: Graph 13}
-bpELA2019_13 <- Grade_plot %>% 
+```{r fig.height=4}
+Grade_plot2 <- df%>%filter(DisaggregationCategory == "Grade Level")
+
+bpELA2019_13 <- Grade_plot2 %>% 
   mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(x=Category,y=ELAScores2019,col=remote_cat)) + 
   geom_boxplot(alpha=1) + 
@@ -344,7 +346,7 @@ bpELA2019_13 <- Grade_plot %>%
   xlab(" ") + 
   labs(col='Remote Preference')
 
-bpELA2022_13 <- Grade_plot %>%
+bpELA2022_13 <- Grade_plot2 %>%
   mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(col=remote_cat, y=ELAScores2022, x=Category)) + geom_boxplot(alpha=1) +
     scale_fill_brewer(palette="Paired") + 
@@ -352,7 +354,7 @@ bpELA2022_13 <- Grade_plot %>%
   xlab(" ")+ 
   labs(col='Remote Preference')
 
-bpMath2019_13 <- Grade_plot %>% 
+bpMath2019_13 <- Grade_plot2 %>% 
    mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(col=remote_cat, y=MathScores2019, x=Category)) + geom_boxplot(alpha=1) +
 scale_fill_brewer(palette="Paired") + 
@@ -360,7 +362,7 @@ ylab("Scores")+
 xlab(" ")+ 
   labs(col='Remote Preference')
 
-bpMath2022_13 <- Grade_plot %>%
+bpMath2022_13 <- Grade_plot2 %>%
    mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(col=remote_cat, y=MathScores2022, x=Category)) + geom_boxplot(alpha=1) +
     scale_fill_brewer(palette="Paired") + 
@@ -368,10 +370,11 @@ bpMath2022_13 <- Grade_plot %>%
   xlab(" ")+ 
   labs(col='Remote Preference')
 
-bptotal_13 <- ggarrange(bpELA2019_13,bpELA2022_13,bpMath2019_13,bpMath2022_13, ncol = 2, nrow = 2,common.legend=TRUE)
+bptotal_13 <- ggarrange(bpELA2019_13,bpELA2022_13,bpMath2019_13,bpMath2022_13, ncol = 1, nrow = 4,common.legend=TRUE)
 annotate_figure(bptotal_13, top = text_grob("Boxplots of Test Scores by Grade colored by Remote Learning Preferences", 
                color = "black", size = 12))
 
 ```
+
 
 
