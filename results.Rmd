@@ -14,6 +14,9 @@ library(tidytext)
 library(hrbrthemes)
 library(GGally)
 library(viridis)
+library(wesanderson)
+library(ggpubr)
+library(cowplot)
 json_map <- geojson_read("https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/School%20Districts.geojson", what = "sp")
 
 df <- read.csv(file='./datasets/DataClean.csv')
@@ -39,8 +42,6 @@ rasterImage(legend_image, 0, 0, 1, 1)
 ### Normal bar plot of remote learning preferences
 
 ```{r}
-library(wesanderson)
-
 p1 <- ggplot(df_total, aes(PercentRemote)) +
   geom_histogram(binwidth = 2.5, boundary = 60,
                  col = "navajowhite4",bins=10,fill="honeydew3")+
@@ -121,19 +122,28 @@ p6
 pcpdf <- df_total %>% subset(select=c("ELAScores2019","ELAScores2022","MathScores2019","MathScores2022","remote_cat")) 
 
 #highlight the clusters based on the remote categorical column
-pcp<-ggparcoord(pcpdf, columns=1:4, groupColumn = 5, title = "Parallel Coordiantes Plot for average test scores per district, grouped by percent remote",scale = "globalminmax") 
-pcp
+p7<-pcpdf %>%  arrange(desc(remote_cat)) %>% ggparcoord(pcpdf, columns=1:4, groupColumn = 5, title = "Parallel Coordiantes Plot for average test scores per district, grouped by percent remote",scale = "globalminmax",
+    alphaLines = 0.3)+ 
+  scale_fill_hue(l=40)+
+theme(
+    plot.title = element_text(size=10)
+  ) +
+  xlab("") + ylab("Scores") + 
+  scale_x_discrete(labels = c('ELA Scores 2019','ELA Scores 2022','Math Scores 2019','Math Scores 2022' ))
+p7
 ```
 
 ### Boxplot
 
 ```{r}
-library(ggpubr)
-library(cowplot)
-bpELA2019 <- gender_plot %>% ggplot(aes(fill=remote_cat, y=ELAScores2019, x=Category)) + geom_boxplot()
-bpELA2022 <- gender_plot %>% ggplot(aes(fill=remote_cat, y=ELAScores2022, x=Category)) + geom_boxplot()
-bpMath2019 <- gender_plot %>% ggplot(aes(fill=remote_cat, y=MathScores2019, x=Category)) + geom_boxplot()
-bpMath2022 <- gender_plot %>% ggplot(aes(fill=remote_cat, y=MathScores2022, x=Category)) + geom_boxplot()
+
+bpELA2019 <- gender_plot %>% mutate(remote_cat = fct_reorder(remote_cat, -ELAScores2019, .fun='median')) %>% ggplot(aes(x=Category,y=ELAScores2019,fill=remote_cat)) + geom_boxplot(alpha=1) + scale_fill_brewer(palette="Paired") +ylab("Scores")+ xlab(" ") + labs(fill='Remote Preference')
+bpELA2022 <- gender_plot %>% mutate(remote_cat = fct_reorder(remote_cat, -ELAScores2022, .fun='median')) %>% ggplot(aes(fill=remote_cat, y=ELAScores2022, x=reorder(Category, ELAScores2022, median))) + geom_boxplot(alpha=1) +
+    scale_fill_brewer(palette="Paired") + ylab(" ")+ xlab(" ")+ labs(fill='Remote Preference')
+bpMath2019 <- gender_plot %>% mutate(remote_cat = fct_reorder(remote_cat, -MathScores2019, .fun='median')) %>%ggplot(aes(fill=remote_cat, y=MathScores2019, x=reorder(Category, MathScores2019, median))) + geom_boxplot(alpha=1) +
+    scale_fill_brewer(palette="Paired") + ylab("Scores")+ xlab(" ")+ labs(fill='Remote Preference')
+bpMath2022 <- gender_plot %>% mutate(remote_cat = fct_reorder(remote_cat, -MathScores2022, .fun='median')) %>% ggplot(aes(fill=remote_cat, y=MathScores2022, x=reorder(Category, MathScores2022, median))) + geom_boxplot(alpha=1) +
+    scale_fill_brewer(palette="Paired") + ylab(" ")+ xlab(" ")+ labs(fill='Remote Preference')
 
 bptotal <- ggarrange(bpELA2019,bpELA2022,bpMath2019,bpMath2022, ncol = 2, nrow = 2)
 bptotal
