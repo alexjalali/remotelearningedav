@@ -154,6 +154,45 @@ p7 <- ggplot(Grade_plot, aes(y = reorder_within(District, PercentRemote, Categor
 
 p7
 ```
+
+## Part 3
+
+### ELL proportion vs Remote Learning Preferences
+
+```{r}
+df$ELLpercent = 0
+df$Asianpercent = 0
+df$Blackpercent = 0
+df$Hispanicpercent = 0
+df$Whitepercent = 0
+for (x in 1:31){
+  df$ELLpercent[15*x] = 100*df$TotalEnrollment[15*(x-1) + 1]/df$TotalEnrollment[15*x]
+  df$Asianpercent[15*x] = 100*df$TotalEnrollment[15*(x-1) + 11]/df$TotalEnrollment[15*x]
+  df$Blackpercent[15*x] = 100*df$TotalEnrollment[15*(x-1) + 12]/df$TotalEnrollment[15*x]
+  df$Hispanicpercent[15*x] = 100*df$TotalEnrollment[15*(x-1) + 13]/df$TotalEnrollment[15*x]
+  df$Whitepercent[15*x] = 100*df$TotalEnrollment[15*(x-1) + 14]/df$TotalEnrollment[15*x]
+}
+proportion <- df%>%filter(DisaggregationCategory == "total")
+ggplot(proportion, aes(x = ELLpercent, y = PercentRemote)) + 
+    geom_point(color="salmon") + xlab("ELL Percentage") + geom_smooth(method = "lm")
+
+```
+
+### Race/Ethnicity proporation vs Remote Learning Preferences
+
+```{r}
+plot_1 <- ggplot(proportion, aes(x = Asianpercent, y = PercentRemote)) + 
+    geom_point(color = "salmon") + xlab("Asian") + geom_smooth(method = "lm")
+plot_2 <- ggplot(proportion, aes(x = Blackpercent, y = PercentRemote)) + 
+    geom_point(color = "olivedrab") + xlab("Black") + geom_smooth(method = "lm")
+plot_3 <- ggplot(proportion, aes(x = Hispanicpercent, y = PercentRemote)) + 
+    geom_point(color = "cyan3") + xlab("Hispanic") + geom_smooth(method = "lm")
+plot_4 <- ggplot(proportion, aes(x = Whitepercent, y = PercentRemote)) + 
+    geom_point(color = "mediumorchid2") + xlab("White") + geom_smooth(method = "lm")
+plot_grid(plot_1, plot_2, plot_3, plot_4, ncol = 2, nrow = 2)
+```
+
+
 ### Parallel coordinates plot
 
 ```{r pcp}
