@@ -477,6 +477,14 @@ names(district_1)[names(district_1) == "Percent Remote"] = "PercentRemote"
 }
 ```
 
+### liang's try
+
+```{r}
+library(mi)
+x <- missing_data.frame(df_super)
+image(x)
+```
+
 ```{r NA replacement}
 library(Hmisc)
 df_super_MVA <- df_super #saving df_super with missing values included into a new df so when we do missing value analysis we can visualize it
