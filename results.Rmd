@@ -1,7 +1,5 @@
 # Results
 
-## Packages
-
 ```{r}
 library(tidyverse)
 library(dplyr)
@@ -24,9 +22,11 @@ df_total <- subset(df, Category == "total") #dataframe with just aggregates
 ```
 
 
-## Section 1: Remote Learning Preferences for different districts
+## Part 1: Remote Learning Preferences for Different Districts
 
-### Plot from JSON
+### Overview:
+
+### Heatmap Plot from JSON
 
 ```{r}
 layout(matrix(1:2,ncol=2), width = c(3,1),height = c(1,1))
@@ -39,7 +39,7 @@ text(x=1.5, y = seq(0,1,l=15),
 rasterImage(legend_image, 0, 0, 1, 1) 
 ```
 
-### Normal bar plot of remote learning preferences
+### Bar Plot of Remote Learning Preferences
 
 ```{r}
 p1 <- ggplot(df_total, aes(PercentRemote)) +
@@ -55,7 +55,8 @@ p1
 ```
 
 
-### Cleveland dot plot of remote learning preferences per district (Order by Highest to Lowest)
+### Cleveland Dot Plot of Remote Learning Preferences Per District (Order by Highest to Lowest)
+
 ```{r}
 district_remover_per_reorder <- fct_reorder(as.character(df_total$District), df_total$PercentRemote, min)
 
@@ -67,8 +68,11 @@ p2 <- ggplot(df_total, aes(PercentRemote,district_remover_per_reorder)) +
 p2
 ```
 
-## Section 2: Comparing same category across different districts
-### Cleveland dot plot showing gender vs. remote learning AND ELL vs. remote learning
+## Part 2: Remote Learning Preferences Analysis by Subgroups
+
+### Overview:
+
+### Gender
 
 ```{r}
 gender_plot <- df%>%filter(DisaggregationCategory == "Gender")
@@ -82,6 +86,8 @@ p3 <- ggplot(gender_plot, aes(PercentRemote,district_remover_per_reorder2)) +
 p3
 ```
 
+### English Language Learner Status
+
 ```{r}
 ELL_plot <- df%>%filter(DisaggregationCategory == "English Language Learner Status")
 district_remover_per_reorder3 <- fct_reorder(as.character(ELL_plot$District), ELL_plot$PercentRemote)
@@ -94,6 +100,7 @@ p4 <- ggplot(ELL_plot, aes(PercentRemote,district_remover_per_reorder3)) +
 p4
 ```
 
+### Race/Ethnicity
 
 ```{r}
 Ethnicity_plot <- df%>%filter(DisaggregationCategory == "Race or Ethnicity")
@@ -107,8 +114,6 @@ p4_1 <- ggplot(Ethnicity_plot, aes(PercentRemote,district_remover_per_reorder3))
 p4_1
 ```
 
-### Two Cleveland dot plot with facets showing ethnicity and grade
-
 ```{r fig.height=3.5}
 
 Ethnicity_plot <- df%>%filter(DisaggregationCategory == "Race or Ethnicity")
@@ -120,6 +125,8 @@ p5 <- ggplot(Ethnicity_plot, aes(y = reorder_within(District, PercentRemote, Cat
 
 p5
 ```
+
+### Grade Level
 
 ```{r}
 Grade_plot <- df%>%filter(DisaggregationCategory == "Grade Level")
@@ -155,9 +162,11 @@ p7 <- ggplot(Grade_plot, aes(y = reorder_within(District, PercentRemote, Categor
 p7
 ```
 
-## Part 3
+## Part 3: Detailed Analysis for ELL Subgroup and Race/Ethnicity Subgroup
 
-### ELL proportion vs Remote Learning Preferences
+### Overview:
+
+### ELL Proportion vs Remote Learning Preferences
 
 ```{r}
 df$ELLpercent = 0
@@ -178,7 +187,7 @@ ggplot(proportion, aes(x = ELLpercent, y = PercentRemote)) +
 
 ```
 
-### Race/Ethnicity proporation vs Remote Learning Preferences
+### Race/Ethnicity Proportion vs Remote Learning Preferences
 
 ```{r}
 plot_1 <- ggplot(proportion, aes(x = Asianpercent, y = PercentRemote)) + 
@@ -192,6 +201,9 @@ plot_4 <- ggplot(proportion, aes(x = Whitepercent, y = PercentRemote)) +
 plot_grid(plot_1, plot_2, plot_3, plot_4, ncol = 2, nrow = 2)
 ```
 
+## Part 4: Math and ELA Scores for Different Districts
+
+### Overview:
 
 ### Parallel coordinates plot
 
@@ -212,7 +224,11 @@ theme(
 pcpplot
 ```
 
-### Boxplot
+## Part 5: Math and ELA Scores by Subgroups
+
+### Overview:
+
+### Gender
 
 ```{r pt5 gender boxplot by scores: Graph 10}
 remote_cat_levels <- c("High", "Middle", "Low")
@@ -255,6 +271,8 @@ annotate_figure(bptotal_10, top = text_grob("Boxplots of Test Scores for each Ge
 
 ```
 
+### English Language Learner
+
 ```{r pt5 ELL boxplot by scores: Graph 11}
 bpELA2019_11 <- ELL_plot %>% 
   mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
@@ -293,6 +311,8 @@ bptotal_11 <- ggarrange(bpELA2019_11,bpELA2022_11,bpMath2019_11,bpMath2022_11, n
 annotate_figure(bptotal_11, top = text_grob("Boxplots of Test Scores for ELL colored by Remote Learning Preferences", 
                color = "black", size = 12))
 ```
+
+### Race/Ethnicity
 
 ```{r pt5 ethnicity boxplot by scores: Graph 12}
 bpELA2019_12 <- Ethnicity_plot %>% 
@@ -333,6 +353,8 @@ annotate_figure(bptotal_12, top = text_grob("Boxplots of Test Scores by Ethnicit
                color = "black", size = 12))
 
 ```
+
+### Grade Level
 
 ```{r fig.height=4}
 Grade_plot2 <- df%>%filter(DisaggregationCategory == "Grade Level")
@@ -375,6 +397,87 @@ annotate_figure(bptotal_13, top = text_grob("Boxplots of Test Scores by Grade co
                color = "black", size = 12))
 
 ```
+
+## Part 6: Detailed Analysis for ELL Subgroup and Race/Ethnicity Subgroup
+
+### ELL Remote Learning Preferences vs. Scores
+
+```{r}
+ELL_ts2 <- ggplot(ELL_plot, aes(y=MathScores2019, x = PercentRemote,color =Category)) +
+    geom_point() + 
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2019") + ggtitle("Scatter plot of remote learning percent vs MathScores2022 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 5))
+
+ELL_ts2
+```
+
+```{r}
+ELL_ts2 <- ggplot(ELL_plot, aes(y=MathScores2022, x = PercentRemote,color =Category)) +
+    geom_point() + 
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2022") + ggtitle("remote learning percent vs MathScores2019 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 5))
+
+ELL_ts2
+```
+
+```{r}
+ELL_ts3 <- ggplot(ELL_plot, aes(y=ELAScores2019, x = PercentRemote,color =Category)) +
+    geom_point() + 
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2019") + ggtitle("Scatter plot of remote learning percent vs ELAScores2019 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 5))
+
+ELL_ts3
+```
+
+```{r}
+ELL_ts4 <- ggplot(ELL_plot, aes(y=ELAScores2022, x = PercentRemote,color =Category)) +
+    geom_point() + 
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2022") + ggtitle("Scatter plot of remote learning percent vs ELAScores2022 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 5))
+
+ELL_ts4
+```
+
+
+### Race/Ethnicity Remote Learning Preferences vs. Scores
+
+```{r}
+rl_ts1 <- ggplot(Ethnicity_plot, aes(y=MathScores2019, x = PercentRemote,color =Category)) +
+    geom_point() + 
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2019") + ggtitle("remote learning percent vs MathScores2019 showing Race or Ethnicity") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 5))
+
+rl_ts1
+```
+```{r}
+rl_ts2 <- ggplot(Ethnicity_plot, aes(y=MathScores2022, x = PercentRemote,color =Category)) +
+    geom_point() + 
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2022") + ggtitle("Remote learning percent vs MathScores2022 showing Race or Ethnicity") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 5))
+
+rl_ts2
+```
+
+```{r}
+rl_ts3 <- ggplot(Ethnicity_plot, aes(y=ELAScores2019, x = PercentRemote,color =Category)) +
+    geom_point() + 
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2019") + ggtitle("Scatter plot of remote learning percent vs ELAScores2019 showing Race or Ethnicity") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 5))
+
+rl_ts3
+```
+
+```{r}
+rl_ts4 <- ggplot(Ethnicity_plot, aes(y=ELAScores2022, x = PercentRemote,color =Category)) +
+    geom_point() + 
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2022") + ggtitle("Scatter plot of remote learning percent vs ELAScores2022 showing Race or Ethnicity") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 5))
+
+rl_ts4
+```
+
+## Findings
+
 
 
 
