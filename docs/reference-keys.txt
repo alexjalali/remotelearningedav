@@ -10,6 +10,7 @@ sources
 cleaning-transformation
 loading-in-data
 cleaning-and-consolidating-data
+liangs-try
 missing-value-analysis
 results
 packages
@@ -20,6 +21,9 @@ cleveland-dot-plot-of-remote-learning-preferences-per-district-order-by-highest-
 section-2-comparing-same-category-across-different-districts
 cleveland-dot-plot-showing-gender-vs.-remote-learning-and-ell-vs.-remote-learning
 two-cleveland-dot-plot-with-facets-showing-ethnicity-and-grade
+part-3
+ell-proportion-vs-remote-learning-preferences
+raceethnicity-proporation-vs-remote-learning-preferences
 parallel-coordinates-plot
 boxplot
 interactive-component
