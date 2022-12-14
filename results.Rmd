@@ -44,8 +44,11 @@ rasterImage(legend_image, 0, 0, 1, 1)
 ```{r}
 p1 <- ggplot(df_total, aes(PercentRemote)) +
   geom_histogram(binwidth = 2.5, boundary = 60,
-                 col = "navajowhite4",bins=10,fill="honeydew3")+
-  xlab("% Remote")+
+                 col = "navajowhite4",bins=20,fill="honeydew3")+
+  xlab("Percent Remote (%)")+
+  ylab("Frequency")+
+  scale_x_continuous(breaks=50:80)+
+  xlim(50,80)+
   ggtitle("Histogram of Percent of Students who Prefer Remote Learning per District")
 
 p1
@@ -60,7 +63,7 @@ p2 <- ggplot(df_total, aes(PercentRemote,district_remover_per_reorder)) +
   geom_point(color = "darksalmon") +
   xlab("% Remote")+
   ylab("District")+theme_linedraw()+
-  ggtitle("Cleveland dot plot of Percent of Students who Prefer Remote Learning per District")
+  ggtitle(str_wrap("Cleveland dot plot of Percent of Students who Prefer Remote Learning per District"))
 p2
 ```
 
@@ -91,29 +94,66 @@ p4 <- ggplot(ELL_plot, aes(PercentRemote,district_remover_per_reorder3)) +
 p4
 ```
 
+
+```{r}
+Ethnicity_plot <- df%>%filter(DisaggregationCategory == "Race or Ethnicity")
+district_remover_per_reorder3 <- fct_reorder(as.character(Ethnicity_plot$District), Ethnicity_plot$PercentRemote)
+
+p4_1 <- ggplot(Ethnicity_plot, aes(PercentRemote,district_remover_per_reorder3)) +
+  geom_point(aes(color=Category)) + geom_line(aes(group = District),alpha=0.3) +
+  xlab("% Remote")+
+  ylab("District")+theme_linedraw()+
+  ggtitle("Cleveland dot plot of Percent showing Race/Ethnicity vs. remote learning per District")
+p4_1
+```
+
 ### Two Cleveland dot plot with facets showing ethnicity and grade
 
-```{r fig.height=6 }
+```{r fig.height=3.5}
 
 Ethnicity_plot <- df%>%filter(DisaggregationCategory == "Race or Ethnicity")
 
-p5 <- ggplot(Ethnicity_plot, aes(x = reorder_within(District, PercentRemote, Category), y = PercentRemote)) +
-    geom_point(color="darksalmon",stat = "identity") + scale_x_reordered() +
-    facet_wrap(Category ~ ., ncol = 1, scales = "free_x", strip.position = "right", )+ylab("% Remote")+ xlab("District") + ggtitle("Cleveland dot plot of Percent with facets showing Race or Ethnicity")
+p5 <- ggplot(Ethnicity_plot, aes(y = reorder_within(District, PercentRemote, Category), x = PercentRemote)) +
+    geom_point(color="darksalmon",stat = "identity") + scale_y_reordered() +
+    facet_wrap(Category ~ ., ncol = 4, scales = "free_y", strip.position = "right", )+xlab("% Remote")+ ylab("District") + ggtitle("Cleveland dot plot of Percent with facets showing Race or Ethnicity") +
+  theme(axis.text.y = element_text(size = 5))
 
 p5
 ```
-```{r fig.height=6 }
 
+```{r}
 Grade_plot <- df%>%filter(DisaggregationCategory == "Grade Level")
+district_remover_per_reorder4 <- fct_reorder(as.character(Grade_plot$District), Grade_plot$PercentRemote)
 
-p6 <- ggplot(Grade_plot, aes(x = reorder_within(District, PercentRemote, Category), y = PercentRemote)) +
-    geom_point(color="darksalmon",stat = "identity") + scale_x_reordered() +
-    facet_wrap(Category ~ ., ncol = 1, scales = "free_x", strip.position = "right")+ylab("% Remote")+ xlab("District") + ggtitle("Cleveland dot plot of Percent with facets showing Grade Label")
+p6_1 <- ggplot(Grade_plot, aes(PercentRemote,district_remover_per_reorder4)) +
+  geom_point(aes(color=Category)) + geom_line(aes(group = District),alpha=0.3) +
+  xlab("% Remote")+
+  ylab("District")+theme_linedraw()+
+  ggtitle("Cleveland dot plot of Percent showing Grade Level vs. remote learning per District")
+p6_1
+```
+
+```{r fig.height=4 }
+
+Grade_plot <- df%>%filter(DisaggregationCategory == "Grade Level") %>%filter(Category <= "5")
+
+p6 <- ggplot(Grade_plot, aes(y = reorder_within(District, PercentRemote, Category), x = PercentRemote)) +
+    geom_point(color="darksalmon",stat = "identity") + scale_y_reordered() +
+    facet_wrap(Category ~ ., ncol = 3, scales = "free_y", strip.position = "right")+ ylab("District") + ggtitle("Cleveland dot plot of Percent with facets showing Grade Label") +
+  theme(axis.text.y = element_text(size = 5))
 
 p6
 ```
 
+```{r}
+Grade_plot <- df%>%filter(DisaggregationCategory == "Grade Level") %>%filter(Category > "5")
+
+p7 <- ggplot(Grade_plot, aes(y = reorder_within(District, PercentRemote, Category), x = PercentRemote)) +
+    geom_point(color="darksalmon",stat = "identity") + scale_y_reordered() +
+    facet_wrap(Category ~ ., ncol = 3, scales = "free_y", strip.position = "right")+xlab("% Remote")+ ylab("District") + theme(axis.text.y = element_text(size = 5))
+
+p7
+```
 ### Parallel coordinates plot
 
 ```{r pcp}
@@ -122,7 +162,7 @@ p6
 pcpdf <- df_total %>% subset(select=c("ELAScores2019","ELAScores2022","MathScores2019","MathScores2022","remote_cat")) 
 
 #highlight the clusters based on the remote categorical column
-p7<-pcpdf %>%  arrange(desc(remote_cat)) %>% ggparcoord(pcpdf, columns=1:4, groupColumn = 5, title = "Parallel Coordiantes Plot for average test scores per district, grouped by percent remote",scale = "globalminmax",
+pcpplot<-pcpdf %>%  arrange(desc(remote_cat)) %>% ggparcoord(pcpdf, columns=1:4, groupColumn = 5, title = "Parallel Coordiantes Plot for average test scores per district, grouped by percent remote",scale = "globalminmax",
     alphaLines = 0.3)+ 
   scale_fill_hue(l=40)+
 theme(
@@ -130,29 +170,48 @@ theme(
   ) +
   xlab("") + ylab("Scores") + 
   scale_x_discrete(labels = c('ELA Scores 2019','ELA Scores 2022','Math Scores 2019','Math Scores 2022' ))
-p7
+pcpplot
 ```
 
 ### Boxplot
 
 ```{r}
+remote_cat_levels <- c("High", "Middle", "Low")
+bpELA2019 <- gender_plot %>% 
+  mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
+  ggplot(aes(x=Category,y=ELAScores2019,col=remote_cat)) + 
+  geom_boxplot(alpha=1) + 
+  scale_fill_brewer(palette="Paired") +
+  ylab("Scores")+ 
+  xlab(" ") + 
+  labs(col='Remote Preference')
 
-bpELA2019 <- gender_plot %>% mutate(remote_cat = fct_reorder(remote_cat, -ELAScores2019, .fun='median')) %>% ggplot(aes(x=Category,y=ELAScores2019,fill=remote_cat)) + geom_boxplot(alpha=1) + scale_fill_brewer(palette="Paired") +ylab("Scores")+ xlab(" ") + labs(fill='Remote Preference')
-bpELA2022 <- gender_plot %>% mutate(remote_cat = fct_reorder(remote_cat, -ELAScores2022, .fun='median')) %>% ggplot(aes(fill=remote_cat, y=ELAScores2022, x=reorder(Category, ELAScores2022, median))) + geom_boxplot(alpha=1) +
-    scale_fill_brewer(palette="Paired") + ylab(" ")+ xlab(" ")+ labs(fill='Remote Preference')
-bpMath2019 <- gender_plot %>% mutate(remote_cat = fct_reorder(remote_cat, -MathScores2019, .fun='median')) %>%ggplot(aes(fill=remote_cat, y=MathScores2019, x=reorder(Category, MathScores2019, median))) + geom_boxplot(alpha=1) +
-    scale_fill_brewer(palette="Paired") + ylab("Scores")+ xlab(" ")+ labs(fill='Remote Preference')
-bpMath2022 <- gender_plot %>% mutate(remote_cat = fct_reorder(remote_cat, -MathScores2022, .fun='median')) %>% ggplot(aes(fill=remote_cat, y=MathScores2022, x=reorder(Category, MathScores2022, median))) + geom_boxplot(alpha=1) +
-    scale_fill_brewer(palette="Paired") + ylab(" ")+ xlab(" ")+ labs(fill='Remote Preference')
+bpELA2022 <- gender_plot %>% 
+  mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
+  ggplot(aes(col=remote_cat, y=ELAScores2022, x=Category)) + geom_boxplot(alpha=1) +
+    scale_fill_brewer(palette="Paired") + 
+  ylab(" ")+ 
+  xlab(" ")+ 
+  labs(col='Remote Preference')
+
+bpMath2019 <- gender_plot %>% 
+   mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
+  ggplot(aes(col=remote_cat, y=MathScores2019, x=Category)) + geom_boxplot(alpha=1) +
+scale_fill_brewer(palette="Paired") + 
+ylab("Scores")+ 
+xlab(" ")+ 
+  labs(col='Remote Preference')
+
+bpMath2022 <- gender_plot %>%
+   mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
+  ggplot(aes(col=remote_cat, y=MathScores2022, x=Category)) + geom_boxplot(alpha=1) +
+    scale_fill_brewer(palette="Paired") + 
+  ylab(" ")+ 
+  xlab(" ")+ 
+  labs(col='Remote Preference')
 
 bptotal <- ggarrange(bpELA2019,bpELA2022,bpMath2019,bpMath2022, ncol = 2, nrow = 2)
 bptotal
 
 ```
 
-```{r}
-
-Grade_plot <- df%>%filter(DisaggregationCategory == "English Language Learner Status" | DisaggregationCategory== "Gender" | DisaggregationCategory=="Race or Ethnicity")
-Grade_plot
-
-```
