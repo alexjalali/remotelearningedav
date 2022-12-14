@@ -33,7 +33,7 @@ library(wesanderson)
 
 p1 <- ggplot(df_total, aes(PercentRemote)) +
   geom_histogram(binwidth = 2.5, boundary = 60,
-                col = "navajowhite4",bins=10,fill="honeydew3")+
+                 col = "navajowhite4",bins=10,fill="honeydew3")+
   xlab("% Remote")+
   ggtitle("Histogram of Percent of Students who Prefer Remote Learning per District")
 
@@ -82,27 +82,27 @@ p4
 
 ### <span style="color:darksalmon"> TWO Cleveland dot plot with facets showing ethnicity AND grade </span>
 
-```{r fig.height=4 }
+```{r fig.height=6 }
 
 Ethnicity_plot <- df%>%filter(DisaggregationCategory == "Race or Ethnicity")
 
 p5 <- ggplot(Ethnicity_plot, aes(x = reorder_within(District, PercentRemote, Category), y = PercentRemote)) +
     geom_point(color="darksalmon",stat = "identity") + scale_x_reordered() +
-    facet_wrap(Category ~ ., ncol = 2, scales = "free_x", strip.position = "right", )+ylab("% Remote")+ xlab("District") + ggtitle("Cleveland dot plot of Percent with facets showing Race or Ethnicity")
+    facet_wrap(Category ~ ., ncol = 1, scales = "free_x", strip.position = "right", )+ylab("% Remote")+ xlab("District") + ggtitle("Cleveland dot plot of Percent with facets showing Race or Ethnicity")
 
 p5
 ```
-```{r fig.height=4 }
+```{r fig.height=6 }
 
 Grade_plot <- df%>%filter(DisaggregationCategory == "Grade Level")
 
 p6 <- ggplot(Grade_plot, aes(x = reorder_within(District, PercentRemote, Category), y = PercentRemote)) +
     geom_point(color="darksalmon",stat = "identity") + scale_x_reordered() +
-    facet_wrap(Category ~ ., ncol = 2, scales = "free_x", strip.position = "right")+ylab("% Remote")+ xlab("District") + ggtitle("Cleveland dot plot of Percent with facets showing Grade Label")
+    facet_wrap(Category ~ ., ncol = 1, scales = "free_x", strip.position = "right")+ylab("% Remote")+ xlab("District") + ggtitle("Cleveland dot plot of Percent with facets showing Grade Label")
 
 p6
 ```
-### Parallel coordinates plot
+### <span style="color:darksalmon"> Parallel coordinates plot </span>
 
 ```{r pcp}
 #this isn't working i am going to work on this tomorrow
@@ -113,9 +113,23 @@ pcpdf <- df_total %>% subset(select=c("ELAScores2019","ELAScores2022","MathScore
 pcp<-ggparcoord(pcpdf, columns=1:4, groupColumn = 5, title = "Parallel Coordiantes Plot for average test scores per district, grouped by percent remote",scale = "globalminmax") 
 pcp
 ```
-### Parallel coordinates plot
+### <span style="color:darksalmon"> Boxplot </span>
+```{r}
+library(ggpubr)
+library(cowplot)
+bpELA2019 <- gender_plot %>% ggplot(aes(fill=remote_cat, y=ELAScores2019, x=Category)) + geom_boxplot()
+bpELA2022 <- gender_plot %>% ggplot(aes(fill=remote_cat, y=ELAScores2022, x=Category)) + geom_boxplot()
+bpMath2019 <- gender_plot %>% ggplot(aes(fill=remote_cat, y=MathScores2019, x=Category)) + geom_boxplot()
+bpMath2022 <- gender_plot %>% ggplot(aes(fill=remote_cat, y=MathScores2022, x=Category)) + geom_boxplot()
 
+bptotal <- ggarrange(bpELA2019,bpELA2022,bpMath2019,bpMath2022, ncol = 2, nrow = 2)
+bptotal
+
+```
 
 ```{r}
+
+Grade_plot <- df%>%filter(DisaggregationCategory == "English Language Learner Status" | DisaggregationCategory== "Gender" | DisaggregationCategory=="Race or Ethnicity")
+Grade_plot
 
 ```

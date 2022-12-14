@@ -1,6 +1,6 @@
 # Interactive component
 
-<h2>This is the sample6</h2>
+<h2>This is the sample7</h2>
 
 <meta charset="utf-8">
 <style>
@@ -52,12 +52,12 @@ text.small-text{
 
 <div id = "graph2"></div>
 <script>
-var width = 960,height = 720,centered;
+var width = 1060,height = 720,centered;
 
 const projection = d3.geoMercator()
-  .scale(45000)
+  .scale(33000)
   .center([-73.935242, 40.730610])
-  .translate([width / 3.3, height / 2]);
+  .translate([width / 4.5, height / 3.2]);
   
 const projection2 = d3.geoMercator()
   .scale(45000)
@@ -326,10 +326,10 @@ var yAxis = d3.axisLeft()
 .scale(d3.scaleLinear().domain([650, 550]).range([0,150]));
 
 const xAxisshow = g2.append('g')
-    .attr("transform",`translate(${550},${210})`);
+    .attr("transform",`translate(${500},${210})`);
 
 const yAxisshow = g2.append('g')
-    .attr("transform",`translate(${550},${60})`);
+    .attr("transform",`translate(${500},${60})`);
 
 const legendname = g2.append('text')
   .classed('small-text', true)
@@ -382,10 +382,10 @@ var yAxis2 = d3.axisLeft()
 .scale(d3.scaleLinear().domain([100,0]).range([0,207]));
 
 const xAxisshow2 = g2.append('g')
-    .attr("transform",`translate(${550},${465})`);
+    .attr("transform",`translate(${400},${465})`);
 
 const yAxisshow2 = g2.append('g')
-    .attr("transform",`translate(${550},${258})`);
+    .attr("transform",`translate(${400},${258})`);
 
 const mediumText5 = g2.append('text')
   .classed('small-text', true);
@@ -644,158 +644,158 @@ d3.csv("https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/dat
     .text("Remote Learning Percentage: " + String(remote(d)) + "%");
   mediumText1
     .style('font-family', 'Helvetica Neue')
-    .attr('x', 568)
+    .attr('x', 518)
   	.attr('y', 205-(math19(d)-550)*(150/100))
     .text(String(math19(d)));
   mediumText2
     .style('font-family', 'Helvetica Neue')
-    .attr('x', 668)
+    .attr('x', 618)
   	.attr('y', 205-(math22(d)-550)*(150/100))
     .text(String(math22(d)));
   mediumText3
     .style('font-family', 'Helvetica Neue')
-    .attr('x', 602)
+    .attr('x', 552)
   	.attr('y', 205-(ela19(d)-550)*(150/100))
     .text(String(ela19(d)));
   mediumText4
     .style('font-family', 'Helvetica Neue')
-    .attr('x', 702)
+    .attr('x', 652)
   	.attr('y', 205-(ela22(d)-550)*(150/100))
     .text(String(ela22(d)));
   xAxisshow.call(xAxis);
 	yAxisshow.call(yAxis);
 
-  bar1.attr('x', 570)
+  bar1.attr('x', 520)
     .attr('y', 210-(math19(d)-550)*(150/100)).attr('width', 30)
   	.attr('height', (math19(d)-550)*(150/100)).attr('fill', '#0492C2').attr('opacity', 0.8);
     
-  bar2.attr('x', 600)
+  bar2.attr('x', 550)
     .attr('y', 210-(ela19(d)-550)*(150/100)).attr('width', 30)
   	.attr('height', (ela19(d)-550)*(150/100)).attr('fill', '#597D35').attr('opacity', 0.8);
     
-  bar3.attr('x', 670)
+  bar3.attr('x', 620)
     .attr('y', 210-(math22(d)-550)*(150/100)).attr('width', 30)
   	.attr('height', (math22(d)-550)*(150/100)).attr('fill', '#0492C2').attr('opacity', 0.8);
   
-  bar4.attr('x', 700)
+  bar4.attr('x', 650)
     .attr('y', 210-(ela22(d)-550)*(150/100)).attr('width', 30)
   	.attr('height', (ela22(d)-550)*(150/100)).attr('fill', '#597D35').attr('opacity', 0.8);
-  xlabel.classed('small-text', true).attr('x', 520).attr('y',45).text('Score');
-  ylabel.classed('small-text', true).attr('x', 760).attr('y',215).text('Year');
-  chartname1.attr('x', 570).attr('y', 55).text('Average Test Scores for 2018 & 2022');
-  legend1.attr('x', 770).attr('y', 75).attr('width', 10)
+  xlabel.classed('small-text', true).attr('x', 470).attr('y',45).text('Score');
+  ylabel.classed('small-text', true).attr('x', 710).attr('y',215).text('Year');
+  chartname1.attr('x', 520).attr('y', 55).text('Average Test Scores for 2018 & 2022');
+  legend1.attr('x', 710).attr('y', 75).attr('width', 10)
   .attr('height', 10).attr('fill', '#0492C2').style('opacity',0.8);
-  legend2.attr('x', 770).attr('y', 90).attr('width', 10)
+  legend2.attr('x', 710).attr('y', 90).attr('width', 10)
   .attr('height', 10).attr('fill', '#597D35').style('opacity',0.8);
-  legendlabel1.attr('x', 790).attr('y', 85).text('Math Score');
-  legendlabel2.attr('x', 790).attr('y', 100).text('ELA Score');
+  legendlabel1.attr('x', 730).attr('y', 85).text('Math Score');
+  legendlabel2.attr('x', 730).attr('y', 100).text('ELA Score');
   xAxisshow2.call(xAxis2);
 	yAxisshow2.call(yAxis2);
-  mediumText5.attr('x', 510).attr('y',243).text('Percentage');
-  mediumText6.attr('x', 880).attr('y',470).text('Category');
-  legend3.attr('x', 560).attr('y', 530).attr('width', 10)
+  mediumText5.attr('x', 360).attr('y',243).text('Percentage');
+  mediumText6.attr('x', 730).attr('y',470).text('Category');
+  legend3.attr('x', 410).attr('y', 530).attr('width', 10)
   .attr('height', 10).attr('fill', '#800000').attr('opacity', 0.7);
-  legend4.attr('x', 560).attr('y', 500).attr('width', 10)
+  legend4.attr('x', 410).attr('y', 500).attr('width', 10)
   .attr('height', 10).attr('fill', '#008080').attr('opacity', 0.7);
-  legendlabel3.attr('x', 580).attr('y', 540).text('Male');
-  legendlabel4.attr('x', 580).attr('y', 509).text('Female');
-  legendvalue3.attr('x', 580).attr('y', 525).text(female(d) + "%");
-  legendvalue4.attr('x', 580).attr('y', 555).text(male(d) + "%");
-  genderbar1.attr('x', 575)
+  legendlabel3.attr('x', 430).attr('y', 540).text('Male');
+  legendlabel4.attr('x', 430).attr('y', 509).text('Female');
+  legendvalue3.attr('x', 430).attr('y', 525).text(female(d) + "%");
+  legendvalue4.attr('x', 430).attr('y', 555).text(male(d) + "%");
+  genderbar1.attr('x', 425)
     .attr('y', 465-(male(d))*(2.07)).attr('width', 30)
   	.attr('height', (male(d))*(2.07)).attr('fill', '#800000').attr('opacity', 0.7);
-  genderbar2.attr('x', 575)
+  genderbar2.attr('x', 425)
     .attr('y', 258).attr('width', 30)
   	.attr('height', (female(d))*(2.07))
     .attr('fill','#008080').attr('opacity', 0.7);
-  legendlabel5.attr('x', 670).attr('y', 509).text('Asian');
-  legendlabel6.attr('x', 670).attr('y', 540).text('Black');
-  legendlabel7.attr('x', 670).attr('y', 570).text('Hispanic');
-  legendlabel8.attr('x', 670).attr('y', 600).text('White');
-  legendvalue5.attr('x', 670).attr('y', 525).text(asian(d) + "%");
-  legendvalue6.attr('x', 670).attr('y', 555).text(black(d) + "%");
-  legendvalue7.attr('x', 670).attr('y', 585).text(hispanic(d) + "%");
-  legendvalue8.attr('x', 670).attr('y', 615).text(white(d) + "%");
+  legendlabel5.attr('x', 520).attr('y', 509).text('Asian');
+  legendlabel6.attr('x', 520).attr('y', 540).text('Black');
+  legendlabel7.attr('x', 520).attr('y', 570).text('Hispanic');
+  legendlabel8.attr('x', 520).attr('y', 600).text('White');
+  legendvalue5.attr('x', 520).attr('y', 525).text(asian(d) + "%");
+  legendvalue6.attr('x', 520).attr('y', 555).text(black(d) + "%");
+  legendvalue7.attr('x', 520).attr('y', 585).text(hispanic(d) + "%");
+  legendvalue8.attr('x', 520).attr('y', 615).text(white(d) + "%");
   
-  legend5.attr('x', 650).attr('y', 500).attr('width', 10)
+  legend5.attr('x', 500).attr('y', 500).attr('width', 10)
   .attr('height', 10).attr('fill', '#F1948A');
-  legend6.attr('x', 650).attr('y', 530).attr('width', 10)
+  legend6.attr('x', 500).attr('y', 530).attr('width', 10)
   .attr('height', 10).attr('fill', '#BB8FCE');
-	legend7.attr('x', 650).attr('y', 560).attr('width', 10)
+	legend7.attr('x', 500).attr('y', 560).attr('width', 10)
   .attr('height', 10).attr('fill', '#85C1E9');
-  legend8.attr('x', 650).attr('y', 590).attr('width', 10)
+  legend8.attr('x', 500).attr('y', 590).attr('width', 10)
   .attr('height', 10).attr('fill', '#82E0AA');
   
-  ethnicitybar1.attr('x', 655)
+  ethnicitybar1.attr('x', 505)
     .attr('y', 258).attr('width', 30)
   	.attr('height', (asian(d))*(2.07)).attr('fill','#F1948A');
-  ethnicitybar2.attr('x', 655)
+  ethnicitybar2.attr('x', 505)
     .attr('y', 465-(white(d))*(2.07)-(hispanic(d))*(2.07)-(black(d))*(2.07)).attr('width', 30)
   	.attr('height', (black(d))*(2.07)).attr('fill', '#BB8FCE');
-  ethnicitybar3.attr('x', 655)
+  ethnicitybar3.attr('x', 505)
     .attr('y', 465-(white(d))*(2.07)-(hispanic(d))*(2.07)).attr('width', 30)
   	.attr('height', (hispanic(d))*(2.07)).attr('fill', '#85C1E9');
-  ethnicitybar4.attr('x', 655)
+  ethnicitybar4.attr('x', 505)
     .attr('y', 465-(white(d))*(2.07)).attr('width', 30)
   	.attr('height', (white(d))*(2.07)).attr('fill', '#82E0AA');
   
-  legendlabel9.attr('x', 745).attr('y', 509).text('Grade 3');
-  legendlabel10.attr('x', 745).attr('y', 540).text('Grade 4');
-  legendlabel11.attr('x', 745).attr('y', 570).text('Grade 5');
-  legendlabel12.attr('x', 745).attr('y', 600).text('Grade 6');
-  legendlabel13.attr('x', 745).attr('y', 630).text('Grade 7');
-  legendlabel14.attr('x', 745).attr('y', 660).text('Grade 8');
+  legendlabel9.attr('x', 595).attr('y', 509).text('Grade 3');
+  legendlabel10.attr('x', 595).attr('y', 540).text('Grade 4');
+  legendlabel11.attr('x', 595).attr('y', 570).text('Grade 5');
+  legendlabel12.attr('x', 595).attr('y', 600).text('Grade 6');
+  legendlabel13.attr('x', 595).attr('y', 630).text('Grade 7');
+  legendlabel14.attr('x', 595).attr('y', 660).text('Grade 8');
   
-  legendvalue9.attr('x', 745).attr('y', 525).text(grade3(d) + "%");
-  legendvalue10.attr('x', 745).attr('y', 555).text(grade4(d) + "%");
-  legendvalue11.attr('x', 745).attr('y', 585).text(grade5(d) + "%");
-  legendvalue12.attr('x', 745).attr('y', 615).text(grade6(d) + "%");
-  legendvalue13.attr('x', 745).attr('y', 645).text(grade7(d) + "%");
-  legendvalue14.attr('x', 745).attr('y', 675).text(grade8(d) + "%");
+  legendvalue9.attr('x', 595).attr('y', 525).text(grade3(d) + "%");
+  legendvalue10.attr('x', 595).attr('y', 555).text(grade4(d) + "%");
+  legendvalue11.attr('x', 595).attr('y', 585).text(grade5(d) + "%");
+  legendvalue12.attr('x', 595).attr('y', 615).text(grade6(d) + "%");
+  legendvalue13.attr('x', 595).attr('y', 645).text(grade7(d) + "%");
+  legendvalue14.attr('x', 595).attr('y', 675).text(grade8(d) + "%");
   
-  legend9.attr('x', 725).attr('y', 500).attr('width', 10)
+  legend9.attr('x', 575).attr('y', 500).attr('width', 10)
   .attr('height', 10).attr('fill', '#D6EAF8');
-  legend10.attr('x', 725).attr('y', 530).attr('width', 10)
+  legend10.attr('x', 575).attr('y', 530).attr('width', 10)
   .attr('height', 10).attr('fill', '#85C1E9');
-	legend11.attr('x', 725).attr('y', 560).attr('width', 10)
+	legend11.attr('x', 575).attr('y', 560).attr('width', 10)
   .attr('height', 10).attr('fill', '#5DADE2');
-  legend12.attr('x', 725).attr('y', 590).attr('width', 10)
+  legend12.attr('x', 575).attr('y', 590).attr('width', 10)
   .attr('height', 10).attr('fill', '#007AFF');
-  legend13.attr('x', 725).attr('y', 620).attr('width', 10)
+  legend13.attr('x', 575).attr('y', 620).attr('width', 10)
   .attr('height', 10).attr('fill', '#0000FF');
-  legend14.attr('x', 725).attr('y', 650).attr('width', 10)
+  legend14.attr('x', 575).attr('y', 650).attr('width', 10)
   .attr('height', 10).attr('fill', '#011F4B');
   
-  gradebar3.attr('x', 735)
+  gradebar3.attr('x', 585)
     .attr('y', 258).attr('width', 30)
   	.attr('height', (grade3(d))*(2.07)).attr('fill','#D6EAF8');
-  gradebar4.attr('x', 735)
+  gradebar4.attr('x', 585)
     .attr('y', 258+(grade3(d))*(2.07)).attr('width', 30)
   	.attr('height', (grade4(d))*(2.07)).attr('fill','#85C1E9');
-  gradebar5.attr('x', 735)
+  gradebar5.attr('x', 585)
     .attr('y', 465-(grade5(d))*(2.07)-(grade6(d))*(2.07)-(grade7(d))*(2.07)-(grade8(d))*(2.07)).attr('width', 30).attr('height', (grade5(d))*(2.07)).attr('fill', '#5DADE2');
-  gradebar6.attr('x', 735)
+  gradebar6.attr('x', 585)
     .attr('y', 465-(grade6(d))*(2.07)-(grade7(d))*(2.07)-(grade8(d))*(2.07)).attr('width', 30)
   	.attr('height', (grade6(d))*(2.07)).attr('fill', '#007AFF');
-  gradebar7.attr('x', 735)
+  gradebar7.attr('x', 585)
     .attr('y', 465-(grade7(d))*(2.07)-(grade8(d))*(2.07)).attr('width', 30)
   	.attr('height', (grade7(d))*(2.07)).attr('fill', '#0000FF');
-  gradebar8.attr('x', 735)
+  gradebar8.attr('x', 585)
     .attr('y', 465-(grade8(d))*(2.07)).attr('width', 30)
   	.attr('height', (grade8(d))*(2.07)).attr('fill', '#011F4B');
   
-  legendlabel15.attr('x', 825).attr('y', 509).text('ELL');
-  legendlabel16.attr('x', 825).attr('y', 540).text('Not ELL');
-  legendvalue15.attr('x', 825).attr('y', 525).text(ELL(d) + "%");
-  legendvalue16.attr('x', 825).attr('y', 555).text(NoELL(d) + "%");
-  legend15.attr('x', 805).attr('y', 500).attr('width', 10)
+  legendlabel15.attr('x', 675).attr('y', 509).text('ELL');
+  legendlabel16.attr('x', 675).attr('y', 540).text('Not ELL');
+  legendvalue15.attr('x', 675).attr('y', 525).text(ELL(d) + "%");
+  legendvalue16.attr('x', 675).attr('y', 555).text(NoELL(d) + "%");
+  legend15.attr('x', 655).attr('y', 500).attr('width', 10)
   .attr('height', 10).attr('fill', '#D98880');
-  legend16.attr('x', 805).attr('y', 530).attr('width', 10)
+  legend16.attr('x', 655).attr('y', 530).attr('width', 10)
   .attr('height', 10).attr('fill', '#1A5276');
-  ellbar1.attr('x', 814)
+  ellbar1.attr('x', 664)
     .attr('y', 465-(NoELL(d))*(2.07)).attr('width', 30)
   	.attr('height', (NoELL(d))*(2.07)).attr('fill', '#1A5276');
-  ellbar2.attr('x', 814)
+  ellbar2.attr('x', 664)
     .attr('y', 258).attr('width', 30)
   	.attr('height', (ELL(d))*(2.07))
     .attr('fill','#D98880');

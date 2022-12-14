@@ -505,8 +505,8 @@ min_percent_remote <- as.numeric(min(df_super$PercentRemote))
 max_percent_remote <- as.numeric(max(df_super$PercentRemote))
 
 # Next, calculate the lower, middle, and upper bounds of the new categories
-lower_bound <- min_percent_remote + (max_percent_remote - min_percent_remote) / 3
-upper_bound <- max_percent_remote - (max_percent_remote - min_percent_remote) / 3
+lower_bound <- quantile(df_super$PercentRemote, 0.25)
+upper_bound <- quantile(df_super$PercentRemote, 0.75)
 
 # Create the new categorical variable using the cut() function
 df_super$remote_cat <- cut(df_super$PercentRemote, breaks = c(min_percent_remote-1, lower_bound, upper_bound, max_percent_remote), labels = c("Low", "Middle", "High"))
