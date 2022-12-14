@@ -46,11 +46,11 @@ text.small-text{
 
 
 <script src="https://d3js.org/d3.v7.js"></script>
-<div id = "graph1"></div>
+<div id = "graph2"></div>
 
 <h2> This is the second graph </h2>
 
-<div id = "graph2"></div>
+<div id = "graph1"></div>
 <script>
 var width = 1060,height = 720,centered;
 
