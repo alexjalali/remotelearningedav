@@ -216,20 +216,20 @@ pcpplot
 
 ```{r pt5 gender boxplot by scores: Graph 10}
 remote_cat_levels <- c("High", "Middle", "Low")
-bpELA2019_10 <- gender_plot %>% 
+bpELA2019 <- gender_plot %>% 
   mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(x=Category,y=ELAScores2019,col=remote_cat)) + 
   geom_boxplot(alpha=1) + 
   scale_fill_brewer(palette="Paired") +
-  ylab("Scores")+ 
+  ylab("ELA Scores 2019")+ 
   xlab(" ") + 
   labs(col='Remote Preference')
 
-bpELA2022_10 <- gender_plot %>% 
+bpELA2022 <- gender_plot %>% 
   mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(col=remote_cat, y=ELAScores2022, x=Category)) + geom_boxplot(alpha=1) +
     scale_fill_brewer(palette="Paired") + 
-  ylab(" ")+ 
+  ylab("ELA Scores 2022")+ 
   xlab(" ")+ 
   labs(col='Remote Preference')
 
@@ -237,15 +237,15 @@ bpMath2019 <- gender_plot %>%
    mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(col=remote_cat, y=MathScores2019, x=Category)) + geom_boxplot(alpha=1) +
 scale_fill_brewer(palette="Paired") + 
-ylab("Scores")+ 
+ylab("Math Scores 2019")+ 
 xlab(" ")+ 
   labs(col='Remote Preference')
 
-bpMath2022_10 <- gender_plot %>%
+bpMath2022 <- gender_plot %>%
    mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(col=remote_cat, y=MathScores2022, x=Category)) + geom_boxplot(alpha=1) +
     scale_fill_brewer(palette="Paired") + 
-  ylab(" ")+ 
+  ylab("Math Scores 2022")+ 
   xlab(" ")+ 
   labs(col='Remote Preference')
 
@@ -261,7 +261,7 @@ bpELA2019_11 <- ELL_plot %>%
   ggplot(aes(x=Category,y=ELAScores2019,col=remote_cat)) + 
   geom_boxplot(alpha=1) + 
   scale_fill_brewer(palette="Paired") +
-  ylab("Scores")+ 
+  ylab("ELA Scores 2019")+ 
   xlab(" ") + 
   labs(col='Remote Preference')
 
@@ -269,7 +269,7 @@ bpELA2022_11 <- ELL_plot %>%
   mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(col=remote_cat, y=ELAScores2022, x=Category)) + geom_boxplot(alpha=1) +
     scale_fill_brewer(palette="Paired") + 
-  ylab(" ")+ 
+  ylab("ELA Scores 2022")+ 
   xlab(" ")+ 
   labs(col='Remote Preference')
 
@@ -277,7 +277,7 @@ bpMath2019_11 <- ELL_plot %>%
    mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(col=remote_cat, y=MathScores2019, x=Category)) + geom_boxplot(alpha=1) +
 scale_fill_brewer(palette="Paired") + 
-ylab("Scores")+ 
+ylab("Math Scores 2019")+ 
 xlab(" ")+ 
   labs(col='Remote Preference')
 
@@ -285,7 +285,7 @@ bpMath2022_11 <- ELL_plot %>%
    mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(col=remote_cat, y=MathScores2022, x=Category)) + geom_boxplot(alpha=1) +
     scale_fill_brewer(palette="Paired") + 
-  ylab(" ")+ 
+  ylab("Math Scores 2022")+ 
   xlab(" ")+ 
   labs(col='Remote Preference')
 
@@ -300,7 +300,7 @@ bpELA2019_12 <- Ethnicity_plot %>%
   ggplot(aes(x=Category,y=ELAScores2019,col=remote_cat)) + 
   geom_boxplot(alpha=1) + 
   scale_fill_brewer(palette="Paired") +
-  ylab("Scores")+ 
+  ylab("ELA Scores 2019")+ 
   xlab(" ") + 
   labs(col='Remote Preference')
 
@@ -308,7 +308,7 @@ bpELA2022_12 <- Ethnicity_plot %>%
   mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(col=remote_cat, y=ELAScores2022, x=Category)) + geom_boxplot(alpha=1) +
     scale_fill_brewer(palette="Paired") + 
-  ylab(" ")+ 
+  ylab("ELA Scores 2022")+ 
   xlab(" ")+ 
   labs(col='Remote Preference')
 
@@ -316,7 +316,7 @@ bpMath2019_12 <- Ethnicity_plot %>%
    mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(col=remote_cat, y=MathScores2019, x=Category)) + geom_boxplot(alpha=1) +
 scale_fill_brewer(palette="Paired") + 
-ylab("Scores")+ 
+ylab("Math Scores 2019")+ 
 xlab(" ")+ 
   labs(col='Remote Preference')
 
@@ -324,7 +324,7 @@ bpMath2022_12 <- Ethnicity_plot %>%
    mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(col=remote_cat, y=MathScores2022, x=Category)) + geom_boxplot(alpha=1) +
     scale_fill_brewer(palette="Paired") + 
-  ylab(" ")+ 
+  ylab("Math Scores 2022")+ 
   xlab(" ")+ 
   labs(col='Remote Preference')
 
@@ -342,7 +342,7 @@ bpELA2019_13 <- Grade_plot2 %>%
   ggplot(aes(x=Category,y=ELAScores2019,col=remote_cat)) + 
   geom_boxplot(alpha=1) + 
   scale_fill_brewer(palette="Paired") +
-  ylab("Scores")+ 
+  ylab("ELA Scores 2019")+ 
   xlab(" ") + 
   labs(col='Remote Preference')
 
@@ -350,7 +350,7 @@ bpELA2022_13 <- Grade_plot2 %>%
   mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(col=remote_cat, y=ELAScores2022, x=Category)) + geom_boxplot(alpha=1) +
     scale_fill_brewer(palette="Paired") + 
-  ylab(" ")+ 
+  ylab("ELA Scores 2022")+ 
   xlab(" ")+ 
   labs(col='Remote Preference')
 
@@ -358,7 +358,7 @@ bpMath2019_13 <- Grade_plot2 %>%
    mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(col=remote_cat, y=MathScores2019, x=Category)) + geom_boxplot(alpha=1) +
 scale_fill_brewer(palette="Paired") + 
-ylab("Scores")+ 
+ylab("Math Scores 2019")+ 
 xlab(" ")+ 
   labs(col='Remote Preference')
 
@@ -366,11 +366,11 @@ bpMath2022_13 <- Grade_plot2 %>%
    mutate(remote_cat = factor(remote_cat, remote_cat_levels)) %>%
   ggplot(aes(col=remote_cat, y=MathScores2022, x=Category)) + geom_boxplot(alpha=1) +
     scale_fill_brewer(palette="Paired") + 
-  ylab(" ")+ 
+  ylab("Math Scores 2022")+ 
   xlab(" ")+ 
   labs(col='Remote Preference')
 
-bptotal_13 <- ggarrange(bpELA2019_13,bpELA2022_13,bpMath2019_13,bpMath2022_13, ncol = 1, nrow = 4,common.legend=TRUE)
+bptotal_13 <- ggarrange(bpELA2019_13,bpELA2022_13,bpMath2019_13,bpMath2022_13, ncol = 2, nrow = 2,common.legend=TRUE)
 annotate_figure(bptotal_13, top = text_grob("Boxplots of Test Scores by Grade colored by Remote Learning Preferences", 
                color = "black", size = 12))
 
