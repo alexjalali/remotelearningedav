@@ -155,10 +155,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2.1" data-path="data.html"><a href="data.html#loading-in-data"><i class="fa fa-check"></i><b>3.2.1</b> Loading in Data</a></li>
 <li class="chapter" data-level="3.2.2" data-path="data.html"><a href="data.html#cleaning-data-to-prepare-for-merge"><i class="fa fa-check"></i><b>3.2.2</b> Cleaning Data to Prepare for Merge</a></li>
 <li class="chapter" data-level="3.2.3" data-path="data.html"><a href="data.html#merging-datasets"><i class="fa fa-check"></i><b>3.2.3</b> Merging Datasets</a></li>
-<li class="chapter" data-level="3.2.4" data-path="data.html"><a href="data.html#replacing-missing-values"><i class="fa fa-check"></i><b>3.2.4</b> Replacing Missing Values</a></li>
-<li class="chapter" data-level="3.2.5" data-path="data.html"><a href="data.html#making-a-new-variable-to-reflect-categories-for-percent-remote"><i class="fa fa-check"></i><b>3.2.5</b> Making a new Variable to reflect categories for Percent Remote</a></li>
-<li class="chapter" data-level="3.2.6" data-path="data.html"><a href="data.html#our-final-dataset-first-10-observations"><i class="fa fa-check"></i><b>3.2.6</b> Our Final Dataset, first 10 Observations</a></li>
-<li class="chapter" data-level="3.2.7" data-path="data.html"><a href="data.html#our-final-dataset-last-10-observations"><i class="fa fa-check"></i><b>3.2.7</b> Our Final Dataset, last 10 Observations</a></li>
+<li class="chapter" data-level="3.2.4" data-path="data.html"><a href="data.html#other-cleaning"><i class="fa fa-check"></i><b>3.2.4</b> Other Cleaning</a></li>
+<li class="chapter" data-level="3.2.5" data-path="data.html"><a href="data.html#our-final-dataset"><i class="fa fa-check"></i><b>3.2.5</b> Our Final Dataset</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#missing-value-analysis"><i class="fa fa-check"></i><b>3.3</b> Missing value analysis</a></li>
 </ul></li>
@@ -754,12 +752,14 @@ Data Set 3: Math Test Scores
 <span id="cb5-181"><a href="data.html#cb5-181" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
-<div id="replacing-missing-values" class="section level3 hasAnchor" number="3.2.4">
-<h3><span class="header-section-number">3.2.4</span> Replacing Missing Values<a href="data.html#replacing-missing-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="other-cleaning" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Other Cleaning<a href="data.html#other-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="replacing-missing-values" class="section level4 hasAnchor" number="3.2.4.1">
+<h4><span class="header-section-number">3.2.4.1</span> Replacing Missing Values<a href="data.html#replacing-missing-values" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The dataset had missing values in the test scores datasets. We replaced these test scores with its specific district average. This will be elaborated in section 3.3: Missing value analysis.</p>
 </div>
-<div id="making-a-new-variable-to-reflect-categories-for-percent-remote" class="section level3 hasAnchor" number="3.2.5">
-<h3><span class="header-section-number">3.2.5</span> Making a new Variable to reflect categories for Percent Remote<a href="data.html#making-a-new-variable-to-reflect-categories-for-percent-remote" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="making-a-new-variable-to-reflect-categories-for-percent-remote" class="section level4 hasAnchor" number="3.2.4.2">
+<h4><span class="header-section-number">3.2.4.2</span> Making a new Variable to reflect categories for Percent Remote<a href="data.html#making-a-new-variable-to-reflect-categories-for-percent-remote" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>As a final step in the data cleaning and consolidation process, we created a new variable called “percent_cat” to categorize the preference for remote learning as “high”, “middle”, or “low”. This new variable is categorical and will be useful for visualizing the data. We divided the remote learning preference into three groups: the lower 25% was labeled as “low”, the middle 25%-75% was labeled as “middle”, and the upper 75% was labeled as “high”.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, find the minimum and maximum values of percent remote</span></span>
 <span id="cb6-2"><a href="data.html#cb6-2" aria-hidden="true" tabindex="-1"></a>df_super<span class="sc">$</span>PercentRemote <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df_super<span class="sc">$</span>PercentRemote)</span>
@@ -773,8 +773,11 @@ Data Set 3: Math Test Scores
 <span id="cb6-10"><a href="data.html#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the new categorical variable using the cut() function</span></span>
 <span id="cb6-11"><a href="data.html#cb6-11" aria-hidden="true" tabindex="-1"></a>df_super<span class="sc">$</span>remote_cat <span class="ot">&lt;-</span> <span class="fu">cut</span>(df_super<span class="sc">$</span>PercentRemote, <span class="at">breaks =</span> <span class="fu">c</span>(min_percent_remote<span class="dv">-1</span>, lower_bound, upper_bound, max_percent_remote), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Middle&quot;</span>, <span class="st">&quot;High&quot;</span>))</span></code></pre></div>
 </div>
-<div id="our-final-dataset-first-10-observations" class="section level3 hasAnchor" number="3.2.6">
-<h3><span class="header-section-number">3.2.6</span> Our Final Dataset, first 10 Observations<a href="data.html#our-final-dataset-first-10-observations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="our-final-dataset" class="section level3 hasAnchor" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Our Final Dataset<a href="data.html#our-final-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="first-10-observations" class="section level4 hasAnchor" number="3.2.5.1">
+<h4><span class="header-section-number">3.2.5.1</span> First 10 Observations<a href="data.html#first-10-observations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre><code>## # A tibble: 10 × 13
 ## # Groups:   District [1]
 ##    District DisaggregationCat…¹ Categ…² MathS…³ ELASc…⁴ MathS…⁵ ELASc…⁶ Total…⁷ Blended Perce…⁸ Remote Perce…⁹ remot…˟
@@ -792,8 +795,8 @@ Data Set 3: Math Test Scores
 ## # … with abbreviated variable names ¹​DisaggregationCategory, ²​Category, ³​MathScores2019, ⁴​ELAScores2019,
 ## #   ⁵​MathScores2022, ⁶​ELAScores2022, ⁷​TotalEnrollment, ⁸​PercentBlended, ⁹​PercentRemote, ˟​remote_cat</code></pre>
 </div>
-<div id="our-final-dataset-last-10-observations" class="section level3 hasAnchor" number="3.2.7">
-<h3><span class="header-section-number">3.2.7</span> Our Final Dataset, last 10 Observations<a href="data.html#our-final-dataset-last-10-observations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="last-10-observations" class="section level4 hasAnchor" number="3.2.5.2">
+<h4><span class="header-section-number">3.2.5.2</span> Last 10 Observations<a href="data.html#last-10-observations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre><code>## # A tibble: 10 × 13
 ## # Groups:   District [1]
 ##    District DisaggregationCat…¹ Categ…² MathS…³ ELASc…⁴ MathS…⁵ ELASc…⁶ Total…⁷ Blended Perce…⁸ Remote Perce…⁹ remot…˟
@@ -812,6 +815,7 @@ Data Set 3: Math Test Scores
 ## #   ⁵​MathScores2022, ⁶​ELAScores2022, ⁷​TotalEnrollment, ⁸​PercentBlended, ⁹​PercentRemote, ˟​remote_cat</code></pre>
 </div>
 </div>
+</div>
 <div id="missing-value-analysis" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Missing value analysis<a href="data.html#missing-value-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Within our data received from the NYC department of education, there are some missing values that need to be filled in order to facilitate our analysis in the results section. The chart below shows the number of rows with missing values for each variable:</p>
@@ -821,15 +825,15 @@ Data Set 3: Math Test Scores
 ##                      0                      0                      0                      0                      0 
 ##                 Remote          PercentRemote 
 ##                      0                      0</code></pre>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-81-1.png" width="672" />
-As we can see from the images above, the only variables with missing values are MathScores2022, ELAScores2022, MathScores2019, and ELAScores2019. This indicates that our first dataset on remote learning preferences did not have any missing values, but our math and ELA scores datasets did.
-To further investigate the patterns of missing data, we can look at the chart below:</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-82-1.png" width="672" />
-Based on this graph, it is clear that there is a pattern of missing data between the scores variables. We can further examine which demographic categories these missing values exist in by looking at the following graph:
-<img src="finalproj_files/figure-html/unnamed-chunk-83-1.png" width="672" />
-As we can see from the graph above, the only categories with missing values for the test scores are two factors within the ethnicity category: “Asian” and “White”. To determine which districts within these categories have missing values, and whether any of these districts are the same, we can look at the chart below:
-<img src="finalproj_files/figure-html/unnamed-chunk-84-1.png" width="672" />
-As shown in this chart, the missing values for both “Asian” and “White” ethnicities are from districts 7, 16, 23, and 32. The reason for this could be that on the standardized tests, students in these districts were not required to indicate their ethnicity as “Asian” or “White”. Another possible reason is that there were errors in the reporting of these districts.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>As we can see from the images above, the only variables with missing values are MathScores2022, ELAScores2022, MathScores2019, and ELAScores2019. This indicates that our first dataset on remote learning preferences did not have any missing values, but our math and ELA scores datasets did.</p>
+<p>To further investigate the patterns of missing data, we can look at the chart below:</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Based on this graph, it is clear that there is a pattern of missing data between the scores variables. We can further examine which demographic categories these missing values exist in by looking at the following graph:</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>As we can see from the graph above, the only categories with missing values for the test scores are two factors within the ethnicity category: “Asian” and “White”. To determine which districts within these categories have missing values, and whether any of these districts are the same, we can look at the chart below:</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>As shown in this chart, the missing values for both “Asian” and “White” ethnicities are from districts 7, 16, 23, and 32. The reason for this could be that on the standardized tests, students in these districts were not required to indicate their ethnicity as “Asian” or “White”. Another possible reason is that there were errors in the reporting of these districts.</p>
 <p>We imputed these missing values with its respective district’s average test scores.</p>
 
 </div>
