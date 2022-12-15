@@ -416,48 +416,43 @@ annotate_figure(bptotal_13, top = text_grob("Boxplots of Test Scores by Grade co
 ```
 
 ## Part 6: Detailed Analysis for ELL Subgroup and Race/Ethnicity Subgroup
-We are trying to find the correlations between test scores and remote learning preference. We make the plot with facets of different indicators.
 
 ### ELL Remote Learning Preferences vs. Scores
 
 ```{r}
+library(gridExtra)
+```
+
+```{r}
 ELL_ts1 <- ggplot(ELL_plot, aes(y=MathScores2019, x = PercentRemote,color =Category)) +
     geom_point() + 
-    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2019") + ggtitle("Remote learning percent vs MathScores2019 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
-  theme(axis.text.y = element_text(size = 5),plot.title=element_text(size=12))
-
-ELL_ts1
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2019") + ggtitle("% Remote vs MathScores2019") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 10))
 ```
 
 ```{r}
 ELL_ts2 <- ggplot(ELL_plot, aes(y=MathScores2022, x = PercentRemote,color =Category)) +
     geom_point() + 
-    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2022") + ggtitle("Remote learning percent vs MathScores2022 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
-  theme(axis.text.y = element_text(size = 5),plot.title=element_text(size=12))
-
-ELL_ts2
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2022") + ggtitle("% Remote vs MathScores2022") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 10))
+grid.arrange(ELL_ts1, ELL_ts2, ncol=1)
 ```
 
 ```{r}
 ELL_ts3 <- ggplot(ELL_plot, aes(y=ELAScores2019, x = PercentRemote,color =Category)) +
     geom_point() + 
-    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2019") + ggtitle("Remote learning percent vs ELAScores2019 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
-  theme(axis.text.y = element_text(size = 5),plot.title=element_text(size=12))
-
-ELL_ts3
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2019") + ggtitle("% Remote vs ELAScores2019") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 10))
 ```
 
 ```{r}
 ELL_ts4 <- ggplot(ELL_plot, aes(y=ELAScores2022, x = PercentRemote,color =Category)) +
     geom_point() + 
-    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2022") + ggtitle("Remote learning percent vs ELAScores2022 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
-  theme(axis.text.y = element_text(size = 5),plot.title=element_text(size=12))
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2022") + ggtitle("% Remote vs ELAScores2022") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 10))
 
-ELL_ts4
+grid.arrange(ELL_ts3, ELL_ts4, ncol=1)
 ```
-
-
-
 
 
 ### Race/Ethnicity Remote Learning Preferences vs. Scores
@@ -465,36 +460,31 @@ ELL_ts4
 ```{r}
 rl_ts1 <- ggplot(Ethnicity_plot, aes(y=MathScores2019, x = PercentRemote,color =Category)) +
     geom_point() + 
-    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2019") + ggtitle("remote learning percent vs MathScores2019 showing Race or Ethnicity") + geom_smooth(method = "lm",se=FALSE,color="blue")+
-  theme(axis.text.y = element_text(size = 5))
-
-rl_ts1
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2019") + ggtitle("% Remote vs MathScores2019") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 10))
 ```
-```{r}
+
+```{r fig.height= 3.5}
 rl_ts2 <- ggplot(Ethnicity_plot, aes(y=MathScores2022, x = PercentRemote,color =Category)) +
     geom_point() + 
-    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2022") + ggtitle("Remote learning percent vs MathScores2022 showing Race or Ethnicity") + geom_smooth(method = "lm",se=FALSE,color="blue")+
-  theme(axis.text.y = element_text(size = 5))
-
-rl_ts2
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2022") + ggtitle("% Remote vs MathScores2022") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 10))
+grid.arrange(rl_ts1, rl_ts2, ncol=1)
 ```
 
 ```{r}
 rl_ts3 <- ggplot(Ethnicity_plot, aes(y=ELAScores2019, x = PercentRemote,color =Category)) +
     geom_point() + 
     facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2019") + ggtitle("Scatter plot of remote learning percent vs ELAScores2019 showing Race or Ethnicity") + geom_smooth(method = "lm",se=FALSE,color="blue")+
-  theme(axis.text.y = element_text(size = 5))
-
-rl_ts3
+  theme(axis.text.y = element_text(size = 10))
 ```
 
-```{r}
+```{r, fig.height = 3.5}
 rl_ts4 <- ggplot(Ethnicity_plot, aes(y=ELAScores2022, x = PercentRemote,color =Category)) +
     geom_point() + 
     facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2022") + ggtitle("Scatter plot of remote learning percent vs ELAScores2022 showing Race or Ethnicity") + geom_smooth(method = "lm",se=FALSE,color="blue")+
-  theme(axis.text.y = element_text(size = 5))
-
-rl_ts4
+  theme(axis.text.y = element_text(size = 10))
+grid.arrange(rl_ts3, rl_ts4, ncol=1)
 ```
 
 ## Findings
