@@ -82,8 +82,14 @@ After gaining the overall data information, we want to look at four subgroups(gr
 ### Gender
 The Cleveland dot plot shows the remote learning preference of different gender in each district. The blue dots denote the preference of male and the red dots denote the preference of female. For most districts, female have a stronger preference to do remote learning. We make the difference between the males and females stand out further by connecting the genders for each districts.
 ```{r}
+df$overall = 0
+for (x in 1:32){
+  for(y in 1:15){
+    df$overall[15*(x-1) + y] = df$PercentRemote[15*x]
+  }
+}
 gender_plot <- df%>%filter(DisaggregationCategory == "Gender")
-district_remover_per_reorder2 <- fct_reorder(as.character(gender_plot$District), gender_plot$PercentRemote)
+district_remover_per_reorder2 <- fct_reorder(as.character(gender_plot$District), gender_plot$overall)
 
 p3 <- ggplot(gender_plot, aes(PercentRemote,district_remover_per_reorder2)) +
   geom_point(aes(color =Category)) + geom_line(aes(group = District),alpha=0.3) +
@@ -99,7 +105,7 @@ This Cleveland dot plot shows the remote learning preference of different Englis
 
 ```{r}
 ELL_plot <- df%>%filter(DisaggregationCategory == "English Language Learner Status")
-district_remover_per_reorder3 <- fct_reorder(as.character(ELL_plot$District), ELL_plot$PercentRemote)
+district_remover_per_reorder3 <- fct_reorder(as.character(ELL_plot$District), ELL_plot$overall)
 
 p4 <- ggplot(ELL_plot, aes(PercentRemote,district_remover_per_reorder3)) +
   geom_point(aes(color=Category)) + geom_line(aes(group = District),alpha=0.3) +
@@ -115,7 +121,7 @@ This plot tells us the remote learning preference grouped by races or ethnicity 
 
 ```{r}
 Ethnicity_plot <- df%>%filter(DisaggregationCategory == "Race or Ethnicity")
-district_remover_per_reorder3 <- fct_reorder(as.character(Ethnicity_plot$District), Ethnicity_plot$PercentRemote)
+district_remover_per_reorder3 <- fct_reorder(as.character(Ethnicity_plot$District), Ethnicity_plot$overall)
 
 p4_1 <- ggplot(Ethnicity_plot, aes(PercentRemote,district_remover_per_reorder3)) +
   geom_point(aes(color=Category)) + geom_line(aes(group = District),alpha=0.3) +
@@ -145,7 +151,7 @@ This plot tells us the remote learning preference grouped by grade level in each
 
 ```{r}
 Grade_plot <- df%>%filter(DisaggregationCategory == "Grade Level")
-district_remover_per_reorder4 <- fct_reorder(as.character(Grade_plot$District), Grade_plot$PercentRemote)
+district_remover_per_reorder4 <- fct_reorder(as.character(Grade_plot$District), Grade_plot$overall)
 
 p6_1 <- ggplot(Grade_plot, aes(PercentRemote,district_remover_per_reorder4)) +
   geom_point(aes(color=Category)) + geom_line(aes(group = District),alpha=0.3) +
@@ -190,7 +196,7 @@ df$Asianpercent = 0
 df$Blackpercent = 0
 df$Hispanicpercent = 0
 df$Whitepercent = 0
-for (x in 1:31){
+for (x in 1:32){
   df$ELLpercent[15*x] = 100*df$TotalEnrollment[15*(x-1) + 1]/df$TotalEnrollment[15*x]
   df$Asianpercent[15*x] = 100*df$TotalEnrollment[15*(x-1) + 11]/df$TotalEnrollment[15*x]
   df$Blackpercent[15*x] = 100*df$TotalEnrollment[15*(x-1) + 12]/df$TotalEnrollment[15*x]
