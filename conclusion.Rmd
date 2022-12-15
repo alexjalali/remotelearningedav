@@ -1,9 +1,7 @@
 # Conclusion
 
-Through our project, we extracted data from the NYC department of education, cleaned and manipulated the dataset, created categorical variables from numeric ones to exemplify remote learning preference levels, and performed analysis. Our goal is to see what variables, such as grade level, race/ethnicity, sex, and english language learner status, impacted a district’s preference for learning remote as opposed to in person.
+Through our project, we extracted data from the NYC department of education, cleaned and manipulated the dataset, created categorical variables from numeric ones to exemplify remote learning preference levels, and performed analysis. Our goal is to see what variables, such as grade level, race/ethnicity, sex, and english language learner status, impacted a district’s preference for learning remote as opposed to in person. The main takeaways of our analysis were the following:\
 
-The main takeaways of our analysis were the following:\
-\
 * Remote learning preferences did not impact pre pandemic and post pandemic test scores.\
 * Females on average have a higher preference for remote learning.\
 * Students who are not English language learners have a higher preference for remote learning.\
