@@ -15,10 +15,12 @@ cleaning-the-test-scores-datasets
 merging-datasets
 creating-dataframe-for-district-1
 for-loop-to-iterate-merging-for-district-1-across-the-remaining-districts-2-32-and-then-adding-those-dataframes-to-district-1
+other-cleaning
 replacing-missing-values
 making-a-new-variable-to-reflect-categories-for-percent-remote
-our-final-dataset-first-10-observations
-our-final-dataset-last-10-observations
+our-final-dataset
+first-10-observations
+last-10-observations
 missing-value-analysis
 results
 part-1-remote-learning-preferences-for-different-districts
@@ -38,7 +40,6 @@ ell-proportion-vs-remote-learning-preferences
 raceethnicity-proportion-vs-remote-learning-preferences
 part-4-math-and-ela-scores-for-different-districts
 overview-3
-parallel-coordinates-plot
 part-5-math-and-ela-scores-by-subgroups
 overview-4
 gender-1
@@ -46,9 +47,9 @@ english-language-learner
 raceethnicity-1
 grade-level-1
 part-6-detailed-analysis-for-ell-subgroup-and-raceethnicity-subgroup
+overview-5
 ell-remote-learning-preferences-vs.-scores
 raceethnicity-remote-learning-preferences-vs.-scores
-findings
 interactive-component
 interactive-heat-map-for-remote-learning-analysis
 appendix-nyc-education-district-map
