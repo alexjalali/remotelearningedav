@@ -537,7 +537,9 @@ names(district_1)[names(district_1) == "Percent Remote"] = "PercentRemote"
 }
 ```
 
-### Replacing Missing Values
+### Other Cleaning
+
+#### Replacing Missing Values
 The dataset had missing values in the test scores datasets. We replaced these test scores with its specific district average. This will be elaborated in section 3.3: Missing value analysis.
 ```{r NA replacement, include=FALSE}
 library(Hmisc)
@@ -560,7 +562,7 @@ colSums(is.na(df_super)) %>%
   sort(decreasing = TRUE)
 ```
 
-### Making a new Variable to reflect categories for Percent Remote
+#### Making a new Variable to reflect categories for Percent Remote
 As a final step in the data cleaning and consolidation process, we created a new variable called "percent_cat" to categorize the preference for remote learning as "high", "middle", or "low". This new variable is categorical and will be useful for visualizing the data. We divided the remote learning preference into three groups: the lower 25% was labeled as "low", the middle 25%-75% was labeled as "middle", and the upper 75% was labeled as "high".
 ```{r making PercentRemote categorical, echo=TRUE}
 # First, find the minimum and maximum values of percent remote
@@ -576,12 +578,14 @@ upper_bound <- quantile(df_super$PercentRemote, 0.75)
 df_super$remote_cat <- cut(df_super$PercentRemote, breaks = c(min_percent_remote-1, lower_bound, upper_bound, max_percent_remote), labels = c("Low", "Middle", "High"))
 ```
 
-### Our Final Dataset, first 10 Observations
+### Our Final Dataset 
+
+#### First 10 Observations
 ```{r}
 head(df_super, 10)
 ```
 
-### Our Final Dataset, last 10 Observations
+#### Last 10 Observations
 ```{r}
 tail(df_super, 10)
 ```
@@ -608,7 +612,9 @@ colSums(is.na(df_super_MVA)) %>%
 library(naniar)
 gg_miss_var(df_super_MVA) + labs(y = "Missing Values", title="Number of Missing Values per Variable")
 ```
+
 As we can see from the images above, the only variables with missing values are MathScores2022, ELAScores2022, MathScores2019, and ELAScores2019. This indicates that our first dataset on remote learning preferences did not have any missing values, but our math and ELA scores datasets did.
+
 To further investigate the patterns of missing data, we can look at the chart below:
 
 ```{r}
@@ -618,12 +624,16 @@ df_super_MVA_ <- df_super_MVA %>% subset(select=c("ELAScores2019","ELAScores2022
 #plotting missing data
 plot_missing(df_super_MVA_, percent = FALSE) 
 ```
+
 Based on this graph, it is clear that there is a pattern of missing data between the scores variables. We can further examine which demographic categories these missing values exist in by looking at the following graph:
+
 ```{r fig.height=8}
 gg_miss_var(df_super_MVA,facet=Category) +labs(title="Number of Missing Values per Variable, Faceted by Category")
 ```
+
 As we can see from the graph above, the only categories with missing values for the test scores are two factors within the ethnicity category: "Asian" and "White". To determine which districts within these categories have missing values, and whether any of these districts are the same, we can look at the chart below:
-```{r fig.height=4}
+
+```{r fig.height=8}
 #ordering the district levels
 df_super_MVA_temp <- df_super_MVA
 df_super_MVA_temp$district_level <- factor(df_super_MVA_temp$District, levels= c("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32"))
@@ -640,6 +650,7 @@ AWplot <- ggarrange(Aplot,Wplot, ncol = 2, nrow = 1,common.legend=TRUE)
 annotate_figure(AWplot, top = text_grob("Missing Values per District", 
                color = "black", size = 12))
 ```
+
 As shown in this chart, the missing values for both "Asian" and "White" ethnicities are from districts 7, 16, 23, and 32. The reason for this could be that on the standardized tests, students in these districts were not required to indicate their ethnicity as "Asian" or "White". Another possible reason is that there were errors in the reporting of these districts.
 
 We imputed these missing values with its respective district’s average test scores. 
