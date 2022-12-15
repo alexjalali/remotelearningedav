@@ -23,7 +23,7 @@
 <meta name="author" content="Alexandra Jalali, Liang Zhuang, Victoria Xu" />
 
 
-<meta name="date" content="2022-12-14" />
+<meta name="date" content="2022-12-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -89,8 +89,14 @@
 <li class="chapter" data-level="3.2" data-path="data.html"><a href="data.html#cleaning-transformation"><i class="fa fa-check"></i><b>3.2</b> Cleaning / transformation</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="data.html"><a href="data.html#loading-in-data"><i class="fa fa-check"></i><b>3.2.1</b> Loading in Data</a></li>
-<li class="chapter" data-level="3.2.2" data-path="data.html"><a href="data.html#cleaning-and-consolidating-data"><i class="fa fa-check"></i><b>3.2.2</b> Cleaning and Consolidating Data</a></li>
-<li class="chapter" data-level="3.2.3" data-path="data.html"><a href="data.html#liangs-try"><i class="fa fa-check"></i><b>3.2.3</b> liang’s try</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data.html"><a href="data.html#cleaning-data-to-prepare-for-merge"><i class="fa fa-check"></i><b>3.2.2</b> Cleaning Data to Prepare for Merge</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data.html"><a href="data.html#merging-datasets"><i class="fa fa-check"></i><b>3.2.3</b> Merging Datasets</a></li>
+<li class="chapter" data-level="3.2.4" data-path="data.html"><a href="data.html#replacing-missing-values"><i class="fa fa-check"></i><b>3.2.4</b> Replacing Missing Values</a></li>
+<li class="chapter" data-level="3.2.5" data-path="data.html"><a href="data.html#making-a-new-variable-to-reflect-categories-for-percent-remote"><i class="fa fa-check"></i><b>3.2.5</b> Making a new Variable to reflect categories for Percent Remote</a></li>
+<li class="chapter" data-level="3.2.6" data-path="data.html"><a href="data.html#our-final-dataset-first-10-observations"><i class="fa fa-check"></i><b>3.2.6</b> Our Final Dataset, first 10 Observations</a></li>
+<li class="chapter" data-level="3.2.7" data-path="data.html"><a href="data.html#our-final-dataset-last-10-observations"><i class="fa fa-check"></i><b>3.2.7</b> Our Final Dataset, last 10 Observations</a></li>
+<li class="chapter" data-level="3.2.8" data-path="data.html"><a href="data.html#saving-csv-to-csv-for-interactive-component"><i class="fa fa-check"></i><b>3.2.8</b> Saving CSV to csv for interactive component</a></li>
+<li class="chapter" data-level="3.2.9" data-path="data.html"><a href="data.html#saving-consolidated-and-cleaned-dataset-into-datasets-df-and-df_total"><i class="fa fa-check"></i><b>3.2.9</b> Saving Consolidated and Cleaned Dataset into Datasets df and df_total</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#missing-value-analysis"><i class="fa fa-check"></i><b>3.3</b> Missing value analysis</a></li>
 </ul></li>
@@ -137,7 +143,11 @@
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="results.html"><a href="results.html#findings"><i class="fa fa-check"></i><b>4.7</b> Findings</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>5</b> Interactive component</a></li>
+<li class="chapter" data-level="5" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>5</b> Interactive component</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="interactive-component.html"><a href="interactive-component.html#interactive-heat-map-for-remote-learning-analysis"><i class="fa fa-check"></i><b>5.1</b> Interactive Heat Map for Remote Learning Analysis</a></li>
+<li class="chapter" data-level="5.2" data-path="interactive-component.html"><a href="interactive-component.html#appendix-nyc-education-district-map"><i class="fa fa-check"></i><b>5.2</b> Appendix: NYC Education District Map</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -167,15 +177,15 @@
 </div>
 <div id="heatmap-plot-from-json" class="section level3 hasAnchor" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Heatmap Plot from JSON<a href="results.html#heatmap-plot-from-json" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
 <div id="bar-plot-of-remote-learning-preferences" class="section level3 hasAnchor" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> Bar Plot of Remote Learning Preferences<a href="results.html#bar-plot-of-remote-learning-preferences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 </div>
 <div id="cleveland-dot-plot-of-remote-learning-preferences-per-district-order-by-highest-to-lowest" class="section level3 hasAnchor" number="4.1.4">
 <h3><span class="header-section-number">4.1.4</span> Cleveland Dot Plot of Remote Learning Preferences Per District (Order by Highest to Lowest)<a href="results.html#cleveland-dot-plot-of-remote-learning-preferences-per-district-order-by-highest-to-lowest" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 </div>
 </div>
 <div id="part-2-remote-learning-preferences-analysis-by-subgroups" class="section level2 hasAnchor" number="4.2">
@@ -185,22 +195,22 @@
 </div>
 <div id="gender" class="section level3 hasAnchor" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Gender<a href="results.html#gender" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 </div>
 <div id="english-language-learner-status" class="section level3 hasAnchor" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> English Language Learner Status<a href="results.html#english-language-learner-status" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 </div>
 <div id="raceethnicity" class="section level3 hasAnchor" number="4.2.4">
 <h3><span class="header-section-number">4.2.4</span> Race/Ethnicity<a href="results.html#raceethnicity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 </div>
 <div id="grade-level" class="section level3 hasAnchor" number="4.2.5">
 <h3><span class="header-section-number">4.2.5</span> Grade Level<a href="results.html#grade-level" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 </div>
 <div id="part-3-detailed-analysis-for-ell-subgroup-and-raceethnicity-subgroup" class="section level2 hasAnchor" number="4.3">
@@ -210,11 +220,11 @@
 </div>
 <div id="ell-proportion-vs-remote-learning-preferences" class="section level3 hasAnchor" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> ELL Proportion vs Remote Learning Preferences<a href="results.html#ell-proportion-vs-remote-learning-preferences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 </div>
 <div id="raceethnicity-proportion-vs-remote-learning-preferences" class="section level3 hasAnchor" number="4.3.3">
 <h3><span class="header-section-number">4.3.3</span> Race/Ethnicity Proportion vs Remote Learning Preferences<a href="results.html#raceethnicity-proportion-vs-remote-learning-preferences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 </div>
 </div>
 <div id="part-4-math-and-ela-scores-for-different-districts" class="section level2 hasAnchor" number="4.4">
@@ -246,24 +256,24 @@
 </div>
 <div id="grade-level-1" class="section level3 hasAnchor" number="4.5.5">
 <h3><span class="header-section-number">4.5.5</span> Grade Level<a href="results.html#grade-level-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 </div>
 </div>
 <div id="part-6-detailed-analysis-for-ell-subgroup-and-raceethnicity-subgroup" class="section level2 hasAnchor" number="4.6">
 <h2><span class="header-section-number">4.6</span> Part 6: Detailed Analysis for ELL Subgroup and Race/Ethnicity Subgroup<a href="results.html#part-6-detailed-analysis-for-ell-subgroup-and-raceethnicity-subgroup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="ell-remote-learning-preferences-vs.-scores" class="section level3 hasAnchor" number="4.6.1">
 <h3><span class="header-section-number">4.6.1</span> ELL Remote Learning Preferences vs. Scores<a href="results.html#ell-remote-learning-preferences-vs.-scores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 </div>
 <div id="raceethnicity-remote-learning-preferences-vs.-scores" class="section level3 hasAnchor" number="4.6.2">
 <h3><span class="header-section-number">4.6.2</span> Race/Ethnicity Remote Learning Preferences vs. Scores<a href="results.html#raceethnicity-remote-learning-preferences-vs.-scores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-28-1.png" width="672" />
-<img src="finalproj_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+<img src="finalproj_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 </div>
 </div>
 <div id="findings" class="section level2 hasAnchor" number="4.7">

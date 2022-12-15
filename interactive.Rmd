@@ -1,6 +1,6 @@
 # Interactive component
 
-<h2>This is the sample7</h2>
+## Interactive Heat Map for Remote Learning Analysis
 
 <meta charset="utf-8">
 <style>
@@ -46,9 +46,15 @@ text.small-text{
 
 
 <script src="https://d3js.org/d3.v7.js"></script>
+
+<h5>Please put your mouse on any of the districts to view information about remote learning preference, Math and ELA test scores, and proportion for different subgroups</h5>
+
 <div id = "graph2"></div>
 
-<h2> This is the second graph </h2>
+
+## Appendix: NYC Education District Map
+
+<h5> You can use the following interative graph to find your education district</h5>
 
 <div id = "graph1"></div>
 <script>

@@ -23,7 +23,7 @@
 <meta name="author" content="Alexandra Jalali, Liang Zhuang, Victoria Xu" />
 
 
-<meta name="date" content="2022-12-14" />
+<meta name="date" content="2022-12-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -89,8 +89,14 @@
 <li class="chapter" data-level="3.2" data-path="data.html"><a href="data.html#cleaning-transformation"><i class="fa fa-check"></i><b>3.2</b> Cleaning / transformation</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="data.html"><a href="data.html#loading-in-data"><i class="fa fa-check"></i><b>3.2.1</b> Loading in Data</a></li>
-<li class="chapter" data-level="3.2.2" data-path="data.html"><a href="data.html#cleaning-and-consolidating-data"><i class="fa fa-check"></i><b>3.2.2</b> Cleaning and Consolidating Data</a></li>
-<li class="chapter" data-level="3.2.3" data-path="data.html"><a href="data.html#liangs-try"><i class="fa fa-check"></i><b>3.2.3</b> liang’s try</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data.html"><a href="data.html#cleaning-data-to-prepare-for-merge"><i class="fa fa-check"></i><b>3.2.2</b> Cleaning Data to Prepare for Merge</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data.html"><a href="data.html#merging-datasets"><i class="fa fa-check"></i><b>3.2.3</b> Merging Datasets</a></li>
+<li class="chapter" data-level="3.2.4" data-path="data.html"><a href="data.html#replacing-missing-values"><i class="fa fa-check"></i><b>3.2.4</b> Replacing Missing Values</a></li>
+<li class="chapter" data-level="3.2.5" data-path="data.html"><a href="data.html#making-a-new-variable-to-reflect-categories-for-percent-remote"><i class="fa fa-check"></i><b>3.2.5</b> Making a new Variable to reflect categories for Percent Remote</a></li>
+<li class="chapter" data-level="3.2.6" data-path="data.html"><a href="data.html#our-final-dataset-first-10-observations"><i class="fa fa-check"></i><b>3.2.6</b> Our Final Dataset, first 10 Observations</a></li>
+<li class="chapter" data-level="3.2.7" data-path="data.html"><a href="data.html#our-final-dataset-last-10-observations"><i class="fa fa-check"></i><b>3.2.7</b> Our Final Dataset, last 10 Observations</a></li>
+<li class="chapter" data-level="3.2.8" data-path="data.html"><a href="data.html#saving-csv-to-csv-for-interactive-component"><i class="fa fa-check"></i><b>3.2.8</b> Saving CSV to csv for interactive component</a></li>
+<li class="chapter" data-level="3.2.9" data-path="data.html"><a href="data.html#saving-consolidated-and-cleaned-dataset-into-datasets-df-and-df_total"><i class="fa fa-check"></i><b>3.2.9</b> Saving Consolidated and Cleaned Dataset into Datasets df and df_total</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#missing-value-analysis"><i class="fa fa-check"></i><b>3.3</b> Missing value analysis</a></li>
 </ul></li>
@@ -137,7 +143,11 @@
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="results.html"><a href="results.html#findings"><i class="fa fa-check"></i><b>4.7</b> Findings</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>5</b> Interactive component</a></li>
+<li class="chapter" data-level="5" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>5</b> Interactive component</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="interactive-component.html"><a href="interactive-component.html#interactive-heat-map-for-remote-learning-analysis"><i class="fa fa-check"></i><b>5.1</b> Interactive Heat Map for Remote Learning Analysis</a></li>
+<li class="chapter" data-level="5.2" data-path="interactive-component.html"><a href="interactive-component.html#appendix-nyc-education-district-map"><i class="fa fa-check"></i><b>5.2</b> Appendix: NYC Education District Map</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -160,9 +170,8 @@
             <section class="normal" id="section-">
 <div id="interactive-component" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Interactive component<a href="interactive-component.html#interactive-component" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<h2>
-This is the sample7
-</h2>
+<div id="interactive-heat-map-for-remote-learning-analysis" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Interactive Heat Map for Remote Learning Analysis<a href="interactive-component.html#interactive-heat-map-for-remote-learning-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <meta charset="utf-8">
 <style>
 
@@ -205,12 +214,18 @@ text.small-text{
 </style>
 <body>
 <script src="https://d3js.org/d3.v7.js"></script>
+<h5>
+Please put your mouse on any of the districts to view information about remote learning preference, Math and ELA test scores, and proportion for different subgroups
+</h5>
 <div id="graph2">
 
 </div>
-<h2>
-This is the second graph
-</h2>
+</div>
+<div id="appendix-nyc-education-district-map" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Appendix: NYC Education District Map<a href="interactive-component.html#appendix-nyc-education-district-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h5>
+You can use the following interative graph to find your education district
+</h5>
 <div id="graph1">
 
 </div>
@@ -982,6 +997,7 @@ d3.json('https://raw.githubusercontent.com/alexjalali/remotelearningedav/main/Sc
 });
 </script>
 
+</div>
 </div>
             </section>
 

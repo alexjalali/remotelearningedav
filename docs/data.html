@@ -23,7 +23,7 @@
 <meta name="author" content="Alexandra Jalali, Liang Zhuang, Victoria Xu" />
 
 
-<meta name="date" content="2022-12-14" />
+<meta name="date" content="2022-12-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -89,8 +89,14 @@
 <li class="chapter" data-level="3.2" data-path="data.html"><a href="data.html#cleaning-transformation"><i class="fa fa-check"></i><b>3.2</b> Cleaning / transformation</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="data.html"><a href="data.html#loading-in-data"><i class="fa fa-check"></i><b>3.2.1</b> Loading in Data</a></li>
-<li class="chapter" data-level="3.2.2" data-path="data.html"><a href="data.html#cleaning-and-consolidating-data"><i class="fa fa-check"></i><b>3.2.2</b> Cleaning and Consolidating Data</a></li>
-<li class="chapter" data-level="3.2.3" data-path="data.html"><a href="data.html#liangs-try"><i class="fa fa-check"></i><b>3.2.3</b> liang’s try</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data.html"><a href="data.html#cleaning-data-to-prepare-for-merge"><i class="fa fa-check"></i><b>3.2.2</b> Cleaning Data to Prepare for Merge</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data.html"><a href="data.html#merging-datasets"><i class="fa fa-check"></i><b>3.2.3</b> Merging Datasets</a></li>
+<li class="chapter" data-level="3.2.4" data-path="data.html"><a href="data.html#replacing-missing-values"><i class="fa fa-check"></i><b>3.2.4</b> Replacing Missing Values</a></li>
+<li class="chapter" data-level="3.2.5" data-path="data.html"><a href="data.html#making-a-new-variable-to-reflect-categories-for-percent-remote"><i class="fa fa-check"></i><b>3.2.5</b> Making a new Variable to reflect categories for Percent Remote</a></li>
+<li class="chapter" data-level="3.2.6" data-path="data.html"><a href="data.html#our-final-dataset-first-10-observations"><i class="fa fa-check"></i><b>3.2.6</b> Our Final Dataset, first 10 Observations</a></li>
+<li class="chapter" data-level="3.2.7" data-path="data.html"><a href="data.html#our-final-dataset-last-10-observations"><i class="fa fa-check"></i><b>3.2.7</b> Our Final Dataset, last 10 Observations</a></li>
+<li class="chapter" data-level="3.2.8" data-path="data.html"><a href="data.html#saving-csv-to-csv-for-interactive-component"><i class="fa fa-check"></i><b>3.2.8</b> Saving CSV to csv for interactive component</a></li>
+<li class="chapter" data-level="3.2.9" data-path="data.html"><a href="data.html#saving-consolidated-and-cleaned-dataset-into-datasets-df-and-df_total"><i class="fa fa-check"></i><b>3.2.9</b> Saving Consolidated and Cleaned Dataset into Datasets df and df_total</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#missing-value-analysis"><i class="fa fa-check"></i><b>3.3</b> Missing value analysis</a></li>
 </ul></li>
@@ -137,7 +143,11 @@
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="results.html"><a href="results.html#findings"><i class="fa fa-check"></i><b>4.7</b> Findings</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>5</b> Interactive component</a></li>
+<li class="chapter" data-level="5" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>5</b> Interactive component</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="interactive-component.html"><a href="interactive-component.html#interactive-heat-map-for-remote-learning-analysis"><i class="fa fa-check"></i><b>5.1</b> Interactive Heat Map for Remote Learning Analysis</a></li>
+<li class="chapter" data-level="5.2" data-path="interactive-component.html"><a href="interactive-component.html#appendix-nyc-education-district-map"><i class="fa fa-check"></i><b>5.2</b> Appendix: NYC Education District Map</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -162,22 +172,65 @@
 <h1><span class="header-section-number">Chapter 3</span> Data<a href="data.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="sources" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Sources<a href="data.html#sources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The first dataset we used is Learning Preference City Remote Learning from the NYC Department of Education. It consists of total enrollment count for students who prefer remote or hybrid learning, and who have attended school in person at least once since September 2020. The samples are collected from NYC public schools grades K-12 for each district. The dataset is as of January 4, 2021 and made public on March 11, 2021.</p>
+<p>This dataset is formatted with 8 columns and 876 rows of observations. The columns consist of district number, disaggregation category, category, number of total enrollment, number blended, percent blended, number remote, and percent remote. District number is our key/common variable used to combine other datasets that give metrics regarding specific district numbers for the same time period. Disaggregation category is a sub variable of different categories, such as gender or grade level. Category contains the specific group of that variable. For example, if disaggregation category is gender then the category groups are female and male for that specific district. These demographics will be used for visualizations and finding patterns. Blended refers to preference towards hybrid learning, and remote refers to preference towards remote learning.</p>
+<p>This dataset is updated on an as needed basis. It is imported directly through the NYC Open Data website as an excel file, which is a government project providing open source data produced and used by City government. Students attending charter schools, receiving home or hospital instruction, pre-K students, and attending certain specific programs are not included. In order to comply with regulations of the Family Educational Rights and Privacy Act on public reporting of education outcomes, data of groups with less than 5 students enrolled are suppressed with an “s”.</p>
+<p>The second and third datasets we used are ELA and Math Test results for students from grade 3 to grade 8 for different districts. The datasets are collected from the NYC Department of Education, and are updated annually.</p>
+<p>Each dataset contains 6 different subsets. All sub-datasets split the students by districts since district is the main variable for us to combine all datasets for this project. For this project, we will use data values for year 2019 (before the pandemic) and 2022 (the first time after the pandemic when all students were required to take those exams) to study the effect of how students’ previous test outcomes influence their learning choices and also how their preferences influence their learning outcomes. We will also use data values for years 2018, 2019, and 2022 to study how the pandemic changed student learning outcomes.</p>
+<p>Specifically, for both ELA and Math Test results, the sub datasets are:
+All - this dataset contains information of the test results of all students. This dataset has 1792 rows and 16 columns.
+SWD - this dataset split student test results based on whether the students are SWD (students with disabilities). This dataset has 3584 rows and 16 columns.
+Ethnicity - this dataset split student test results based on student race and ethnicity (Asian, Black, Hispanic, White). This dataset has 7168 rows and 16 columns.
+Gender - this dataset split student test results based on student gender (male, female). This dataset has 3584 rows and 16 columns.
+Econ Status - this dataset split student test results based on whether the student is economically disadvantaged. This dataset has 3584 rows and 16 columns.
+ELL - this dataset split the test results based on ELL (English Language Learner) status (current ELL, ever ELL, never ELL). This dataset has 4704 rows and 16 columns.</p>
+<p>Some Limitations of the datasets:
+Compare to other datasets we will use for this project, some districts are missing (districts 75, 79, and 84)
+The scale for ELA and Math exams changed in 2018. In addition, the tests for 2020 were canceled due to the pandemic, and the tests for 2021 were voluntary. Therefore, we will only use data for 2018 and 2022.
+For the ethnicity dataset, other ethnicity groups such as multi-racial and native american are not included.
+For the gender dataset, other genders such as cisgender, transgender, and non-binary are not included.</p>
+<p>The datasets can be downloaded from the infohub of NYC Department of Education as Excel files, and can be imported to R directly.</p>
+<p>In Section 2.2, we mentioned also including a dataset on demographic snapshots per district. However, we decided to omit that dataset because the demographics we decided to ultimately focus on were already in the remote learning and test scores data sets. The demographic snapshots dataset included economic needs index per district, which would be an interesting variable to compare to remote learning preferences. However, that analysis would be too in depth and deserves its own project.</p>
+<p>Some issues we discover in this data include the complexity of tidying up the dataset, and the missing values in the math and ELA scores data sets. We will disguss how we resolved these issues in the following sections.</p>
+<p>URLs:
+Data Set 1: Remote Learning Preferences
+<a href="https://data.cityofnewyork.us/Education/Learning-Preference-City-Remote-Learning-as-of-Jan/k5d2-tkrr" class="uri">https://data.cityofnewyork.us/Education/Learning-Preference-City-Remote-Learning-as-of-Jan/k5d2-tkrr</a>
+Data Set 2: ELA Test Scores <a href="https://infohub.nyced.org/docs/default-source/default-document-library/district-ela-results-2013-2022-(public).xlsx" class="uri">https://infohub.nyced.org/docs/default-source/default-document-library/district-ela-results-2013-2022-(public).xlsx</a>
+Data Set 3: Math Test Scores
+<a href="https://infohub.nyced.org/docs/default-source/default-document-library/district-math-results-2013-2022-(public).xlsx" class="uri">https://infohub.nyced.org/docs/default-source/default-document-library/district-math-results-2013-2022-(public).xlsx</a></p>
 </div>
 <div id="cleaning-transformation" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Cleaning / transformation<a href="data.html#cleaning-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Our data required a significant amount of preprocessing due to the structure of the datasets from the New York City website. Our goal is to join the learning preference, math test scores, and ELA test scores by district number and demographics. We had to split each sheet from the CSV file into separate dataframes and manipulate the Math scores and ELA scores datasets to match the district number and disaggregation categories in the learning preference dataset. This allowed us to perform a right join and add the test scores as new variables in the learning preference dataset. We also added rows that represented the aggregate means for each district. Furthermore, we created a separate variable to categorize the percent remote learning variable as “High” for high remote learning preference, “Middle” for medium remote learning preference, and “Low” for lower remote learning preference. The final comprehensive dataset is called “df”, and the dataset with just the district aggregates is called “df_total”.</p>
 <div id="loading-in-data" class="section level3 hasAnchor" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Loading in Data<a href="data.html#loading-in-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To begin, we loaded the remote learning preference, Math scores, and ELA scores datasets into RStudio. Since the Math and ELA scores datasets were in the form of a CSV file with multiple sheets, we wrote a function called “read_excel_allsheets” to read them all into RStudio. We then saved each relevant sheet to a new dataframe.</p>
 </div>
-<div id="cleaning-and-consolidating-data" class="section level3 hasAnchor" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> Cleaning and Consolidating Data<a href="data.html#cleaning-and-consolidating-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="cleaning-data-to-prepare-for-merge" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Cleaning Data to Prepare for Merge<a href="data.html#cleaning-data-to-prepare-for-merge" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="cleaning-learning-preference-dataset" class="section level4 hasAnchor" number="3.2.2.1">
+<h4><span class="header-section-number">3.2.2.1</span> Cleaning Learning Preference Dataset<a href="data.html#cleaning-learning-preference-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To clean the learning preference dataset and prepare it for the merge, we retained only the 32 school districts that had test scores in the other datasets. For the same reason, in the grades category, we removed PK, 0K, grades 1-2, and grades 9-12 to maintain consistency with the other datasets. We also renamed the variables to facilitate the merging process.</p>
 </div>
-<div id="liangs-try" class="section level3 hasAnchor" number="3.2.3">
-<h3><span class="header-section-number">3.2.3</span> liang’s try<a href="data.html#liangs-try" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>## NOTE: The following pairs of variables appear to have the same missingness pattern.
-##  Please verify whether they are in fact logically distinct variables.
-##      [,1]             [,2]           
-## [1,] &quot;MathScores2019&quot; &quot;ELAScores2019&quot;</code></pre>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div id="cleaning-the-test-scores-datasets" class="section level4 hasAnchor" number="3.2.2.2">
+<h4><span class="header-section-number">3.2.2.2</span> Cleaning the Test Scores Datasets<a href="data.html#cleaning-the-test-scores-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For the Math and ELA test scores, we focused on scores from the years 2019 and 2022 to show the difference between pre-Covid and post-Covid test results. Each sheet from the CSV file that we divided corresponds to a specific disaggregation category that needed to be matched with the learning preference dataset. For each sheet, we selected the years 2019 and 2022, and renamed the specific category levels to match the learning preference dataset.</p>
+</div>
+</div>
+<div id="merging-datasets" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Merging Datasets<a href="data.html#merging-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="creating-dataframe-for-district-1" class="section level4 hasAnchor" number="3.2.3.1">
+<h4><span class="header-section-number">3.2.3.1</span> Creating Dataframe for District 1<a href="data.html#creating-dataframe-for-district-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We initiated the merging process by focusing on merging the learning preferences, Math scores, and ELA scores for District 1. We split the 2019 and 2022 Math and ELA scores by district, and then calculated the weighted mean of each score by category (for instance, for the disaggregation category “sex”, we calculated the weighted mean scores for males and females). We then merged all of those dataframes by district number, disaggregation category, and category. Finally, we merged that dataframe with the District 1 remote learning preferences dataset, and created a new row with the average scores and average learning preferences. This dataframe was called district_1. We then created a dataframe called “df_super” that will be used in the subsequent for loop.</p>
+</div>
+<div id="for-loop-to-iterate-merging-for-district-1-across-the-remaining-districts-2-32-and-then-adding-those-dataframes-to-district-1" class="section level4 hasAnchor" number="3.2.3.2">
+<h4><span class="header-section-number">3.2.3.2</span> For Loop to Iterate Merging for District 1 across the remaining Districts 2-32, and then adding those Dataframes to District 1<a href="data.html#for-loop-to-iterate-merging-for-district-1-across-the-remaining-districts-2-32-and-then-adding-those-dataframes-to-district-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In order to avoid repeating that code 31 more times, we created a for loop to iterate those same steps for the remaining 2-32 districts. Once it loops through district 2, a dataframe district_2 is created and added under the district_1 dataframe that was saved into df_super. District_3 is then added under district_2, and this repeats until all 32 districts have been added to df_super.</p>
+</div>
+</div>
+<div id="replacing-missing-values" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Replacing Missing Values<a href="data.html#replacing-missing-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The dataset had missing values in the test scores datasets. We replaced these test scores with its specific district average. This will be elaborated in section 3.3: Missing value analysis.</p>
 <pre><code>##         MathScores2022          ELAScores2022         MathScores2019          ELAScores2019               District 
 ##                      8                      6                      4                      4                      0 
 ## DisaggregationCategory               Category        TotalEnrollment                Blended         PercentBlended 
@@ -190,6 +243,13 @@
 ##                      0                      0                      0                      0                      0 
 ##                 Remote          PercentRemote 
 ##                      0                      0</code></pre>
+</div>
+<div id="making-a-new-variable-to-reflect-categories-for-percent-remote" class="section level3 hasAnchor" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Making a new Variable to reflect categories for Percent Remote<a href="data.html#making-a-new-variable-to-reflect-categories-for-percent-remote" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As a final step in the data cleaning and consolidation process, we created a new variable called “percent_cat” to categorize the preference for remote learning as “high”, “middle”, or “low”. This new variable is categorical and will be useful for visualizing the data. We divided the remote learning preference into three groups: the lower 25% was labeled as “low”, the middle 25%-75% was labeled as “middle”, and the upper 75% was labeled as “high”.</p>
+</div>
+<div id="our-final-dataset-first-10-observations" class="section level3 hasAnchor" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> Our Final Dataset, first 10 Observations<a href="data.html#our-final-dataset-first-10-observations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>## # A tibble: 10 × 13
 ## # Groups:   District [1]
 ##    District DisaggregationCateg…¹ Categ…² MathS…³ ELASc…⁴ MathS…⁵ ELASc…⁶ Total…⁷ Blended Perce…⁸ Remote Perce…⁹ remot…˟
@@ -206,6 +266,9 @@
 ## 10 1        Grade Level           8          603.    604.    599.    604. 753     145     19.3    608       80.7 High   
 ## # … with abbreviated variable names ¹​DisaggregationCategory, ²​Category, ³​MathScores2019, ⁴​ELAScores2019,
 ## #   ⁵​MathScores2022, ⁶​ELAScores2022, ⁷​TotalEnrollment, ⁸​PercentBlended, ⁹​PercentRemote, ˟​remote_cat</code></pre>
+</div>
+<div id="our-final-dataset-last-10-observations" class="section level3 hasAnchor" number="3.2.7">
+<h3><span class="header-section-number">3.2.7</span> Our Final Dataset, last 10 Observations<a href="data.html#our-final-dataset-last-10-observations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>## # A tibble: 10 × 13
 ## # Groups:   District [1]
 ##    District DisaggregationCateg…¹ Categ…² MathS…³ ELASc…⁴ MathS…⁵ ELASc…⁶ Total…⁷ Blended Perce…⁸ Remote Perce…⁹ remot…˟
@@ -223,10 +286,25 @@
 ## # … with abbreviated variable names ¹​DisaggregationCategory, ²​Category, ³​MathScores2019, ⁴​ELAScores2019,
 ## #   ⁵​MathScores2022, ⁶​ELAScores2022, ⁷​TotalEnrollment, ⁸​PercentBlended, ⁹​PercentRemote, ˟​remote_cat</code></pre>
 </div>
+<div id="saving-csv-to-csv-for-interactive-component" class="section level3 hasAnchor" number="3.2.8">
+<h3><span class="header-section-number">3.2.8</span> Saving CSV to csv for interactive component<a href="data.html#saving-csv-to-csv-for-interactive-component" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="saving-consolidated-and-cleaned-dataset-into-datasets-df-and-df_total" class="section level3 hasAnchor" number="3.2.9">
+<h3><span class="header-section-number">3.2.9</span> Saving Consolidated and Cleaned Dataset into Datasets df and df_total<a href="data.html#saving-consolidated-and-cleaned-dataset-into-datasets-df-and-df_total" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
 </div>
 <div id="missing-value-analysis" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Missing value analysis<a href="data.html#missing-value-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>``</p>
+<pre><code>##         MathScores2022          ELAScores2022         MathScores2019          ELAScores2019               District 
+##                      8                      6                      4                      4                      0 
+## DisaggregationCategory               Category        TotalEnrollment                Blended         PercentBlended 
+##                      0                      0                      0                      0                      0 
+##                 Remote          PercentRemote 
+##                      0                      0</code></pre>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 
 </div>
 </div>
