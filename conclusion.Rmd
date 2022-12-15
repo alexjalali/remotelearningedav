@@ -1,2 +1,15 @@
 # Conclusion
 
+Through our project, we extracted data from the NYC department of education, cleaned and manipulated the dataset, created categorical variables from numeric ones to exemplify remote learning preference levels, and performed analysis. Our goal is to see what variables, such as grade level, race/ethnicity, sex, and english language learner status, impacted a district’s preference for learning remote as opposed to in person.
+
+The main takeaways of our analysis were the following: 
+* Remote learning preferences did not impact pre pandemic and post pandemic test scores
+* Females on average have a higher preference for remote learning
+* Students who are not English language learners have a higher preference for remote learning
+* English language learners who have high preference for remote learning, on average, outperformed non english language learners on math and ELA tests
+* In every district, the higher the Asian population, the higher remote learning preference it has on average
+* The Asian population in districts with a high preference for remote learning performed significantly better on math and English language arts tests.
+
+It is not possible to look at this data and draw qualitative conclusions based on our observations due to the fact that we cannot make assumptions about demographics. However, further research can be instigated to see if there is any bias, or unfairness, within each district’s educational capacities that would impact a student’s opinion on remote learning. 
+
+Overall, this project was fascinating and enjoyable for our group because remote learning is a fairly new concept that emerged during COVID-19. Preference to learn in a remote setting can be impacted by a lot of demographics. The big picture conclusion to be drawn from our analysis is that demographic data impacts remote learning preferences. The next steps are to dive deeper and analyze how one can use this data to make change and enable fair education for all. 
