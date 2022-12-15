@@ -239,17 +239,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="heatmap-plot-from-json" class="section level3 hasAnchor" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Heatmap Plot from JSON<a href="results.html#heatmap-plot-from-json" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This heatmap is scrapped from a GeoJSON file. It took a substantial amount of time to figure out and create the legend due to the format of the GeoJSON file. In this graph, we can see the remote learning preference for each district. As shown in the legend on the right, we can observe each cell’s value of the main variable in the corresponding cell range. Darker colorings are associated with higher remote learning preference. From the graph, we can see that the district with lowest remote learning preference is about 54%, and the district with highest remote learning preference is about 76%.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
 <div id="bar-plot-of-remote-learning-preferences" class="section level3 hasAnchor" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> Bar Plot of Remote Learning Preferences<a href="results.html#bar-plot-of-remote-learning-preferences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The histogram shows the overall distribution of the percentage of remote learning preference. We created a bin for every 2.5% change in preference and the height of each bar represents the number of districts that fall within a particular percentage. From the graph, we can see that the graph is slightly left-skewed. In addition, we can see that most scores fall in the bin between 70-72.5%.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 </div>
 <div id="cleveland-dot-plot-of-remote-learning-preferences-per-district-order-by-highest-to-lowest" class="section level3 hasAnchor" number="4.1.4">
 <h3><span class="header-section-number">4.1.4</span> Cleveland Dot Plot of Remote Learning Preferences Per District (Order by Highest to Lowest)<a href="results.html#cleveland-dot-plot-of-remote-learning-preferences-per-district-order-by-highest-to-lowest" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The Cleveland Dot plot allows us to observe the remote learning preference of each district and an overall dynamic of the difference between districts. We reorder the districts by their preference from the highest to the lowest. From the plot, we can see a cluster of districts between 66% to 73% remote learning. There are no major outliers in the upper side, but there are a few outliers for districts with low remote learning preference percentage.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 </div>
 </div>
 <div id="part-2-remote-learning-preferences-analysis-by-subgroups" class="section level2 hasAnchor" number="4.2">
@@ -261,27 +261,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="gender" class="section level3 hasAnchor" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Gender<a href="results.html#gender" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The Cleveland dot plot shows the remote learning preference of different genders in each district. The blue dots represent the preference of males and the red dots represent the preference of females. For most districts, females have a stronger preference for remote learning. We highlighted the difference between males and females for each district by connecting the dots for each gender. However, the differences between male and female preferences are not significant. District 4, which has the highest gap, is ranked in the middle for overall remote learning preferences. Therefore, we conclude that gender is not a major indicator of remote learning analysis.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 </div>
 <div id="english-language-learner-status" class="section level3 hasAnchor" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> English Language Learner Status<a href="results.html#english-language-learner-status" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The Cleveland dot plot shows the remote learning preference of different English language learner (ELL) statuses in each district. The blue dots represent the preference of English language learners and the red dots represent the preference of non-English language learners. We observe a significantly stronger preference for remote learning among non-English language learners. We highlighted the difference between ELL and non-ELL students for each district by connecting the dots for each group. We will further analyze this factor in the following section due to the large gap between ELL and non-ELL preferences.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 </div>
 <div id="raceethnicity" class="section level3 hasAnchor" number="4.2.4">
 <h3><span class="header-section-number">4.2.4</span> Race/Ethnicity<a href="results.html#raceethnicity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This plot shows the remote learning preference for different races or ethnicities in each district. The Cleveland dot plot allows us to easily compare the preferences of different races or ethnicities within each district. According to the graph, the category Asian (red dots) have the highest preference for remote learning, while category White(purple dots) have the lowest willingness to do school remotely. Category Black (green dots) have a slightly stronger inclination towards remote learning compared to category Hispanic (blue dots). We will further analyze this factor in the following section.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p>This is also a Cleveland dot plot of the percentage of remote learning preference but with facets showing different races or ethnicity. Unlike the previous graph, this plot allows us to see the distribution of preference of each race/ethnicity per district. We reorder each plot from the highest to the lowest. Readers can use this graph to find the subgroup ranking for different districts as the previous Cleveland plot has 4 colors and is relatively hard to see.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 </div>
 <div id="grade-level" class="section level3 hasAnchor" number="4.2.5">
 <h3><span class="header-section-number">4.2.5</span> Grade Level<a href="results.html#grade-level" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This plot shows the remote learning preference for different grade levels in each district. The Cleveland dot plot allows us to easily compare the preferences of different grades within each district. We do not observe a strong pattern of change in preferences across grades.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>Again, this plot allows us to see the distribution of preference of each grade (from 3-8) per district. We reorder each plot from the highest to the lowest. Readers can use this graph to find the subgroup ranking for different districts as the previous Cleveland plot has 6 colors and is relatively hard to see.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 </div>
 <div id="part-3-detailed-analysis-for-ell-subgroup-and-raceethnicity-subgroup" class="section level2 hasAnchor" number="4.3">
@@ -293,12 +293,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ell-proportion-vs-remote-learning-preferences" class="section level3 hasAnchor" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> ELL Proportion vs Remote Learning Preferences<a href="results.html#ell-proportion-vs-remote-learning-preferences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As shown in the graph, the percentage of English language learners (ELL) in each district is quite scattered. We fit the data to a linear model and do not see a strong correlation between the ELL proportion and preferences for remote learning.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 </div>
 <div id="raceethnicity-proportion-vs-remote-learning-preferences" class="section level3 hasAnchor" number="4.3.3">
 <h3><span class="header-section-number">4.3.3</span> Race/Ethnicity Proportion vs Remote Learning Preferences<a href="results.html#raceethnicity-proportion-vs-remote-learning-preferences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There is a slightly positive correlation between the Asian proportion and remote learning preference percentage (the higher the Asian proportion, the higher the remote learning preference), and a slightly negative correlation between the White proportion and remote learning preference percentage. We do not notice any major correlation between the remote learning preference and the proportions of Hispanic and Black groups.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 </div>
 </div>
 <div id="part-4-math-and-ela-scores-for-different-districts" class="section level2 hasAnchor" number="4.4">
@@ -338,7 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="grade-level-1" class="section level3 hasAnchor" number="4.5.5">
 <h3><span class="header-section-number">4.5.5</span> Grade Level<a href="results.html#grade-level-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For grades 3-8, on average students who did not prefer remote learning as much tended to outperform on math and ELA tests compared to the ones who did (with the exception of 8th graders’ 2022 math scores). 3rd graders did not have high preference for remote learning in general, and 4th and 5th grader had very few students with high preference for remote learning.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 </div>
 </div>
 <div id="part-6-detailed-analysis-for-ell-subgroup-and-raceethnicity-subgroup" class="section level2 hasAnchor" number="4.6">
@@ -350,14 +350,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ell-remote-learning-preferences-vs.-scores" class="section level3 hasAnchor" number="4.6.2">
 <h3><span class="header-section-number">4.6.2</span> ELL Remote Learning Preferences vs. Scores<a href="results.html#ell-remote-learning-preferences-vs.-scores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We observe a positive correlation between the percentage of remote learning preference and test scores within the ELL group. There is a trend that the stronger the preference for remote learning, the higher the score. There is also a negative correlation between the percentage of remote learning preference and test scores within the non-ELL group. However, we do not observe any difference in correlations across years from 2019 to 2022. The distribution of each group barely changed (but the overall ELA scores increased and overall math scores decreased). Therefore, we do not think there is a relationship between changes in test scores and remote learning preferences within different ELL groups.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 </div>
 <div id="raceethnicity-remote-learning-preferences-vs.-scores" class="section level3 hasAnchor" number="4.6.3">
 <h3><span class="header-section-number">4.6.3</span> Race/Ethnicity Remote Learning Preferences vs. Scores<a href="results.html#raceethnicity-remote-learning-preferences-vs.-scores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We observe a slightly positive correlation between the percentage of remote learning preference and test scores within the Asian group. The stronger the preference for remote learning, the higher the score. There is also a negative correlation between the percentage of remote learning preference and test scores within the White group. However, similar to the ELL group, we do not observe any noticeable change in the distribution of test scores and remote learning preferences from 2019 to 2022 within each race or ethnicity.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 
 </div>
 </div>
