@@ -24,11 +24,13 @@ df_total <- subset(df, Category == "total") #dataframe with just aggregates
 
 ## Part 1: Remote Learning Preferences for Different Districts
 
-### Overview:
+### Overview
+
 In this section, we will explore remote learning preferences using three methods: a heat map plot from JSON, a histogram, and a Cleveland dot plot. Our goal is to show the overall distribution of remote learning preferences in districts.
 
 ### Heatmap Plot from JSON
-In this graph, we can see the remote learning preference for each county. As shown in the legend on the right, we can observe each cell's value of the main variable in the corresponding cell range. Darker colors indicate a higher preference for remote learning.
+
+This heatmap is scrapped from a GeoJSON file. It took a substantial amount of time to figure out and create the legend due to the format of the GeoJSON file. In this graph, we can see the remote learning preference for each district. As shown in the legend on the right, we can observe each cell's value of the main variable in the corresponding cell range. Darker colorings are associated with higher remote learning preference. From the graph, we can see that the district with lowest remote learning preference is about 54%, and the district with highest remote learning preference is about 76%.
 
 ```{r}
 layout(matrix(1:2,ncol=2), width = c(3,1),height = c(1,1))
@@ -43,7 +45,7 @@ rasterImage(legend_image, 0, 0, 1, 1)
 
 ### Bar Plot of Remote Learning Preferences
 
-The histogram displays the overall distribution of the percentage of remote learning preference. We divided the data into bins of 2.5% increments. The height of each bar represents the number of districts that fall within that range. The shape of the histogram is slightly left-skewed. Most scores fall in the bin between 70-72.5%.
+The histogram shows the overall distribution of the percentage of remote learning preference. We created a bin for every 2.5% change in preference and the height of each bar represents the number of districts that fall within a particular percentage. From the graph, we can see that the graph is slightly left-skewed. In addition, we can see that most scores fall in the bin between 70-72.5%.
 
 ```{r}
 p1 <- ggplot(df_total, aes(PercentRemote)) +
@@ -61,7 +63,7 @@ p1
 
 ### Cleveland Dot Plot of Remote Learning Preferences Per District (Order by Highest to Lowest)
 
-The Cleveland dot plot allows us to see the remote learning preference of each district and the overall trends between districts. We ordered the districts by their preference from the highest to the lowest. This allows us to easily compare the preferences of different districts. 
+The Cleveland Dot plot allows us to observe the remote learning preference of each district and an overall dynamic of the difference between districts. We reorder the districts by their preference from the highest to the lowest. From the plot, we can see a cluster of districts between 66% to 73% remote learning. There are no major outliers in the upper side, but there are a few outliers for districts with low remote learning preference percentage. 
 
 ```{r}
 district_remover_per_reorder <- fct_reorder(as.character(df_total$District), df_total$PercentRemote, min)
@@ -76,11 +78,14 @@ p2
 
 ## Part 2: Remote Learning Preferences Analysis by Subgroups
 
-### Overview:
+### Overview
+
 After analyzing the overall data, we want to look at four subgroups (grade level, gender, English language learners (ELL), ethnicity) to determine which indicator has the strongest impact on preference for remote learning.
 
 ### Gender
-The Cleveland dot plot shows the remote learning preference of different genders in each district. The blue dots represent the preference of males and the red dots represent the preference of females. For most districts, females have a stronger preference for remote learning. We highlighted the difference between males and females for each district by connecting the dots for each gender.
+
+The Cleveland dot plot shows the remote learning preference of different genders in each district. The blue dots represent the preference of males and the red dots represent the preference of females. For most districts, females have a stronger preference for remote learning. We highlighted the difference between males and females for each district by connecting the dots for each gender. However, the differences between male and female preferences are not significant. District 4, which has the highest gap, is ranked in the middle for overall remote learning preferences. Therefore, we conclude that gender is not a major indicator of remote learning analysis.
+
 ```{r}
 df$overall = 0
 for (x in 1:32){
@@ -95,13 +100,13 @@ p3 <- ggplot(gender_plot, aes(PercentRemote,district_remover_per_reorder2)) +
   geom_point(aes(color =Category)) + geom_line(aes(group = District),alpha=0.3) +
   xlab("% Remote")+
   ylab("District")+theme_linedraw()+
-  ggtitle("Cleveland dot plot of Percent showing gender vs. remote learning per District")
+  ggtitle("Gender vs. remote learning per District")
 p3
 ```
 
 ### English Language Learner Status
 
-The Cleveland dot plot shows the remote learning preference of different English language learner (ELL) statuses in each district. The blue dots represent the preference of English language learners and the red dots represent the preference of non-English language learners. We observe a significantly stronger preference for remote learning among non-English language learners. We highlighted the difference between ELL and non-ELL students for each district by connecting the dots for each group. We will further analyze this factor in the following section. 
+The Cleveland dot plot shows the remote learning preference of different English language learner (ELL) statuses in each district. The blue dots represent the preference of English language learners and the red dots represent the preference of non-English language learners. We observe a significantly stronger preference for remote learning among non-English language learners. We highlighted the difference between ELL and non-ELL students for each district by connecting the dots for each group. We will further analyze this factor in the following section due to the large gap between ELL and non-ELL preferences.
 
 ```{r}
 ELL_plot <- df%>%filter(DisaggregationCategory == "English Language Learner Status")
@@ -111,7 +116,7 @@ p4 <- ggplot(ELL_plot, aes(PercentRemote,district_remover_per_reorder3)) +
   geom_point(aes(color=Category)) + geom_line(aes(group = District),alpha=0.3) +
   xlab("% Remote")+
   ylab("District")+theme_linedraw()+
-  ggtitle("Cleveland dot plot of Percent showing ELL vs. remote learning per District")
+  ggtitle("ELL vs. remote learning per District")
 p4
 ```
 
@@ -127,12 +132,11 @@ p4_1 <- ggplot(Ethnicity_plot, aes(PercentRemote,district_remover_per_reorder3))
   geom_point(aes(color=Category)) + geom_line(aes(group = District),alpha=0.3) +
   xlab("% Remote")+
   ylab("District")+theme_linedraw()+
-  ggtitle("Cleveland dot plot of Percent showing Race/Ethnicity vs. remote learning per District")
+  ggtitle("Race/Ethnicity vs. remote learning per District")
 p4_1
 ```
 
-This is another Cleveland dot plot of the percentage of remote learning preference, but with facets showing different races or ethnicities. Unlike the previous graph, this plot allows us to see the distribution of preference for each race or ethnicity in each district. We ordered the plots from the highest to the lowest preference. The dot plot helps to reduce clutter and focus attention on the single values representing the total preferences for each race or ethnicity.
-
+This is also a Cleveland dot plot of the percentage of remote learning preference but with facets showing different races or ethnicity. Unlike the previous graph, this plot allows us to see the distribution of preference of each race/ethnicity per district. We reorder each plot from the highest to the lowest. Readers can use this graph to find the subgroup ranking for different districts as the previous Cleveland plot has 4 colors and is relatively hard to see.
 
 ```{r fig.height=3.5}
 
@@ -147,6 +151,7 @@ p5
 ```
 
 ### Grade Level
+
 This plot shows the remote learning preference for different grade levels in each district. The Cleveland dot plot allows us to easily compare the preferences of different grades within each district. We do not observe a strong pattern of change in preferences across grades.
 
 ```{r}
@@ -157,11 +162,11 @@ p6_1 <- ggplot(Grade_plot, aes(PercentRemote,district_remover_per_reorder4)) +
   geom_point(aes(color=Category)) + geom_line(aes(group = District),alpha=0.3) +
   xlab("% Remote")+
   ylab("District")+theme_linedraw()+
-  ggtitle("Cleveland dot plot of Percent showing Grade Level vs. remote learning per District")
+  ggtitle("Grade Level vs. remote learning per District")
 p6_1
 ```
 
-Cleveland dot plot of the percentage of remote learning preference with facets showing all grade levels. 
+Again, this plot allows us to see the distribution of preference of each grade (from 3-8) per district. We reorder each plot from the highest to the lowest. Readers can use this graph to find the subgroup ranking for different districts as the previous Cleveland plot has 6 colors and is relatively hard to see.
 
 ```{r fig.height=4 }
 
@@ -187,7 +192,8 @@ p7
 
 ## Part 3: Detailed Analysis for ELL Subgroup and Race/Ethnicity Subgroup
 
-### Overview:
+### Overview
+
 From the previous section, we found that people's preferences change substantially across ELL status and race/ethnicity groups. In this next section, we will take a deeper look at the correlation between the proportion of certain groups, if it exists.
 
 ### ELL Proportion vs Remote Learning Preferences
@@ -231,9 +237,12 @@ plot_grid(plot_1, plot_2, plot_3, plot_4, ncol = 2, nrow = 2)
 
 ## Part 4: Math and ELA Scores for Different Districts
 
-### Overview:
+### Overview
+
 We want to observe the trend of how the average preference of different groups changes from 2019-2022. In data.Rmd we separated preferences into three groups: low (lowest 20%), middle (25%-75%), and high (top 25%).
+
 ### Parallel coordinates plot
+
 To illustrate the changes in test scores from 2019 to 2022, we created a parallel coordinate plot and grouped the scores by each district's average preference for remote learning. The plot provides insight into students' performance prior to the pandemic when exams were administered in person, and after the pandemic when exams were administered virtually. By examining each district's average preference for remote learning in relation to their test scores, we can determine if remote learning preference had an impact on test performance for math and English language arts (ELA).
 
 According to the parallel coordinates plot, districts on average improved their ELA test scores from 2019 to 2022 but their performance declined for math tests. However, these relationships were not affected by the districts' preference for remote learning. Districts that did not prefer remote learning had scores clustered towards the upper middle range, but the trend of improving ELA scores and declining math scores was consistent across districts regardless of their preference for remote learning.
@@ -258,10 +267,12 @@ pcpplot
 
 ## Part 5: Math and ELA Scores by Subgroups
 
-### Overview:
+### Overview
+
 In order to compare test scores and remote learning preferences between different demographics, we created a series of boxplots.
 
 ### Gender
+
 There does not seem to be a significant difference in the change in test scores between males and females from 2019 to 2022. However, students with a medium preference for remote learning performed worse on average across all groups. 
 
 ```{r pt5 gender boxplot by scores: Graph 10}
@@ -306,6 +317,7 @@ annotate_figure(bptotal_10, top = text_grob("Boxplots of Test Scores for each Ge
 ```
 
 ### English Language Learner
+
 Students who are not English language learners had a higher average preference for remote learning than students who were. However, ELL students who had a high preference for remote learning tended to outperform non-ELL students. ELL students who did not prefer remote learning had lower test scores. There was no significant difference between pre-pandemic and post-pandemic test scores for ELL students. 
 
 ```{r pt5 ELL boxplot by scores: Graph 11}
@@ -348,6 +360,7 @@ annotate_figure(bptotal_11, top = text_grob("Boxplots of Test Scores for ELL col
 ```
 
 ### Race/Ethnicity
+
 Students whose race was “Asian” and who had high preference for remote learning performed significantly better across all groups. Their median ELA scores improved from 2019 to 2022 and declined from 2019 to 2022, which is consistent with the results from the parallel coordinates plot in Part 4. Throughout all test scores there exists a large outlier for the students who had medium preference. Students whose race was “White” did not have any high remote learning preferences, but those who had low remote learning preferences outperformed the students with medium preferences. Students whose race was “Black” did not have many low remote learning preferences, but the students who had high preferences outperformed the others. 
 
 ```{r pt5 ethnicity boxplot by scores: Graph 12}
@@ -391,6 +404,7 @@ annotate_figure(bptotal_12, top = text_grob("Boxplots of Test Scores by Ethnicit
 ```
 
 ### Grade Level
+
 For grades 3-8, on average students who did not prefer remote learning as much tended to outperform on math and ELA tests compared to the ones who did (with the exception of 8th graders’ 2022 math scores). 3rd graders did not have high preference for remote learning in general, and 4th and 5th grader had very few students with high preference for remote learning. 
 
 ```{r fig.height=4}
@@ -437,10 +451,12 @@ annotate_figure(bptotal_13, top = text_grob("Boxplots of Test Scores by Grade co
 
 ## Part 6: Detailed Analysis for ELL Subgroup and Race/Ethnicity Subgroup
 
-### Overview:
+### Overview
+
 In this section, we aim to find the correlations between test scores and remote learning preference. We made the plots with facets by two major indicators (ELL and Race/Ethnicity).
 
 ### ELL Remote Learning Preferences vs. Scores
+
 We observe a positive correlation between the percentage of remote learning preference and test scores within the ELL group. There is a trend that the stronger the preference for remote learning, the higher the score. There is also a negative correlation between the percentage of remote learning preference and test scores within the non-ELL group. However, we do not observe any difference in correlations across years from 2019 to 2022. The distribution of each group barely changed (but the overall ELA scores increased and overall math scores decreased). Therefore, we do not think there is a relationship between changes in test scores and remote learning preferences within different ELL groups.
 
 ```{r}
@@ -480,6 +496,7 @@ grid.arrange(ELL_ts3, ELL_ts4, ncol=1)
 
 
 ### Race/Ethnicity Remote Learning Preferences vs. Scores
+
 We observe a slightly positive correlation between the percentage of remote learning preference and test scores within the Asian group. The stronger the preference for remote learning, the higher the score. There is also a negative correlation between the percentage of remote learning preference and test scores within the White group. However, similar to the ELL group, we do not observe any noticeable change in the distribution of test scores and remote learning preferences from 2019 to 2022 within each race or ethnicity.
 
 ```{r}
@@ -489,7 +506,7 @@ rl_ts1 <- ggplot(Ethnicity_plot, aes(y=MathScores2019, x = PercentRemote,color =
   theme(axis.text.y = element_text(size = 10))
 ```
 
-```{r fig.height= 3.5}
+```{r fig.height = 8}
 rl_ts2 <- ggplot(Ethnicity_plot, aes(y=MathScores2022, x = PercentRemote,color =Category)) +
     geom_point() + 
     facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2022") + ggtitle("% Remote vs MathScores2022") + geom_smooth(method = "lm",se=FALSE,color="blue")+
@@ -500,14 +517,14 @@ grid.arrange(rl_ts1, rl_ts2, ncol=1)
 ```{r}
 rl_ts3 <- ggplot(Ethnicity_plot, aes(y=ELAScores2019, x = PercentRemote,color =Category)) +
     geom_point() + 
-    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2019") + ggtitle("Scatter plot of remote learning percent vs ELAScores2019 showing Race or Ethnicity") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2019") + ggtitle("% Remote vs ELAScores2019") + geom_smooth(method = "lm",se=FALSE,color="blue")+
   theme(axis.text.y = element_text(size = 10))
 ```
 
-```{r, fig.height = 3.5}
+```{r, fig.height = 8}
 rl_ts4 <- ggplot(Ethnicity_plot, aes(y=ELAScores2022, x = PercentRemote,color =Category)) +
     geom_point() + 
-    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2022") + ggtitle("Scatter plot of remote learning percent vs ELAScores2022 showing Race or Ethnicity") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2022") + ggtitle("% Remote vs ELAScores2022") + geom_smooth(method = "lm",se=FALSE,color="blue")+
   theme(axis.text.y = element_text(size = 10))
 grid.arrange(rl_ts3, rl_ts4, ncol=1)
 ```

@@ -40,6 +40,7 @@ ell-proportion-vs-remote-learning-preferences
 raceethnicity-proportion-vs-remote-learning-preferences
 part-4-math-and-ela-scores-for-different-districts
 overview-3
+parallel-coordinates-plot
 part-5-math-and-ela-scores-by-subgroups
 overview-4
 gender-1
