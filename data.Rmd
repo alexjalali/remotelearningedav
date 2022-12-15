@@ -47,7 +47,7 @@ Our data required a significant amount of preprocessing due to the structure of 
 
 To begin, we loaded the remote learning preference, Math scores, and ELA scores datasets into RStudio. Since the Math and ELA scores datasets were in the form of a CSV file with multiple sheets, we wrote a function called "read_excel_allsheets" to read them all into RStudio. We then saved each relevant sheet to a new dataframe.
 
-```{r, warning = FALSE}
+```{r, warning = FALSE, echo=TRUE}
 #libraries
 library(tidyverse)
 library(here)
@@ -111,7 +111,7 @@ demo <- read_excel_allsheets(here::here("datasets","demographic-snapshot.xlsx"))
 
 #### Cleaning Learning Preference Dataset
 To clean the learning preference dataset and prepare it for the merge, we retained only the 32 school districts that had test scores in the other datasets. For the same reason, in the grades category, we removed PK, 0K, grades 1-2, and grades 9-12 to maintain consistency with the other datasets. We also renamed the variables to facilitate the merging process.
-```{r}
+```{r, echo=TRUE}
 #keeping only the 32 school districts in learning_pref and dropping grades 1-2,9-12,PK and 0K to be consistent with other datasets
 learning_pref <- learning_pref %>% subset(District<33) %>% subset(!Category=="1") %>% subset(!Category=="2") %>% subset(!Category=="9") %>% subset(!Category=="10") %>% subset(!Category=="11") %>% subset(!Category=="12") %>% subset(!Category=="PK")%>% subset(!Category=="0K") %>% subset(!Category=="All District")
 names(learning_pref)[names(learning_pref) == "`Disaggregation Category`"] = "Disaggregation Category"
@@ -122,7 +122,7 @@ names(learning_pref)[names(learning_pref) == "% Remote"] = "Percent Remote"
 ```
 #### Cleaning the Test Scores Datasets
 For the Math and ELA test scores, we focused on scores from the years 2019 and 2022 to show the difference between pre-Covid and post-Covid test results. Each sheet from the CSV file that we divided corresponds to a specific disaggregation category that needed to be matched with the learning preference dataset. For each sheet, we selected the years 2019 and 2022, and renamed the specific category levels to match the learning preference dataset.
-```{r}
+```{r, echo=TRUE}
 #keeping only scores from 2022, and removing the "all grade" category
 math_scores_all_2022 <- math_scores_all %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
 math_scores_ethnicity_2022 <- math_scores_ethnicity %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
@@ -164,7 +164,7 @@ ela_scores_ell_2019 <- ela_scores_ell %>% subset(Year=="2019") %>% subset(!Grade
 
 #### Creating Dataframe for District 1
 We initiated the merging process by focusing on merging the learning preferences, Math scores, and ELA scores for District 1. We split the 2019 and 2022 Math and ELA scores by district, and then calculated the weighted mean of each score by category (for instance, for the disaggregation category "sex", we calculated the weighted mean scores for males and females). We then merged all of those dataframes by district number, disaggregation category, and category. Finally, we merged that dataframe with the District 1 remote learning preferences dataset, and created a new row with the average scores and average learning preferences. This dataframe was called district_1. We then created a dataframe called "df_super" that will be used in the subsequent for loop.
-```{r }
+```{r, echo=TRUE}
 ##District 1##
 #Math scores
 #Mean math scores by ELL
@@ -353,7 +353,7 @@ df_super = district_1
 
 #### For Loop to Iterate Merging for District 1 across the remaining Districts 2-32, and then adding those Dataframes to District 1
 In order to avoid repeating that code 31 more times, we created a for loop to iterate those same steps for the remaining 2-32 districts. Once it loops through district 2, a dataframe district_2 is created and added under the district_1 dataframe that was saved into df_super. District_3 is then added under district_2, and this repeats until all 32 districts have been added to df_super. 
-```{r loop}
+```{r loop, echo=TRUE}
 for (i in 2:32)
 {
     math_scores_ell_temp_2019 <- split(math_scores_ell_2019, f = math_scores_ell_2019$District)
@@ -539,7 +539,7 @@ names(district_1)[names(district_1) == "Percent Remote"] = "PercentRemote"
 
 ### Replacing Missing Values
 The dataset had missing values in the test scores datasets. We replaced these test scores with its specific district average. This will be elaborated in section 3.3: Missing value analysis.
-```{r NA replacement}
+```{r NA replacement, include=FALSE}
 library(Hmisc)
 df_super_MVA <- df_super #saving df_super with missing values included into a new df so when we do missing value analysis we can visualize it
 ##now replacing the NA's##
@@ -562,7 +562,7 @@ colSums(is.na(df_super)) %>%
 
 ### Making a new Variable to reflect categories for Percent Remote
 As a final step in the data cleaning and consolidation process, we created a new variable called "percent_cat" to categorize the preference for remote learning as "high", "middle", or "low". This new variable is categorical and will be useful for visualizing the data. We divided the remote learning preference into three groups: the lower 25% was labeled as "low", the middle 25%-75% was labeled as "middle", and the upper 75% was labeled as "high".
-```{r making PercentRemote categorical}
+```{r making PercentRemote categorical, echo=TRUE}
 # First, find the minimum and maximum values of percent remote
 df_super$PercentRemote <- as.numeric(df_super$PercentRemote)
 min_percent_remote <- as.numeric(min(df_super$PercentRemote))
@@ -586,12 +586,10 @@ head(df_super, 10)
 tail(df_super, 10)
 ```
 
-### Saving CSV to csv for interactive component
 ```{r saving to csv "dataClean"}
 write.csv(df_super, file="./datasets/DataClean.csv")
 ```
 
-### Saving Consolidated and Cleaned Dataset into Datasets df and df_total
 ```{r reading csv file into df}
 df <- read.csv(file='./datasets/DataClean.csv')
 df_total <- subset(df, Category == "total") #dataframe with just aggregates
@@ -599,6 +597,7 @@ df_total <- subset(df, Category == "total") #dataframe with just aggregates
 
 ## Missing value analysis
 
+Within our data received from the NYC department of education, there are some missing values that need to be filled in order to facilitate our analysis in the results section. The chart below shows the number of rows with missing values for each variable:
 ```{r}
 colSums(is.na(df_super_MVA)) %>%
   sort(decreasing = TRUE)
@@ -609,7 +608,8 @@ colSums(is.na(df_super_MVA)) %>%
 library(naniar)
 gg_miss_var(df_super_MVA) + labs(y = "Missing Values", title="Number of Missing Values per Variable")
 ```
-
+As we can see from the images above, the only variables with missing values are MathScores2022, ELAScores2022, MathScores2019, and ELAScores2019. This indicates that our first dataset on remote learning preferences did not have any missing values, but our math and ELA scores datasets did.
+To further investigate the patterns of missing data, we can look at the chart below:
 
 ```{r}
 library(remotes)
@@ -618,19 +618,28 @@ df_super_MVA_ <- df_super_MVA %>% subset(select=c("ELAScores2019","ELAScores2022
 #plotting missing data
 plot_missing(df_super_MVA_, percent = FALSE) 
 ```
-
-```{r fig.height=4}
+Based on this graph, it is clear that there is a pattern of missing data between the scores variables. We can further examine which demographic categories these missing values exist in by looking at the following graph:
+```{r fig.height=8}
 gg_miss_var(df_super_MVA,facet=Category) +labs(title="Number of Missing Values per Variable, Faceted by Category")
 ```
-
+As we can see from the graph above, the only categories with missing values for the test scores are two factors within the ethnicity category: "Asian" and "White". To determine which districts within these categories have missing values, and whether any of these districts are the same, we can look at the chart below:
 ```{r fig.height=4}
-A<-subset(df_super_MVA,Category=="Asian")
-Aplot <- gg_miss_case(A,facet=District) + labs(title="Ethnicity: Asian") + theme(plot.title = element_text(size = 8))
+#ordering the district levels
+df_super_MVA_temp <- df_super_MVA
+df_super_MVA_temp$district_level <- factor(df_super_MVA_temp$District, levels= c("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32"))
 
-W<-subset(df_super_MVA,Category=="White")
-Wplot <- gg_miss_case(W,facet=District)+ labs(title="Ethnicity: White")+ theme(plot.title = element_text(size = 8))
+#creating plots for the 2 ethnicity groups
+A<-subset(df_super_MVA_temp,Category=="Asian")
+Aplot <- gg_miss_case(A,facet=district_level) + labs(title="Ethnicity: Asian") + theme(plot.title = element_text(size = 8))
 
+W<-subset(df_super_MVA_temp,Category=="White")
+Wplot <- gg_miss_case(W,facet=district_level)+ labs(title="Ethnicity: White")+ theme(plot.title = element_text(size = 8))
+
+#combining the plots to 1
 AWplot <- ggarrange(Aplot,Wplot, ncol = 2, nrow = 1,common.legend=TRUE) 
 annotate_figure(AWplot, top = text_grob("Missing Values per District", 
                color = "black", size = 12))
 ```
+As shown in this chart, the missing values for both "Asian" and "White" ethnicities are from districts 7, 16, 23, and 32. The reason for this could be that on the standardized tests, students in these districts were not required to indicate their ethnicity as "Asian" or "White". Another possible reason is that there were errors in the reporting of these districts.
+
+We imputed these missing values with its respective district’s average test scores. 
