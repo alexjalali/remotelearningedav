@@ -25,8 +25,10 @@ df_total <- subset(df, Category == "total") #dataframe with just aggregates
 ## Part 1: Remote Learning Preferences for Different Districts
 
 ### Overview:
+In this section, we will take a look at remote learning preferences using three methods: heat map plot from JSON, histogram, and Cleveland dot plot. We want to display the overall distribution of remote learning preferences in districts.
 
 ### Heatmap Plot from JSON
+In this graph, we can see the remote learning preference for each county. As shown in the legend on the right, we can observe each cell's value of the main variable in the corresponding cell range. Darker colorings associate with higher remote learning preference.
 
 ```{r}
 layout(matrix(1:2,ncol=2), width = c(3,1),height = c(1,1))
@@ -40,6 +42,8 @@ rasterImage(legend_image, 0, 0, 1, 1)
 ```
 
 ### Bar Plot of Remote Learning Preferences
+
+The histogram shows the overall distribution of the percentage of remote learning preference. We created a bin for every 2.5% change in preference and the height of each bar represents the number of districts that fall within a particular percentage. The shape is slightly left-skewed. Most scores fall in the bin between 70-72.5%.
 
 ```{r}
 p1 <- ggplot(df_total, aes(PercentRemote)) +
@@ -57,6 +61,8 @@ p1
 
 ### Cleveland Dot Plot of Remote Learning Preferences Per District (Order by Highest to Lowest)
 
+The Cleveland Dot plot allow us to observe the remote learning preference of each district and an overall dynamic of the difference between districts. We reorder the districts by their preference from the highest to the lowest. 
+
 ```{r}
 district_remover_per_reorder <- fct_reorder(as.character(df_total$District), df_total$PercentRemote, min)
 
@@ -71,9 +77,10 @@ p2
 ## Part 2: Remote Learning Preferences Analysis by Subgroups
 
 ### Overview:
+After gaining the overall data information, we want to look at four subgroups(grade, gender, ELL, ethnicity) to see which indicator has the strongest impact on the preference.
 
 ### Gender
-
+The Cleveland dot plot shows the remote learning preference of different gender in each district. The blue dots denote the preference of male and the red dots denote the preference of female. For most districts, female have a stronger preference to do remote learning. We make the difference between the males and females stand out further by connecting the genders for each districts.
 ```{r}
 gender_plot <- df%>%filter(DisaggregationCategory == "Gender")
 district_remover_per_reorder2 <- fct_reorder(as.character(gender_plot$District), gender_plot$PercentRemote)
@@ -87,6 +94,8 @@ p3
 ```
 
 ### English Language Learner Status
+
+This Cleveland dot plot shows the remote learning preference of different English language learner statuses in each district. The blue dots denote the preference of English language learners and the red dots denote the preference of non-English language learners. We observe a substantially stronger remote learning preference of non-English language learners. We make the difference between the English learner status stand out further by connecting the them for each districts. We will further analyze this factor in the following section. 
 
 ```{r}
 ELL_plot <- df%>%filter(DisaggregationCategory == "English Language Learner Status")
@@ -102,6 +111,8 @@ p4
 
 ### Race/Ethnicity
 
+This plot tells us the remote learning preference grouped by races or ethnicity in each district. This Cleveland dot plot mainly allows us to compare the different preferences of each race/ethnicity within each district parallelly. According to the graph, Asians (red dots) have the highest preference to go on remote learning, and White (purple dots) people have the lowest willingness to do school remotely. Black people (green dots) have a slightly stronger inclination to do remote learning than Hispanics (blue dots). We will further analyze this factor in the following section.
+
 ```{r}
 Ethnicity_plot <- df%>%filter(DisaggregationCategory == "Race or Ethnicity")
 district_remover_per_reorder3 <- fct_reorder(as.character(Ethnicity_plot$District), Ethnicity_plot$PercentRemote)
@@ -113,6 +124,9 @@ p4_1 <- ggplot(Ethnicity_plot, aes(PercentRemote,district_remover_per_reorder3))
   ggtitle("Cleveland dot plot of Percent showing Race/Ethnicity vs. remote learning per District")
 p4_1
 ```
+
+This is also a Cleveland dot plot of the percentage of remote learning preference but with facets showing different races or ethnicity. Unlike the previous graph, this plot allows us to see the distribution of preference of each race/ethnicity per district. We Reorder the plots from the highest to the lowest. With a dot plot we can reduce the clutter and draw more focus to the single values that represent total revenues for males and females.
+
 
 ```{r fig.height=3.5}
 
@@ -127,6 +141,7 @@ p5
 ```
 
 ### Grade Level
+This plot tells us the remote learning preference grouped by grade level in each district. This Cleveland dot plot mainly allows us to compare the different preferences of each grade within each district parallelly. We do not observe a strong pattern of change in preference across grades.
 
 ```{r}
 Grade_plot <- df%>%filter(DisaggregationCategory == "Grade Level")
@@ -139,7 +154,7 @@ p6_1 <- ggplot(Grade_plot, aes(PercentRemote,district_remover_per_reorder4)) +
   ggtitle("Cleveland dot plot of Percent showing Grade Level vs. remote learning per District")
 p6_1
 ```
-
+Cleveland dot plot of the percentage of remote learning preference with facets showing all grade levels. 
 ```{r fig.height=4 }
 
 Grade_plot <- df%>%filter(DisaggregationCategory == "Grade Level") %>%filter(Category <= "5")
@@ -165,6 +180,7 @@ p7
 ## Part 3: Detailed Analysis for ELL Subgroup and Race/Ethnicity Subgroup
 
 ### Overview:
+From the previous section, we found that people's preferences change substantially across ELL status and race/ethnicity groups. In this part, we will take a deeper look that if there's any correlation between the proportion of certain groups.
 
 ### ELL Proportion vs Remote Learning Preferences
 
@@ -204,9 +220,9 @@ plot_grid(plot_1, plot_2, plot_3, plot_4, ncol = 2, nrow = 2)
 ## Part 4: Math and ELA Scores for Different Districts
 
 ### Overview:
-
+We want to observe the trend of how the average preference of different groups changes from 2019-2022. In data.Rmd we separate preferences into three groups: low (lowest 20%), middle (25%-75%), and high (top 25%).
 ### Parallel coordinates plot
-
+ela not change much 
 ```{r pcp}
 #this isn't working i am going to work on this tomorrow
 #highlight the clusters based on the Species column
@@ -227,7 +243,8 @@ pcpplot
 ## Part 5: Math and ELA Scores by Subgroups
 
 ### Overview:
-
+preferene and score of each subgroup
+change of overall and 各自的变化
 ### Gender
 
 ```{r pt5 gender boxplot by scores: Graph 10}
@@ -399,23 +416,24 @@ annotate_figure(bptotal_13, top = text_grob("Boxplots of Test Scores by Grade co
 ```
 
 ## Part 6: Detailed Analysis for ELL Subgroup and Race/Ethnicity Subgroup
+We are trying to find the correlations between test scores and remote learning preference. We make the plot with facets of different indicators.
 
 ### ELL Remote Learning Preferences vs. Scores
 
 ```{r}
-ELL_ts2 <- ggplot(ELL_plot, aes(y=MathScores2019, x = PercentRemote,color =Category)) +
+ELL_ts1 <- ggplot(ELL_plot, aes(y=MathScores2019, x = PercentRemote,color =Category)) +
     geom_point() + 
-    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2019") + ggtitle("Scatter plot of remote learning percent vs MathScores2022 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
-  theme(axis.text.y = element_text(size = 5))
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2019") + ggtitle("Remote learning percent vs MathScores2019 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 5),plot.title=element_text(size=12))
 
-ELL_ts2
+ELL_ts1
 ```
 
 ```{r}
 ELL_ts2 <- ggplot(ELL_plot, aes(y=MathScores2022, x = PercentRemote,color =Category)) +
     geom_point() + 
-    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2022") + ggtitle("remote learning percent vs MathScores2019 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
-  theme(axis.text.y = element_text(size = 5))
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("MathScores2022") + ggtitle("Remote learning percent vs MathScores2022 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 5),plot.title=element_text(size=12))
 
 ELL_ts2
 ```
@@ -423,8 +441,8 @@ ELL_ts2
 ```{r}
 ELL_ts3 <- ggplot(ELL_plot, aes(y=ELAScores2019, x = PercentRemote,color =Category)) +
     geom_point() + 
-    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2019") + ggtitle("Scatter plot of remote learning percent vs ELAScores2019 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
-  theme(axis.text.y = element_text(size = 5))
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2019") + ggtitle("Remote learning percent vs ELAScores2019 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 5),plot.title=element_text(size=12))
 
 ELL_ts3
 ```
@@ -432,11 +450,14 @@ ELL_ts3
 ```{r}
 ELL_ts4 <- ggplot(ELL_plot, aes(y=ELAScores2022, x = PercentRemote,color =Category)) +
     geom_point() + 
-    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2022") + ggtitle("Scatter plot of remote learning percent vs ELAScores2022 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
-  theme(axis.text.y = element_text(size = 5))
+    facet_wrap(~Category, ncol = 2)+xlab("% Remote")+ ylab("ELAScores2022") + ggtitle("Remote learning percent vs ELAScores2022 showing English Language Learner Status") + geom_smooth(method = "lm",se=FALSE,color="blue")+
+  theme(axis.text.y = element_text(size = 5),plot.title=element_text(size=12))
 
 ELL_ts4
 ```
+
+
+
 
 
 ### Race/Ethnicity Remote Learning Preferences vs. Scores
