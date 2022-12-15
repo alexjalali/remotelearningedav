@@ -2,9 +2,51 @@
 
 ## Sources
 
+The first dataset we used is Learning Preference City Remote Learning from the NYC Department of Education. It consists of total enrollment count for students who prefer remote or hybrid learning, and who have attended school in person at least once since September 2020. The samples are collected from NYC public schools grades K-12 for each district. The dataset is as of January 4, 2021 and made public on March 11, 2021. 
+
+This dataset is formatted with 8 columns and 876 rows of observations. The columns consist of district number, disaggregation category, category, number of total enrollment, number blended, percent blended, number remote, and percent remote. District number is our key/common variable used to combine other datasets that give metrics regarding specific district numbers for the same time period. Disaggregation category is a sub variable of different categories, such as gender or grade level. Category contains the specific group of that variable. For example, if disaggregation category is gender then the category groups are female and male for that specific district. These demographics will be used for visualizations and finding patterns. Blended refers to preference towards hybrid learning, and remote refers to preference towards remote learning. 
+
+This dataset is updated on an as needed basis. It is imported directly through the NYC Open Data website as an excel file, which is a government project providing open source data produced and used by City government. Students attending charter schools, receiving home or hospital instruction, pre-K students, and attending certain specific programs are not included. In order to comply with regulations of the Family Educational Rights and Privacy Act on public reporting of education outcomes, data of groups with less than 5 students enrolled are suppressed with an “s”. 
+
+The second and third datasets we used are ELA and Math Test results for students from grade 3 to grade 8 for different districts. The datasets are collected from the NYC Department of Education, and are updated annually.
+
+Each dataset contains 6 different subsets. All sub-datasets split the students by districts since district is the main variable for us to combine all datasets for this project. For this project, we will use data values for year 2019 (before the pandemic) and 2022 (the first time after the pandemic when all students were required to take those exams) to study the effect of how students’ previous test outcomes influence their learning choices and also how their preferences influence their learning outcomes. We will also use data values for years 2018, 2019, and 2022 to study how the pandemic changed student learning outcomes.
+
+Specifically, for both ELA and Math Test results, the sub datasets are: 
+All - this dataset contains information of the test results of all students. This dataset has 1792 rows and 16 columns.
+SWD - this dataset split student test results based on whether the students are SWD (students with disabilities). This dataset has 3584 rows and 16 columns.
+Ethnicity - this dataset split student test results based on student race and ethnicity (Asian, Black, Hispanic, White). This dataset has 7168 rows and 16 columns.
+Gender - this dataset split student test results based on student gender (male, female). This dataset has 3584 rows and 16 columns.
+Econ Status - this dataset split student test results based on whether the student is economically disadvantaged. This dataset has 3584 rows and 16 columns.
+ELL - this dataset split the test results based on ELL (English Language Learner) status (current ELL, ever ELL, never ELL). This dataset has 4704 rows and 16 columns.
+
+Some Limitations of the datasets:
+Compare to other datasets we will use for this project, some districts are missing (districts 75, 79, and 84)
+The scale for ELA and Math exams changed in 2018. In addition, the tests for 2020 were canceled due to the pandemic, and the tests for 2021 were voluntary. Therefore, we will only use data for 2018 and 2022.
+For the ethnicity dataset, other ethnicity groups such as multi-racial and native american are not included.
+For the gender dataset, other genders such as cisgender, transgender, and non-binary are not included. 
+	
+The datasets can be downloaded from the infohub of NYC Department of Education as Excel files, and can be imported to R directly. 
+
+In Section 2.2, we mentioned also including a dataset on demographic snapshots per district. However, we decided to omit that dataset because the demographics we decided to ultimately focus on were already in the remote learning and test scores data sets. The demographic snapshots dataset included economic needs index per district, which would be an interesting variable to compare to remote learning preferences. However, that analysis would be too in depth and deserves its own project. 
+
+Some issues we discover in this data include the complexity of tidying up the dataset, and the missing values in the math and ELA scores data sets. We will disguss how we resolved these issues in the following sections. 
+
+URLs:
+Data Set 1: Remote Learning Preferences
+https://data.cityofnewyork.us/Education/Learning-Preference-City-Remote-Learning-as-of-Jan/k5d2-tkrr
+Data Set 2: ELA Test Scores https://infohub.nyced.org/docs/default-source/default-document-library/district-ela-results-2013-2022-(public).xlsx
+Data Set 3: Math Test Scores
+https://infohub.nyced.org/docs/default-source/default-document-library/district-math-results-2013-2022-(public).xlsx
+
 ## Cleaning / transformation
 
+Our data required a significant amount of preprocessing due to the structure of the datasets from the New York City website. Our goal is to join the learning preference, math test scores, and ELA test scores by district number and demographics. We had to split each sheet from the CSV file into separate dataframes and manipulate the Math scores and ELA scores datasets to match the district number and disaggregation categories in the learning preference dataset. This allowed us to perform a right join and add the test scores as new variables in the learning preference dataset. We also added rows that represented the aggregate means for each district. Furthermore, we created a separate variable to categorize the percent remote learning variable as "High" for high remote learning preference, "Middle" for medium remote learning preference, and "Low" for lower remote learning preference. The final comprehensive dataset is called "df", and the dataset with just the district aggregates is called "df_total".
+
 ### Loading in Data
+
+To begin, we loaded the remote learning preference, Math scores, and ELA scores datasets into RStudio. Since the Math and ELA scores datasets were in the form of a CSV file with multiple sheets, we wrote a function called "read_excel_allsheets" to read them all into RStudio. We then saved each relevant sheet to a new dataframe.
+
 ```{r, warning = FALSE}
 #libraries
 library(tidyverse)
@@ -12,6 +54,11 @@ library(here)
 library(readxl)
 library(dplyr)
 library(zoo)
+library(ggplot2)
+library(remotes)
+library(redav)
+library(naniar)
+library(ggpubr)
 #reading in learning preferences dataset
 learning_pref <- read_csv(here::here("datasets", "Learning_Preferences.csv"),show_col_types = FALSE)
 #Our other datasets have multiple sheets, so this is a function to read all of them in
@@ -60,8 +107,10 @@ ela_scores_ell_2019 <- ela_scores[["ELL"]]
 demo <- read_excel_allsheets(here::here("datasets","demographic-snapshot.xlsx"))[["District"]]
 ```
 
-### Cleaning and Consolidating Data
+### Cleaning Data to Prepare for Merge
 
+#### Cleaning Learning Preference Dataset
+To clean the learning preference dataset and prepare it for the merge, we retained only the 32 school districts that had test scores in the other datasets. For the same reason, in the grades category, we removed PK, 0K, grades 1-2, and grades 9-12 to maintain consistency with the other datasets. We also renamed the variables to facilitate the merging process.
 ```{r}
 #keeping only the 32 school districts in learning_pref and dropping grades 1-2,9-12,PK and 0K to be consistent with other datasets
 learning_pref <- learning_pref %>% subset(District<33) %>% subset(!Category=="1") %>% subset(!Category=="2") %>% subset(!Category=="9") %>% subset(!Category=="10") %>% subset(!Category=="11") %>% subset(!Category=="12") %>% subset(!Category=="PK")%>% subset(!Category=="0K") %>% subset(!Category=="All District")
@@ -70,6 +119,10 @@ names(learning_pref)[names(learning_pref) == "# Total Enrollment"] = "Total Enro
 names(learning_pref)[names(learning_pref) == "# Remote"] = "Remote"
 names(learning_pref)[names(learning_pref) == "% Remote"] = "Percent Remote"
 #renaming variable to make it easier to merge with other datasets 
+```
+#### Cleaning the Test Scores Datasets
+For the Math and ELA test scores, we focused on scores from the years 2019 and 2022 to show the difference between pre-Covid and post-Covid test results. Each sheet from the CSV file that we divided corresponds to a specific disaggregation category that needed to be matched with the learning preference dataset. For each sheet, we selected the years 2019 and 2022, and renamed the specific category levels to match the learning preference dataset.
+```{r}
 #keeping only scores from 2022, and removing the "all grade" category
 math_scores_all_2022 <- math_scores_all %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
 math_scores_ethnicity_2022 <- math_scores_ethnicity %>% subset(Year=="2022") %>% subset(!Grade=="All Grades")
@@ -107,7 +160,11 @@ ela_scores_ell_2019 <- ela_scores_ell %>% subset(Year=="2019") %>% subset(!Grade
      "Never ELL" = "Not ELL")) #renaming factor levels to match learning_pref dataset
 ```
 
-```{r scratch}
+### Merging Datasets
+
+#### Creating Dataframe for District 1
+We initiated the merging process by focusing on merging the learning preferences, Math scores, and ELA scores for District 1. We split the 2019 and 2022 Math and ELA scores by district, and then calculated the weighted mean of each score by category (for instance, for the disaggregation category "sex", we calculated the weighted mean scores for males and females). We then merged all of those dataframes by district number, disaggregation category, and category. Finally, we merged that dataframe with the District 1 remote learning preferences dataset, and created a new row with the average scores and average learning preferences. This dataframe was called district_1. We then created a dataframe called "df_super" that will be used in the subsequent for loop.
+```{r }
 ##District 1##
 #Math scores
 #Mean math scores by ELL
@@ -280,6 +337,7 @@ district_1$`% Blended` <- as.numeric(gsub("%","",district_1$`% Blended`))
 
 district_1[nrow(district_1) + 1,] <- c("1","total", "total", round(((district_1$Math_Scores_2019[1]*district_1$`Total Enrollment`[1])+(district_1$Math_Scores_2019[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), round(((district_1$ELA_Scores_2019[1]*district_1$`Total Enrollment`[1])+(district_1$ELA_Scores_2019[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), round(((district_1$Math_Scores_2022[1]*district_1$`Total Enrollment`[1])+(district_1$Math_Scores_2022[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), round(((district_1$ELA_Scores_2022[1]*district_1$`Total Enrollment`[1])+(district_1$ELA_Scores_2022[2]*district_1$`Total Enrollment`[2]))/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2], district_1$`# Blended`[1] + district_1$`# Blended`[2], 100*round((district_1$`# Blended`[1] + district_1$`# Blended`[2])/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4), district_1$Remote[1] + district_1$Remote[2], 100*round((district_1$Remote[1] + district_1$Remote[2])/(district_1$`Total Enrollment`[1] + district_1$`Total Enrollment`[2]), digit = 4))
 
+#renaming variables
 names(district_1)[names(district_1) == "Math_Scores_2019"] = "MathScores2019"
 names(district_1)[names(district_1) == "ELA_Scores_2019"] = "ELAScores2019"
 names(district_1)[names(district_1) == "Math_Scores_2022"] = "MathScores2022"
@@ -293,6 +351,8 @@ names(district_1)[names(district_1) == "Percent Remote"] = "PercentRemote"
 df_super = district_1
 ```
 
+#### For Loop to Iterate Merging for District 1 across the remaining Districts 2-32, and then adding those Dataframes to District 1
+In order to avoid repeating that code 31 more times, we created a for loop to iterate those same steps for the remaining 2-32 districts. Once it loops through district 2, a dataframe district_2 is created and added under the district_1 dataframe that was saved into df_super. District_3 is then added under district_2, and this repeats until all 32 districts have been added to df_super. 
 ```{r loop}
 for (i in 2:32)
 {
@@ -477,14 +537,8 @@ names(district_1)[names(district_1) == "Percent Remote"] = "PercentRemote"
 }
 ```
 
-### liang's try
-
-```{r}
-library(mi)
-x <- missing_data.frame(df_super)
-image(x)
-```
-
+### Replacing Missing Values
+The dataset had missing values in the test scores datasets. We replaced these test scores with its specific district average. This will be elaborated in section 3.3: Missing value analysis.
 ```{r NA replacement}
 library(Hmisc)
 df_super_MVA <- df_super #saving df_super with missing values included into a new df so when we do missing value analysis we can visualize it
@@ -506,6 +560,8 @@ colSums(is.na(df_super)) %>%
   sort(decreasing = TRUE)
 ```
 
+### Making a new Variable to reflect categories for Percent Remote
+As a final step in the data cleaning and consolidation process, we created a new variable called "percent_cat" to categorize the preference for remote learning as "high", "middle", or "low". This new variable is categorical and will be useful for visualizing the data. We divided the remote learning preference into three groups: the lower 25% was labeled as "low", the middle 25%-75% was labeled as "middle", and the upper 75% was labeled as "high".
 ```{r making PercentRemote categorical}
 # First, find the minimum and maximum values of percent remote
 df_super$PercentRemote <- as.numeric(df_super$PercentRemote)
@@ -520,25 +576,61 @@ upper_bound <- quantile(df_super$PercentRemote, 0.75)
 df_super$remote_cat <- cut(df_super$PercentRemote, breaks = c(min_percent_remote-1, lower_bound, upper_bound, max_percent_remote), labels = c("Low", "Middle", "High"))
 ```
 
-
+### Our Final Dataset, first 10 Observations
 ```{r}
 head(df_super, 10)
 ```
 
+### Our Final Dataset, last 10 Observations
 ```{r}
 tail(df_super, 10)
 ```
 
+### Saving CSV to csv for interactive component
 ```{r saving to csv "dataClean"}
 write.csv(df_super, file="./datasets/DataClean.csv")
 ```
 
+### Saving Consolidated and Cleaned Dataset into Datasets df and df_total
 ```{r reading csv file into df}
 df <- read.csv(file='./datasets/DataClean.csv')
 df_total <- subset(df, Category == "total") #dataframe with just aggregates
 ```
 
-
-
 ## Missing value analysis
-``
+
+```{r}
+colSums(is.na(df_super_MVA)) %>%
+  sort(decreasing = TRUE)
+```
+
+
+```{r}
+library(naniar)
+gg_miss_var(df_super_MVA) + labs(y = "Missing Values", title="Number of Missing Values per Variable")
+```
+
+
+```{r}
+library(remotes)
+library(redav)
+df_super_MVA_ <- df_super_MVA %>% subset(select=c("ELAScores2019","ELAScores2022","MathScores2019","MathScores2022")) 
+#plotting missing data
+plot_missing(df_super_MVA_, percent = FALSE) 
+```
+
+```{r fig.height=4}
+gg_miss_var(df_super_MVA,facet=Category) +labs(title="Number of Missing Values per Variable, Faceted by Category")
+```
+
+```{r fig.height=4}
+A<-subset(df_super_MVA,Category=="Asian")
+Aplot <- gg_miss_case(A,facet=District) + labs(title="Ethnicity: Asian") + theme(plot.title = element_text(size = 8))
+
+W<-subset(df_super_MVA,Category=="White")
+Wplot <- gg_miss_case(W,facet=District)+ labs(title="Ethnicity: White")+ theme(plot.title = element_text(size = 8))
+
+AWplot <- ggarrange(Aplot,Wplot, ncol = 2, nrow = 1,common.legend=TRUE) 
+annotate_figure(AWplot, top = text_grob("Missing Values per District", 
+               color = "black", size = 12))
+```
