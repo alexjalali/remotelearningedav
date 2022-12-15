@@ -825,14 +825,14 @@ Data Set 3: Math Test Scores
 ##                      0                      0                      0                      0                      0 
 ##                 Remote          PercentRemote 
 ##                      0                      0</code></pre>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>As we can see from the images above, the only variables with missing values are MathScores2022, ELAScores2022, MathScores2019, and ELAScores2019. This indicates that our first dataset on remote learning preferences did not have any missing values, but our math and ELA scores datasets did.</p>
 <p>To further investigate the patterns of missing data, we can look at the chart below:</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Based on this graph, it is clear that there is a pattern of missing data between the scores variables. We can further examine which demographic categories these missing values exist in by looking at the following graph:</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>As we can see from the graph above, the only categories with missing values for the test scores are two factors within the ethnicity category: “Asian” and “White”. To determine which districts within these categories have missing values, and whether any of these districts are the same, we can look at the chart below:</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>As shown in this chart, the missing values for both “Asian” and “White” ethnicities are from districts 7, 16, 23, and 32. The reason for this could be that on the standardized tests, students in these districts were not required to indicate their ethnicity as “Asian” or “White”. Another possible reason is that there were errors in the reporting of these districts.</p>
 <p>We imputed these missing values with its respective district’s average test scores.</p>
 
